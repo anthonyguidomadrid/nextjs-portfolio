@@ -1,10 +1,10 @@
-import { useTranslation } from "next-i18next";
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { useRouter } from "next/router";
-import { ChangeEvent, ChangeEventHandler } from "react";
+import { useTranslation } from 'next-i18next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { useRouter } from 'next/router';
+import { ChangeEvent } from 'react';
 
 const Home = () => {
-  const { t } = useTranslation("common");
+  const { t } = useTranslation('common');
   const router = useRouter();
   const { locale } = router;
 
@@ -15,11 +15,11 @@ const Home = () => {
 
   return (
     <div>
-      <h1>{t("home")}</h1>
+      <h1>{t('home')}</h1>
       <p>Hello</p>
       <select value={locale} onChange={changeLanguage}>
-        <option value="en">English</option>
-        <option value="es">Español</option>
+        <option value='en'>English</option>
+        <option value='es'>Español</option>
       </select>
     </div>
   );
@@ -28,7 +28,7 @@ const Home = () => {
 export async function getStaticProps({ locale }: { locale: string }) {
   return {
     props: {
-      ...(await serverSideTranslations(locale ?? "en", ["common"])),
+      ...(await serverSideTranslations(locale ?? 'en', ['common'])),
     },
   };
 }
