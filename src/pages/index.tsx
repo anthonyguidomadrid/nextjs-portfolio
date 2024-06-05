@@ -1,3 +1,4 @@
+import { CustomButton } from '@/components';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useRouter } from 'next/router';
@@ -21,6 +22,9 @@ const Home = () => {
         <option value='en'>English</option>
         <option value='es'>Español</option>
       </select>
+      <div>
+        <CustomButton labelText='HEllo' />
+      </div>
     </div>
   );
 };

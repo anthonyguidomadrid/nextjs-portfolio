@@ -1,3 +1,5 @@
+import theme from './utils/theme';
+
 export default function RootLayout({
   children,
 }: {
