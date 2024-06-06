@@ -3,13 +3,21 @@ import { ReactElement } from 'react';
 import { I18nextProvider } from 'react-i18next';
 import i18n from './i18nForTests';
 import { RouterContext } from 'next/dist/shared/lib/router-context.shared-runtime';
-import { createMockRouter } from '~/mocks/router';
+import { createMockRouter } from '~/_mocks/router';
+import { CssBaseline, ThemeProvider as MuiThemeProvider } from '@mui/material';
+import theme from './theme';
+import { ThemeProvider } from '@emotion/react';
 
 const AllTheProviders = ({ children }: { children: React.ReactNode }) => {
   return (
     <I18nextProvider i18n={i18n}>
       <RouterContext.Provider value={createMockRouter()}>
-        {children}
+        <MuiThemeProvider theme={theme}>
+          <ThemeProvider theme={theme}>
+            <CssBaseline />
+            {children}
+          </ThemeProvider>
+        </MuiThemeProvider>
       </RouterContext.Provider>
     </I18nextProvider>
   );
