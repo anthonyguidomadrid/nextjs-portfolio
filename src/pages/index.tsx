@@ -1,8 +1,9 @@
-import { CustomButton } from '@/components';
+import { CustomButton } from '~/components';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useRouter } from 'next/router';
 import { ChangeEvent } from 'react';
+import Link from 'next/link';
 
 const Home = () => {
   const { t } = useTranslation('common');
@@ -24,6 +25,9 @@ const Home = () => {
       </select>
       <div>
         <CustomButton labelText='HEllo' />
+      </div>
+      <div>
+        <Link href={'/about'}>About</Link>
       </div>
     </div>
   );
