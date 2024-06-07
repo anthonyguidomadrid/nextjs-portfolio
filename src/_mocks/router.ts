@@ -23,7 +23,9 @@ jest.mock('next/router', () => ({
   },
 }));
 
-export const createMockRouter = (router: Partial<NextRouter> = {}): NextRouter => {
+export const createMockRouter = (
+  router: Partial<NextRouter> = {}
+): NextRouter => {
   return {
     ...router,
     basePath: '/',
