@@ -4,8 +4,10 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useRouter } from 'next/router';
 import { ChangeEvent } from 'react';
 import Link from 'next/link';
+import createApolloClient from '~/lib/client';
+import { GETQUERY } from '~/query/schema';
 
-const Home = () => {
+const Home = ({ todos: { data } }) => {
   const { t } = useTranslation('common');
   const router = useRouter();
   const { locale } = router;
@@ -29,14 +31,26 @@ const Home = () => {
       <div>
         <Link href={'/about'}>About</Link>
       </div>
+      <ul>
+        {data.map(({ attributes }, index) => (
+          <li key={index}>{attributes.todoText}</li>
+        ))}
+      </ul>
     </div>
   );
 };
 
 export async function getStaticProps({ locale }: { locale: string }) {
+  const client = createApolloClient();
+  const {
+    data: { todos },
+  } = await client.query({
+    query: GETQUERY,
+  });
   return {
     props: {
       ...(await serverSideTranslations(locale, ['common'])),
+      todos,
     },
   };
 }
