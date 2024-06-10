@@ -3,10 +3,17 @@ import '@testing-library/jest-dom';
 import { render } from '~/utils/test-utils';
 import Home from '.';
 import userEvent from '@testing-library/user-event';
+import { HomeProps } from './index.props';
+
+const DEFAULT_PROPS: HomeProps = {
+  todos: {
+    data: [],
+  },
+};
 
 describe('Home', () => {
   it('renders a heading', async () => {
-    render(<Home />);
+    render(<Home {...DEFAULT_PROPS} />);
     const heading = screen.getByRole('heading', { level: 1 });
     expect(heading).toBeInTheDocument();
     expect(heading).toHaveTextContent('Hello, World!');

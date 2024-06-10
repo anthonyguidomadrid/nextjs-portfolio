@@ -6,8 +6,9 @@ import { ChangeEvent } from 'react';
 import Link from 'next/link';
 import createApolloClient from '~/lib/client';
 import { GETQUERY } from '~/query/schema';
+import { HomeProps } from './index.props';
 
-const Home = ({ todos: { data } }) => {
+const Home: React.FC<HomeProps> = ({ todos: { data } }) => {
   const { t } = useTranslation('common');
   const router = useRouter();
   const { locale } = router;
