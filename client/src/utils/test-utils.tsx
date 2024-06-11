@@ -7,17 +7,21 @@ import { createMockRouter } from '~/_mocks/router';
 import { CssBaseline, ThemeProvider as MuiThemeProvider } from '@mui/material';
 import theme from './theme';
 import { ThemeProvider } from '@emotion/react';
+import { Provider } from 'react-redux';
+import { store } from '~/store';
 
 const AllTheProviders = ({ children }: { children: React.ReactNode }) => {
   return (
     <I18nextProvider i18n={i18n}>
       <RouterContext.Provider value={createMockRouter()}>
-        <MuiThemeProvider theme={theme}>
-          <ThemeProvider theme={theme}>
-            <CssBaseline />
-            {children}
-          </ThemeProvider>
-        </MuiThemeProvider>
+        <Provider store={store}>
+          <MuiThemeProvider theme={theme}>
+            <ThemeProvider theme={theme}>
+              <CssBaseline />
+              {children}
+            </ThemeProvider>
+          </MuiThemeProvider>
+        </Provider>
       </RouterContext.Provider>
     </I18nextProvider>
   );
