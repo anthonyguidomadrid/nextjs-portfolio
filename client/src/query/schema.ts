@@ -1,12 +1,14 @@
 import { gql } from '@apollo/client';
 export const GETQUERY = gql`
-  {
-    todos(sort: "id:desc") {
+  query GetContactInformation($locale: I18NLocaleCode) {
+    contactInformation(locale: $locale) {
       data {
-        id
         attributes {
-          todoText
-          createdAt
+          Contact {
+            address
+            email
+            phone
+          }
         }
       }
     }

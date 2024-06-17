@@ -1,13 +1,13 @@
 interface TodoAttributes {
-  todoText: string;
+  phone: string;
+  email: string;
+  address: string;
 }
 
-interface Todo {
-  attributes: TodoAttributes;
+interface ContactInformation {
+  attributes: { Contact: TodoAttributes };
 }
 
 export interface HomeProps {
-  todos: {
-    data: Todo[];
-  };
+  contactInformation: { data: ContactInformation };
 }

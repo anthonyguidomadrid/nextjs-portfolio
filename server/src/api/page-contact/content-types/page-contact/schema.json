@@ -1,0 +1,41 @@
+{
+  "kind": "singleType",
+  "collectionName": "page_contacts",
+  "info": {
+    "singularName": "page-contact",
+    "pluralName": "page-contacts",
+    "displayName": "Page - Contact"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "SEO": {
+      "type": "component",
+      "repeatable": false,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "head.seo",
+      "required": true
+    },
+    "Header": {
+      "type": "component",
+      "repeatable": false,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "head.header",
+      "required": true
+    }
+  }
+}

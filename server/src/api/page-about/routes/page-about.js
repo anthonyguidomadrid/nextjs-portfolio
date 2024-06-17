@@ -1,9 +1,9 @@
 'use strict';
 
 /**
- * todo router
+ * page-about router
  */
 
 const { createCoreRouter } = require('@strapi/strapi').factories;
 
-module.exports = createCoreRouter('api::todo.todo');
+module.exports = createCoreRouter('api::page-about.page-about');

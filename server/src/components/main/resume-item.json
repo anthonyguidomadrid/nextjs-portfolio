@@ -1,0 +1,46 @@
+{
+  "collectionName": "components_main_resume_items",
+  "info": {
+    "displayName": "resumeItem",
+    "icon": "stack",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "richtext",
+      "required": true
+    },
+    "logo": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "startingDate": {
+      "type": "date",
+      "required": true
+    },
+    "endingDate": {
+      "type": "date"
+    },
+    "location": {
+      "type": "string",
+      "required": true
+    },
+    "company": {
+      "type": "string",
+      "required": true
+    },
+    "link": {
+      "type": "string",
+      "regex": "^(https?|ftp):\\/\\/[^\\s/$.?#].[^\\s]*$"
+    }
+  }
+}

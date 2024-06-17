@@ -9,7 +9,15 @@ import { GETQUERY } from '~/query/schema';
 import { HomeProps } from './index.props';
 import { useCounter } from '~/hooks';
 
-const Home: React.FC<HomeProps> = ({ todos: { data } }) => {
+const Home: React.FC<HomeProps> = ({
+  contactInformation: {
+    data: {
+      attributes: {
+        Contact: { phone, email, address },
+      },
+    },
+  },
+}) => {
   const { t } = useTranslation('common');
   const router = useRouter();
   const { locale } = router;
@@ -44,9 +52,9 @@ const Home: React.FC<HomeProps> = ({ todos: { data } }) => {
         <Link href={'/about'}>About</Link>
       </div>
       <ul>
-        {data.map(({ attributes }, index) => (
-          <li key={index}>{attributes.todoText}</li>
-        ))}
+        <li>{phone}</li>
+        <li>{address}</li>
+        <li>{email}</li>
       </ul>
       <div>
         <p>The value is: {value}</p>
@@ -64,14 +72,15 @@ const Home: React.FC<HomeProps> = ({ todos: { data } }) => {
 export async function getStaticProps({ locale }: { locale: string }) {
   const client = createApolloClient();
   const {
-    data: { todos },
+    data: { contactInformation },
   } = await client.query({
     query: GETQUERY,
+    variables: { locale },
   });
   return {
     props: {
       ...(await serverSideTranslations(locale, ['common'])),
-      todos,
+      contactInformation,
     },
   };
 }

@@ -1,0 +1,63 @@
+{
+  "kind": "singleType",
+  "collectionName": "page_abouts",
+  "info": {
+    "singularName": "page-about",
+    "pluralName": "page-abouts",
+    "displayName": "Page - About",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "Header": {
+      "type": "component",
+      "repeatable": false,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "head.header"
+    },
+    "SEO": {
+      "type": "component",
+      "repeatable": false,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "required": true,
+      "component": "head.seo"
+    },
+    "computerSkills": {
+      "type": "component",
+      "repeatable": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "main.skill",
+      "required": true
+    },
+    "languages": {
+      "type": "component",
+      "repeatable": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "main.skill",
+      "required": true
+    }
+  }
+}

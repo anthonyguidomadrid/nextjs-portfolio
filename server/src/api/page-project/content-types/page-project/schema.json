@@ -1,0 +1,52 @@
+{
+  "kind": "singleType",
+  "collectionName": "page_projects",
+  "info": {
+    "singularName": "page-project",
+    "pluralName": "page-projects",
+    "displayName": "Page - Project"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "Header": {
+      "type": "component",
+      "repeatable": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "head.header",
+      "required": true
+    },
+    "SEO": {
+      "type": "component",
+      "repeatable": false,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "head.seo",
+      "required": true
+    },
+    "projects": {
+      "type": "component",
+      "repeatable": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "main.project",
+      "required": true
+    }
+  }
+}

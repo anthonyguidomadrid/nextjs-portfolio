@@ -1,0 +1,48 @@
+{
+  "collectionName": "components_main_projects",
+  "info": {
+    "displayName": "Project",
+    "icon": "calendar"
+  },
+  "options": {},
+  "attributes": {
+    "category": {
+      "type": "string",
+      "regex": "^(react|nextJS|videoGame|ecommerce|portfolio|nodeJS)$",
+      "required": true
+    },
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "date": {
+      "type": "date",
+      "required": true
+    },
+    "codeUrl": {
+      "type": "string",
+      "regex": "^(https?|ftp):\\/\\/[^\\s/$.?#].[^\\s]*$",
+      "required": true
+    },
+    "projectUrl": {
+      "type": "string",
+      "regex": "^(https?|ftp):\\/\\/[^\\s/$.?#].[^\\s]*$"
+    },
+    "description": {
+      "type": "richtext",
+      "required": true
+    },
+    "pictures": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": true,
+      "required": true
+    },
+    "subTitle": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

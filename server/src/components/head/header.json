@@ -1,0 +1,29 @@
+{
+  "collectionName": "components_head_headers",
+  "info": {
+    "displayName": "Header",
+    "icon": "bold"
+  },
+  "options": {},
+  "attributes": {
+    "Title": {
+      "type": "string",
+      "required": true
+    },
+    "subTitle": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "richtext",
+      "required": false
+    },
+    "picture": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false
+    }
+  }
+}

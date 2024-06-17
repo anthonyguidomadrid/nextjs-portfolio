@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_footer_social_medias",
+  "info": {
+    "displayName": "Social Media",
+    "icon": "twitter"
+  },
+  "options": {},
+  "attributes": {
+    "url": {
+      "type": "string",
+      "required": true,
+      "regex": "^(https?|ftp):\\/\\/[^\\s/$.?#].[^\\s]*$"
+    },
+    "icon": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": true
+    }
+  }
+}

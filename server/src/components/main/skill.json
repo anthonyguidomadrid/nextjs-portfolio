@@ -1,0 +1,38 @@
+{
+  "collectionName": "components_main_skills",
+  "info": {
+    "displayName": "Skill",
+    "icon": "grid",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "Name": {
+      "type": "string",
+      "required": true
+    },
+    "percentage": {
+      "type": "integer",
+      "required": true,
+      "max": 100,
+      "min": 0
+    },
+    "logo": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "link": {
+      "type": "string",
+      "required": false,
+      "regex": "^(https?|ftp):\\/\\/[^\\s/$.?#].[^\\s]*$",
+      "unique": false
+    },
+    "date": {
+      "type": "date"
+    }
+  }
+}
