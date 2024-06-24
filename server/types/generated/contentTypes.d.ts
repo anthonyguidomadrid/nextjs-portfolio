@@ -788,6 +788,53 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
 }
 
+export interface ApiCategoryCategory extends Schema.CollectionType {
+  collectionName: 'categories';
+  info: {
+    singularName: 'category';
+    pluralName: 'categories';
+    displayName: 'Category';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    Tag: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::category.category',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::category.category',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::category.category',
+      'oneToMany',
+      'api::category.category'
+    >;
+    locale: Attribute.String;
+  };
+}
+
 export interface ApiContactInformationContactInformation
   extends Schema.SingleType {
   collectionName: 'contact_informations';
@@ -1091,14 +1138,35 @@ export interface ApiPageResumePageResume extends Schema.SingleType {
           localized: true;
         };
       }>;
-    education: Attribute.Component<'main.skill', true> &
+    Education: Attribute.Component<'main.resume-item', true> &
       Attribute.Required &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
         };
       }>;
-    certifications: Attribute.Component<'main.skill', true> &
+    Certification: Attribute.Component<'main.skill', true> &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    Header: Attribute.Component<'head.header'> &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    SEO: Attribute.Component<'head.seo'> &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    CV: Attribute.Media<'files'> &
       Attribute.Required &
       Attribute.SetPluginOptions<{
         i18n: {
@@ -1129,12 +1197,13 @@ export interface ApiPageResumePageResume extends Schema.SingleType {
   };
 }
 
-export interface ApiSocialMediaSocialMedia extends Schema.CollectionType {
+export interface ApiSocialMediaSocialMedia extends Schema.SingleType {
   collectionName: 'social_medias';
   info: {
     singularName: 'social-media';
     pluralName: 'social-medias';
     displayName: 'Social media';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -1178,6 +1247,7 @@ declare module '@strapi/types' {
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
+      'api::category.category': ApiCategoryCategory;
       'api::contact-information.contact-information': ApiContactInformationContactInformation;
       'api::home.home': ApiHomeHome;
       'api::page-about.page-about': ApiPageAboutPageAbout;

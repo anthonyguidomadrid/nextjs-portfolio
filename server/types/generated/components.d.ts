@@ -19,10 +19,11 @@ export interface FooterSocialMedia extends Schema.Component {
   info: {
     displayName: 'Social Media';
     icon: 'twitter';
+    description: '';
   };
   attributes: {
-    url: Attribute.String & Attribute.Required;
-    icon: Attribute.Media<'images'> & Attribute.Required;
+    LinkedinUrl: Attribute.String & Attribute.Required;
+    GithubUrl: Attribute.String & Attribute.Required;
   };
 }
 
@@ -74,9 +75,9 @@ export interface MainProject extends Schema.Component {
   info: {
     displayName: 'Project';
     icon: 'calendar';
+    description: '';
   };
   attributes: {
-    category: Attribute.String & Attribute.Required;
     title: Attribute.String & Attribute.Required;
     date: Attribute.Date & Attribute.Required;
     codeUrl: Attribute.String & Attribute.Required;
@@ -84,6 +85,12 @@ export interface MainProject extends Schema.Component {
     description: Attribute.RichText & Attribute.Required;
     pictures: Attribute.Media<'images', true> & Attribute.Required;
     subTitle: Attribute.String & Attribute.Required;
+    thumbnail: Attribute.Media<'images'> & Attribute.Required;
+    categories: Attribute.Relation<
+      'main.project',
+      'oneToMany',
+      'api::category.category'
+    >;
   };
 }
 
@@ -116,7 +123,6 @@ export interface MainSkill extends Schema.Component {
   attributes: {
     Name: Attribute.String & Attribute.Required;
     percentage: Attribute.Integer &
-      Attribute.Required &
       Attribute.SetMinMax<
         {
           min: 0;

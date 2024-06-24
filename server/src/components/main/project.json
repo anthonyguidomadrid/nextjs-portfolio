@@ -2,15 +2,11 @@
   "collectionName": "components_main_projects",
   "info": {
     "displayName": "Project",
-    "icon": "calendar"
+    "icon": "calendar",
+    "description": ""
   },
   "options": {},
   "attributes": {
-    "category": {
-      "type": "string",
-      "regex": "^(react|nextJS|videoGame|ecommerce|portfolio|nodeJS)$",
-      "required": true
-    },
     "title": {
       "type": "string",
       "required": true
@@ -33,16 +29,29 @@
       "required": true
     },
     "pictures": {
-      "allowedTypes": [
-        "images"
-      ],
       "type": "media",
       "multiple": true,
-      "required": true
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
     },
     "subTitle": {
       "type": "string",
       "required": true
+    },
+    "thumbnail": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "categories": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::category.category"
     }
   }
 }

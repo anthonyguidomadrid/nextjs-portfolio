@@ -1,10 +1,11 @@
 {
-  "kind": "collectionType",
+  "kind": "singleType",
   "collectionName": "social_medias",
   "info": {
     "singularName": "social-media",
     "pluralName": "social-medias",
-    "displayName": "Social media"
+    "displayName": "Social media",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true

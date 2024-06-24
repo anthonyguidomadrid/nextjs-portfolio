@@ -2,21 +2,18 @@
   "collectionName": "components_footer_social_medias",
   "info": {
     "displayName": "Social Media",
-    "icon": "twitter"
+    "icon": "twitter",
+    "description": ""
   },
   "options": {},
   "attributes": {
-    "url": {
+    "LinkedinUrl": {
       "type": "string",
       "required": true,
       "regex": "^(https?|ftp):\\/\\/[^\\s/$.?#].[^\\s]*$"
     },
-    "icon": {
-      "allowedTypes": [
-        "images"
-      ],
-      "type": "media",
-      "multiple": false,
+    "GithubUrl": {
+      "type": "string",
       "required": true
     }
   }

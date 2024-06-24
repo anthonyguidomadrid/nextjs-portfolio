@@ -27,7 +27,18 @@
       "component": "main.resume-item",
       "required": true
     },
-    "education": {
+    "Education": {
+      "type": "component",
+      "repeatable": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "main.resume-item",
+      "required": true
+    },
+    "Certification": {
       "type": "component",
       "repeatable": true,
       "pluginOptions": {
@@ -38,15 +49,39 @@
       "component": "main.skill",
       "required": true
     },
-    "certifications": {
+    "Header": {
       "type": "component",
-      "repeatable": true,
+      "repeatable": false,
       "pluginOptions": {
         "i18n": {
           "localized": true
         }
       },
-      "component": "main.skill",
+      "component": "head.header",
+      "required": true
+    },
+    "SEO": {
+      "type": "component",
+      "repeatable": false,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "head.seo",
+      "required": true
+    },
+    "CV": {
+      "allowedTypes": [
+        "files"
+      ],
+      "type": "media",
+      "multiple": false,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
       "required": true
     }
   }

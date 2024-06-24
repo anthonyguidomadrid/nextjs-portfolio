@@ -4,8 +4,12 @@ interface TodoAttributes {
   address: string;
 }
 
+interface ContactAttributes {
+  Contact: TodoAttributes;
+}
+
 interface ContactInformation {
-  attributes: { Contact: TodoAttributes };
+  attributes: ContactAttributes;
 }
 
 export interface HomeProps {
