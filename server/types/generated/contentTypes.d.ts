@@ -931,6 +931,60 @@ export interface ApiHomeHome extends Schema.SingleType {
   };
 }
 
+export interface ApiMenuItemMenuItem extends Schema.CollectionType {
+  collectionName: 'menu_items';
+  info: {
+    singularName: 'menu-item';
+    pluralName: 'menu-items';
+    displayName: 'Menu item';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    label: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    path: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::menu-item.menu-item',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::menu-item.menu-item',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::menu-item.menu-item',
+      'oneToMany',
+      'api::menu-item.menu-item'
+    >;
+    locale: Attribute.String;
+  };
+}
+
 export interface ApiPageAboutPageAbout extends Schema.SingleType {
   collectionName: 'page_abouts';
   info: {
@@ -1250,6 +1304,7 @@ declare module '@strapi/types' {
       'api::category.category': ApiCategoryCategory;
       'api::contact-information.contact-information': ApiContactInformationContactInformation;
       'api::home.home': ApiHomeHome;
+      'api::menu-item.menu-item': ApiMenuItemMenuItem;
       'api::page-about.page-about': ApiPageAboutPageAbout;
       'api::page-contact.page-contact': ApiPageContactPageContact;
       'api::page-project.page-project': ApiPageProjectPageProject;
