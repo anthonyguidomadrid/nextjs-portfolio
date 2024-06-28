@@ -4,7 +4,8 @@
   "info": {
     "singularName": "page-project",
     "pluralName": "page-projects",
-    "displayName": "Page - Project"
+    "displayName": "Page - Portfolio",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true

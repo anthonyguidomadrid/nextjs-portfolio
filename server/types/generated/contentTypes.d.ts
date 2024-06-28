@@ -1112,7 +1112,8 @@ export interface ApiPageProjectPageProject extends Schema.SingleType {
   info: {
     singularName: 'page-project';
     pluralName: 'page-projects';
-    displayName: 'Page - Project';
+    displayName: 'Page - Portfolio';
+    description: '';
   };
   options: {
     draftAndPublish: true;
