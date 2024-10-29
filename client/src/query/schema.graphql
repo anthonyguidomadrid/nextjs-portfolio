@@ -1,0 +1,13 @@
+query GetContactInformation($locale: I18NLocaleCode) {
+  contactInformation(locale: $locale) {
+    data {
+      attributes {
+        Contact {
+          address
+          email
+          phone
+        }
+      }
+    }
+  }
+}

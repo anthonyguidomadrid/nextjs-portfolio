@@ -4,10 +4,13 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useRouter } from 'next/router';
 import { ChangeEvent, useState } from 'react';
 import Link from 'next/link';
-import createApolloClient from '~/lib/client';
-import { GETQUERY } from '~/query/schema';
+import { initializeApollo } from '~/lib/client';
 import { HomeProps } from './index.props';
 import { useCounter } from '~/hooks';
+import {
+  GetContactInformationDocument,
+  GetContactInformationQuery,
+} from '~/generated/graphql';
 
 const Home: React.FC<HomeProps> = ({
   contactInformation: {
@@ -70,17 +73,16 @@ const Home: React.FC<HomeProps> = ({
 };
 
 export async function getStaticProps({ locale }: { locale: string }) {
-  const client = createApolloClient();
-  const {
-    data: { contactInformation },
-  } = await client.query({
-    query: GETQUERY,
+  const apolloClient = initializeApollo();
+  const { data } = await apolloClient.query<GetContactInformationQuery>({
+    query: GetContactInformationDocument,
     variables: { locale },
   });
   return {
     props: {
       ...(await serverSideTranslations(locale, ['common'])),
-      contactInformation,
+      ...data,
+      initialApolloState: apolloClient.cache.extract(),
     },
   };
 }

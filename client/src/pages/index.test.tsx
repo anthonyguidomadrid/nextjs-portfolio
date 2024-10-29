@@ -6,8 +6,16 @@ import userEvent from '@testing-library/user-event';
 import { HomeProps } from './index.props';
 
 const DEFAULT_PROPS: HomeProps = {
-  todos: {
-    data: [],
+  contactInformation: {
+    data: {
+      attributes: {
+        Contact: {
+          phone: '1234',
+          email: 'hello@gmail.com',
+          address: 'Madrid',
+        },
+      },
+    },
   },
 };
 

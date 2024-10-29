@@ -1,11 +1,11 @@
-interface TodoAttributes {
+interface ContactDetails {
   phone: string;
   email: string;
   address: string;
 }
 
 interface ContactAttributes {
-  Contact: TodoAttributes;
+  Contact: ContactDetails;
 }
 
 interface ContactInformation {
