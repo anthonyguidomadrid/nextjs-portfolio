@@ -11,3 +11,14 @@ query GetContactInformation($locale: I18NLocaleCode) {
     }
   }
 }
+
+query GetMenuItems($locale: I18NLocaleCode) {
+  menuItems(locale: $locale) {
+    data {
+      attributes {
+        label
+        path
+      }
+    }
+  }
+}

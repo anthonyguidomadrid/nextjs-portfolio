@@ -1835,6 +1835,13 @@ export type GetContactInformationQueryVariables = Exact<{
 
 export type GetContactInformationQuery = { __typename?: 'Query', contactInformation?: { __typename?: 'ContactInformationEntityResponse', data?: { __typename?: 'ContactInformationEntity', attributes?: { __typename?: 'ContactInformation', Contact: { __typename?: 'ComponentFooterContact', address: string, email: string, phone: string } } | null } | null } | null };
 
+export type GetMenuItemsQueryVariables = Exact<{
+  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
+}>;
+
+
+export type GetMenuItemsQuery = { __typename?: 'Query', menuItems?: { __typename?: 'MenuItemEntityResponseCollection', data: Array<{ __typename?: 'MenuItemEntity', attributes?: { __typename?: 'MenuItem', label: string, path: string } | null }> } | null };
+
 
 export const GetContactInformationDocument = gql`
     query GetContactInformation($locale: I18NLocaleCode) {
@@ -1884,3 +1891,48 @@ export type GetContactInformationQueryHookResult = ReturnType<typeof useGetConta
 export type GetContactInformationLazyQueryHookResult = ReturnType<typeof useGetContactInformationLazyQuery>;
 export type GetContactInformationSuspenseQueryHookResult = ReturnType<typeof useGetContactInformationSuspenseQuery>;
 export type GetContactInformationQueryResult = Apollo.QueryResult<GetContactInformationQuery, GetContactInformationQueryVariables>;
+export const GetMenuItemsDocument = gql`
+    query GetMenuItems($locale: I18NLocaleCode) {
+  menuItems(locale: $locale) {
+    data {
+      attributes {
+        label
+        path
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __useGetMenuItemsQuery__
+ *
+ * To run a query within a React component, call `useGetMenuItemsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetMenuItemsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetMenuItemsQuery({
+ *   variables: {
+ *      locale: // value for 'locale'
+ *   },
+ * });
+ */
+export function useGetMenuItemsQuery(baseOptions?: Apollo.QueryHookOptions<GetMenuItemsQuery, GetMenuItemsQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetMenuItemsQuery, GetMenuItemsQueryVariables>(GetMenuItemsDocument, options);
+      }
+export function useGetMenuItemsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetMenuItemsQuery, GetMenuItemsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetMenuItemsQuery, GetMenuItemsQueryVariables>(GetMenuItemsDocument, options);
+        }
+export function useGetMenuItemsSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<GetMenuItemsQuery, GetMenuItemsQueryVariables>) {
+          const options = baseOptions === Apollo.skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<GetMenuItemsQuery, GetMenuItemsQueryVariables>(GetMenuItemsDocument, options);
+        }
+export type GetMenuItemsQueryHookResult = ReturnType<typeof useGetMenuItemsQuery>;
+export type GetMenuItemsLazyQueryHookResult = ReturnType<typeof useGetMenuItemsLazyQuery>;
+export type GetMenuItemsSuspenseQueryHookResult = ReturnType<typeof useGetMenuItemsSuspenseQuery>;
+export type GetMenuItemsQueryResult = Apollo.QueryResult<GetMenuItemsQuery, GetMenuItemsQueryVariables>;
