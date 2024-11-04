@@ -20,6 +20,7 @@
   },
   "dependencies": {
     "@apollo/client": "^3.10.4",
+    "@mui/icons-material": "^6.1.6",
     "@reduxjs/toolkit": "^2.2.5",
     "graphql": "^16.8.1",
     "i18next": "^23.11.5",

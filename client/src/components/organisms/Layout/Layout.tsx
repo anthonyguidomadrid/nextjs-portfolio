@@ -1,5 +1,11 @@
+import { Header } from '~/components/molecules';
 import { LayoutProps } from './Layout.props';
 
-export const Layout: React.FC<LayoutProps> = ({ children }) => {
-  return <div>header{children}footer</div>;
+export const Layout: React.FC<LayoutProps> = ({ children, menuItems }) => {
+  return (
+    <>
+      <Header menuItems={menuItems} />
+      {children}footer
+    </>
+  );
 };

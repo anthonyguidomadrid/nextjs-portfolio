@@ -7,11 +7,11 @@ import { initializeApollo } from '~/lib/client';
 import {
   GetMenuItemsDocument,
   GetMenuItemsQuery,
-  MenuItem,
+  MenuItemEntity,
 } from '~/generated/graphql';
 
 interface MyAppProps extends AppProps {
-  menuItems: { data: MenuItem[] };
+  menuItems: { data: MenuItemEntity[] };
 }
 
 const MyApp = ({ Component, pageProps, menuItems }: MyAppProps) => (

@@ -1,6 +1,5 @@
 import { MenuItemEntity } from '~/generated/graphql';
 
-export type LayoutProps = {
-  children: React.ReactNode;
+export type HeaderProps = {
   menuItems: MenuItemEntity[];
 };
