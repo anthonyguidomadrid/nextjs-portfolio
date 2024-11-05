@@ -16,6 +16,7 @@ import React from 'react';
 import { HeaderProps } from './Header.props';
 import MenuIcon from '@mui/icons-material/Menu';
 import { useRouter } from 'next/router';
+import { LanguageSwitcher } from '~/components/atoms/LanguageSwitcher';
 
 export const Header: React.FC<HeaderProps> = ({ menuItems, window }) => {
   const [mobileOpen, setMobileOpen] = React.useState(false);
@@ -41,13 +42,40 @@ export const Header: React.FC<HeaderProps> = ({ menuItems, window }) => {
         {menuItems.map(({ attributes }) => (
           <ListItem key={attributes?.path} disablePadding>
             <ListItemButton
-              sx={{ textAlign: 'center' }}
+              sx={{
+                textAlign: 'center',
+                color:
+                  router.pathname === attributes?.path ? '#1976d2' : 'inherit',
+                position: 'relative',
+                // Underline effect for active path
+                '&::after': {
+                  content: '""',
+                  position: 'absolute',
+                  bottom: -4,
+                  left: 0,
+                  width: '100%',
+                  height: '2px',
+                  backgroundColor: '#1976d2',
+                  transform:
+                    router.pathname === attributes?.path
+                      ? 'scaleX(1)'
+                      : 'scaleX(0)',
+                  transformOrigin: 'bottom right',
+                  transition: 'transform 0.3s ease-out',
+                },
+                // Hover underline effect
+                '&:hover::after': {
+                  transform: 'scaleX(1)',
+                  transformOrigin: 'bottom left',
+                },
+              }}
               onClick={() => handleNavigation(attributes?.path)}
             >
               <ListItemText primary={attributes?.label} />
             </ListItemButton>
           </ListItem>
         ))}
+        <LanguageSwitcher />
       </List>
     </Box>
   );
@@ -67,16 +95,48 @@ export const Header: React.FC<HeaderProps> = ({ menuItems, window }) => {
           </Button>
 
           {/* Desktop Menu Items */}
-          <Box sx={{ display: { xs: 'none', md: 'block' } }}>
+          <Box
+            sx={{
+              display: {
+                xs: 'none',
+                md: 'flex',
+              },
+            }}
+          >
             {menuItems.map(({ attributes }) => (
               <Button
                 key={attributes?.path}
-                sx={{ color: '#fff' }}
+                sx={{
+                  color: '#fff',
+                  position: 'relative',
+                  // Highlight the current path
+                  '&::after': {
+                    content: '""',
+                    position: 'absolute',
+                    bottom: -4,
+                    left: 0,
+                    width: '100%',
+                    height: '2px',
+                    backgroundColor: '#fff',
+                    transform:
+                      router.pathname === attributes?.path
+                        ? 'scaleX(1)'
+                        : 'scaleX(0)',
+                    transformOrigin: 'bottom right',
+                    transition: 'transform 0.3s ease-out',
+                  },
+                  // Hover underline effect
+                  '&:hover::after': {
+                    transform: 'scaleX(1)',
+                    transformOrigin: 'bottom left',
+                  },
+                }}
                 onClick={() => handleNavigation(attributes?.path)}
               >
                 {attributes?.label}
               </Button>
             ))}
+            <LanguageSwitcher />
           </Box>
 
           {/* Mobile Menu Icon on the Right */}
