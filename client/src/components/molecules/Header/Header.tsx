@@ -1,15 +1,10 @@
 import {
-  AppBar,
-  Toolbar,
-  Typography,
   IconButton,
   Button,
   Box,
   Divider,
-  Drawer,
   List,
   ListItem,
-  ListItemButton,
   ListItemText,
 } from '@mui/material';
 import React from 'react';
@@ -17,6 +12,16 @@ import { HeaderProps } from './Header.props';
 import MenuIcon from '@mui/icons-material/Menu';
 import { useRouter } from 'next/router';
 import { LanguageSwitcher } from '~/components/atoms/LanguageSwitcher';
+import WhiteLogo from '/public/svg/white-logo.svg';
+import {
+  DesktopMenuWrapper,
+  MenuButton,
+  MobileMenuWrapper,
+  NavBar,
+  StyledDrawer,
+  StyledListItemButton,
+  StyledToolBar,
+} from './Header.styles';
 
 export const Header: React.FC<HeaderProps> = ({ menuItems, window }) => {
   const [mobileOpen, setMobileOpen] = React.useState(false);
@@ -33,46 +38,18 @@ export const Header: React.FC<HeaderProps> = ({ menuItems, window }) => {
   };
 
   const drawer = (
-    <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
-      <Typography variant='h6' sx={{ my: 2 }}>
-        Anthony Guido
-      </Typography>
+    <Box onClick={handleDrawerToggle}>
+      <WhiteLogo />
       <Divider />
       <List>
         {menuItems.map(({ attributes }) => (
           <ListItem key={attributes?.path} disablePadding>
-            <ListItemButton
-              sx={{
-                textAlign: 'center',
-                color:
-                  router.pathname === attributes?.path ? '#1976d2' : 'inherit',
-                position: 'relative',
-                // Underline effect for active path
-                '&::after': {
-                  content: '""',
-                  position: 'absolute',
-                  bottom: -4,
-                  left: 0,
-                  width: '100%',
-                  height: '2px',
-                  backgroundColor: '#1976d2',
-                  transform:
-                    router.pathname === attributes?.path
-                      ? 'scaleX(1)'
-                      : 'scaleX(0)',
-                  transformOrigin: 'bottom right',
-                  transition: 'transform 0.3s ease-out',
-                },
-                // Hover underline effect
-                '&:hover::after': {
-                  transform: 'scaleX(1)',
-                  transformOrigin: 'bottom left',
-                },
-              }}
+            <StyledListItemButton
+              isCurrentPath={router.pathname === attributes?.path}
               onClick={() => handleNavigation(attributes?.path)}
             >
               <ListItemText primary={attributes?.label} />
-            </ListItemButton>
+            </StyledListItemButton>
           </ListItem>
         ))}
         <LanguageSwitcher />
@@ -85,62 +62,29 @@ export const Header: React.FC<HeaderProps> = ({ menuItems, window }) => {
 
   return (
     <>
-      <AppBar component='nav'>
-        <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
+      <NavBar>
+        <StyledToolBar>
           {/* Left-aligned Logo or Name */}
           <Button onClick={() => handleNavigation('/')}>
-            <Typography variant='h6' sx={{ color: '#fff' }}>
-              Anthony Guido
-            </Typography>
+            <WhiteLogo />
           </Button>
 
           {/* Desktop Menu Items */}
-          <Box
-            sx={{
-              display: {
-                xs: 'none',
-                md: 'flex',
-              },
-            }}
-          >
+          <DesktopMenuWrapper>
             {menuItems.map(({ attributes }) => (
-              <Button
+              <MenuButton
+                isCurrentPath={router.pathname === attributes?.path}
                 key={attributes?.path}
-                sx={{
-                  color: '#fff',
-                  position: 'relative',
-                  // Highlight the current path
-                  '&::after': {
-                    content: '""',
-                    position: 'absolute',
-                    bottom: -4,
-                    left: 0,
-                    width: '100%',
-                    height: '2px',
-                    backgroundColor: '#fff',
-                    transform:
-                      router.pathname === attributes?.path
-                        ? 'scaleX(1)'
-                        : 'scaleX(0)',
-                    transformOrigin: 'bottom right',
-                    transition: 'transform 0.3s ease-out',
-                  },
-                  // Hover underline effect
-                  '&:hover::after': {
-                    transform: 'scaleX(1)',
-                    transformOrigin: 'bottom left',
-                  },
-                }}
                 onClick={() => handleNavigation(attributes?.path)}
               >
                 {attributes?.label}
-              </Button>
+              </MenuButton>
             ))}
             <LanguageSwitcher />
-          </Box>
+          </DesktopMenuWrapper>
 
           {/* Mobile Menu Icon on the Right */}
-          <Box sx={{ ml: 'auto', display: { xs: 'block', md: 'none' } }}>
+          <MobileMenuWrapper ml='auto'>
             <IconButton
               color='inherit'
               aria-label='open drawer'
@@ -149,13 +93,13 @@ export const Header: React.FC<HeaderProps> = ({ menuItems, window }) => {
             >
               <MenuIcon />
             </IconButton>
-          </Box>
-        </Toolbar>
-      </AppBar>
+          </MobileMenuWrapper>
+        </StyledToolBar>
+      </NavBar>
 
       {/* Drawer for Mobile View */}
       <nav>
-        <Drawer
+        <StyledDrawer
           anchor='right'
           container={container}
           variant='temporary'
@@ -164,16 +108,9 @@ export const Header: React.FC<HeaderProps> = ({ menuItems, window }) => {
           ModalProps={{
             keepMounted: true, // Better open performance on mobile.
           }}
-          sx={{
-            display: { xs: 'block', md: 'none' },
-            '& .MuiDrawer-paper': {
-              boxSizing: 'border-box',
-              width: 300,
-            },
-          }}
         >
           {drawer}
-        </Drawer>
+        </StyledDrawer>
       </nav>
     </>
   );

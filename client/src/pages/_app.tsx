@@ -9,6 +9,8 @@ import {
   GetMenuItemsQuery,
   MenuItemEntity,
 } from '~/generated/graphql';
+import { ThemeProvider } from '@mui/material';
+import theme from '~/utils/theme';
 
 interface MyAppProps extends AppProps {
   menuItems: { data: MenuItemEntity[] };
@@ -16,9 +18,11 @@ interface MyAppProps extends AppProps {
 
 const MyApp = ({ Component, pageProps, menuItems }: MyAppProps) => (
   <Provider store={store}>
-    <Layout menuItems={menuItems.data}>
-      <Component {...pageProps} />
-    </Layout>
+    <ThemeProvider theme={theme}>
+      <Layout menuItems={menuItems.data}>
+        <Component {...pageProps} />
+      </Layout>
+    </ThemeProvider>
   </Provider>
 );
 

@@ -1,20 +1,21 @@
 import { createTheme } from '@mui/material/styles';
+import { Poppins } from 'next/font/google';
 
-// Create a theme instance.
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#1976d2', // Your primary color
+      main: '#007aff',
     },
     secondary: {
-      main: '#f50057', // Your secondary color
+      main: '#f50057',
     },
-    // You can also customize other palette properties like text, background, etc.
+    background: {
+      default: 'rgba(0, 0, 0, 0.85)',
+    },
   },
   typography: {
-    // Customize typography if needed
+    fontFamily: 'Poppins, Arial, sans-serif',
   },
-  // You can customize other theme properties like spacing, breakpoints, etc.
 });
 
 export default theme;

@@ -1,4 +1,5 @@
 import { useRouter } from 'next/router';
+import { LocaleButton, ButtonWrapper } from './LanguageSwitcher.styles';
 
 export const LanguageSwitcher = () => {
   const router = useRouter();
@@ -9,17 +10,12 @@ export const LanguageSwitcher = () => {
   };
 
   return (
-    <div>
+    <ButtonWrapper>
       {locales?.map((locale) => (
-        <button
-          key={locale}
-          onClick={() => changeLanguage(locale)}
-          className={locale === currentLocale ? 'active' : ''}
-          style={{ margin: '0 5px', padding: '5px 10px', cursor: 'pointer' }}
-        >
+        <LocaleButton key={locale} onClick={() => changeLanguage(locale)}>
           {locale.toUpperCase()}
-        </button>
+        </LocaleButton>
       ))}
-    </div>
+    </ButtonWrapper>
   );
 };
