@@ -15,6 +15,7 @@ import { LanguageSwitcher } from '~/components/atoms/LanguageSwitcher';
 import WhiteLogo from '/public/svg/white-logo.svg';
 import {
   DesktopMenuWrapper,
+  DrawerWrapper,
   MenuButton,
   MobileMenuWrapper,
   NavBar,
@@ -38,8 +39,8 @@ export const Header: React.FC<HeaderProps> = ({ menuItems, window }) => {
   };
 
   const drawer = (
-    <Box onClick={handleDrawerToggle}>
-      <WhiteLogo />
+    <DrawerWrapper onClick={handleDrawerToggle}>
+      <WhiteLogo height={50} width={50} />
       <Divider />
       <List>
         {menuItems.map(({ attributes }) => (
@@ -52,16 +53,16 @@ export const Header: React.FC<HeaderProps> = ({ menuItems, window }) => {
             </StyledListItemButton>
           </ListItem>
         ))}
-        <LanguageSwitcher />
       </List>
-    </Box>
+      <LanguageSwitcher />
+    </DrawerWrapper>
   );
 
   const container =
     window !== undefined ? () => window().document.body : undefined;
 
   return (
-    <>
+    <nav>
       <NavBar>
         <StyledToolBar>
           {/* Left-aligned Logo or Name */}
@@ -71,15 +72,17 @@ export const Header: React.FC<HeaderProps> = ({ menuItems, window }) => {
 
           {/* Desktop Menu Items */}
           <DesktopMenuWrapper>
-            {menuItems.map(({ attributes }) => (
-              <MenuButton
-                isCurrentPath={router.pathname === attributes?.path}
-                key={attributes?.path}
-                onClick={() => handleNavigation(attributes?.path)}
-              >
-                {attributes?.label}
-              </MenuButton>
-            ))}
+            <Box>
+              {menuItems.map(({ attributes }) => (
+                <MenuButton
+                  isCurrentPath={router.pathname === attributes?.path}
+                  key={attributes?.path}
+                  onClick={() => handleNavigation(attributes?.path)}
+                >
+                  {attributes?.label}
+                </MenuButton>
+              ))}
+            </Box>
             <LanguageSwitcher />
           </DesktopMenuWrapper>
 
@@ -98,20 +101,19 @@ export const Header: React.FC<HeaderProps> = ({ menuItems, window }) => {
       </NavBar>
 
       {/* Drawer for Mobile View */}
-      <nav>
-        <StyledDrawer
-          anchor='right'
-          container={container}
-          variant='temporary'
-          open={mobileOpen}
-          onClose={handleDrawerToggle}
-          ModalProps={{
-            keepMounted: true, // Better open performance on mobile.
-          }}
-        >
-          {drawer}
-        </StyledDrawer>
-      </nav>
-    </>
+      <StyledDrawer
+        id='drawer'
+        anchor='right'
+        container={container}
+        variant='temporary'
+        open={mobileOpen}
+        onClose={handleDrawerToggle}
+        ModalProps={{
+          keepMounted: true, // Better open performance on mobile.
+        }}
+      >
+        {drawer}
+      </StyledDrawer>
+    </nav>
   );
 };
