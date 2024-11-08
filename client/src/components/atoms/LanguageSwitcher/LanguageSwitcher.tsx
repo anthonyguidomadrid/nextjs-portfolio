@@ -11,11 +11,13 @@ export const LanguageSwitcher = () => {
 
   return (
     <ButtonWrapper>
-      {locales?.map((locale) => (
-        <LocaleButton key={locale} onClick={() => changeLanguage(locale)}>
-          {locale.toUpperCase()}
-        </LocaleButton>
-      ))}
+      {locales
+        ?.filter((locale) => locale !== currentLocale)
+        .map((locale) => (
+          <LocaleButton key={locale} onClick={() => changeLanguage(locale)}>
+            {locale.toUpperCase()}
+          </LocaleButton>
+        ))}
     </ButtonWrapper>
   );
 };

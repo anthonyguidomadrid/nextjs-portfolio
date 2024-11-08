@@ -12,7 +12,6 @@ import { HeaderProps } from './Header.props';
 import MenuIcon from '@mui/icons-material/Menu';
 import { useRouter } from 'next/router';
 import { LanguageSwitcher } from '~/components/atoms/LanguageSwitcher';
-import WhiteLogo from '/public/svg/white-logo.svg';
 import {
   DesktopMenuWrapper,
   DrawerWrapper,
@@ -23,8 +22,9 @@ import {
   StyledListItemButton,
   StyledToolBar,
 } from './Header.styles';
+import Image from 'next/image';
 
-export const Header: React.FC<HeaderProps> = ({ menuItems, window }) => {
+export const Header: React.FC<HeaderProps> = ({ menuItems }) => {
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const router = useRouter();
 
@@ -40,7 +40,12 @@ export const Header: React.FC<HeaderProps> = ({ menuItems, window }) => {
 
   const drawer = (
     <DrawerWrapper onClick={handleDrawerToggle}>
-      <WhiteLogo height={50} width={50} />
+      <Image
+        src='/svg/white-logo.svg'
+        alt='header white logo'
+        height={50}
+        width={50}
+      />
       <Divider />
       <List>
         {menuItems.map(({ attributes }) => (
@@ -58,20 +63,22 @@ export const Header: React.FC<HeaderProps> = ({ menuItems, window }) => {
     </DrawerWrapper>
   );
 
-  const container =
-    window !== undefined ? () => window().document.body : undefined;
-
   return (
     <nav>
       <NavBar>
         <StyledToolBar>
-          {/* Left-aligned Logo or Name */}
+          {/* Left-aligned Logo */}
           <Button onClick={() => handleNavigation('/')}>
-            <WhiteLogo />
+            <Image
+              src='/svg/white-logo.svg'
+              alt='White Logo Header'
+              height={50}
+              width={50}
+            />
           </Button>
 
           {/* Desktop Menu Items */}
-          <DesktopMenuWrapper>
+          <DesktopMenuWrapper data-testid='desktop-menu'>
             <Box>
               {menuItems.map(({ attributes }) => (
                 <MenuButton
@@ -104,7 +111,6 @@ export const Header: React.FC<HeaderProps> = ({ menuItems, window }) => {
       <StyledDrawer
         id='drawer'
         anchor='right'
-        container={container}
         variant='temporary'
         open={mobileOpen}
         onClose={handleDrawerToggle}

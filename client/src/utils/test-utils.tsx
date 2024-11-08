@@ -9,6 +9,7 @@ import theme from './theme';
 import { ThemeProvider } from '@emotion/react';
 import { Provider } from 'react-redux';
 import { store } from '~/store';
+import '@testing-library/jest-dom';
 
 const AllTheProviders = ({ children }: { children: React.ReactNode }) => {
   return (
