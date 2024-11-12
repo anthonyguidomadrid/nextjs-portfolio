@@ -10,7 +10,7 @@ export const LanguageSwitcher = () => {
   };
 
   return (
-    <ButtonWrapper>
+    <ButtonWrapper data-testid='language-switcher'>
       {locales
         ?.filter((locale) => locale !== currentLocale)
         .map((locale) => (

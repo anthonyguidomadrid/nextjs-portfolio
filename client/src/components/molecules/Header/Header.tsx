@@ -32,17 +32,16 @@ export const Header: React.FC<HeaderProps> = ({ menuItems }) => {
     setMobileOpen((prevState) => !prevState);
   };
 
-  const handleNavigation = (path?: string) => {
-    if (!path) return;
+  const handleNavigation = (path: string) => {
     router.push(path);
-    setMobileOpen(false); // Close the drawer on mobile after navigation
+    setMobileOpen(false);
   };
 
   const drawer = (
-    <DrawerWrapper onClick={handleDrawerToggle}>
+    <DrawerWrapper onClick={handleDrawerToggle} data-testid='mobile-drawer'>
       <Image
         src='/svg/white-logo.svg'
-        alt='header white logo'
+        alt='White Logo Drawer'
         height={50}
         width={50}
       />
@@ -52,7 +51,7 @@ export const Header: React.FC<HeaderProps> = ({ menuItems }) => {
           <ListItem key={attributes?.path} disablePadding>
             <StyledListItemButton
               isCurrentPath={router.pathname === attributes?.path}
-              onClick={() => handleNavigation(attributes?.path)}
+              onClick={() => handleNavigation(attributes?.path!)}
             >
               <ListItemText primary={attributes?.label} />
             </StyledListItemButton>
@@ -97,7 +96,7 @@ export const Header: React.FC<HeaderProps> = ({ menuItems }) => {
           <MobileMenuWrapper ml='auto'>
             <IconButton
               color='inherit'
-              aria-label='open drawer'
+              aria-label='open-drawer'
               edge='end'
               onClick={handleDrawerToggle}
             >
