@@ -1,3 +1,4 @@
 {
-  "home": "Bienvenidos"
+  "home": "Bienvenidos",
+  "footer": { "copyright": "© {{year}} {{siteName}}. Todos los derechos reservados." }
 }

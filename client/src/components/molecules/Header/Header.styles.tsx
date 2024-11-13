@@ -10,6 +10,7 @@ import {
 
 export const NavBar = styled(AppBar)(({ theme }) => ({
   backgroundColor: theme.palette.background.default,
+  zIndex: 1,
 }));
 
 export const StyledToolBar = styled(Toolbar)(() => ({

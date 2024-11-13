@@ -83,7 +83,7 @@ export const Header: React.FC<HeaderProps> = ({ menuItems }) => {
                 <MenuButton
                   isCurrentPath={router.pathname === attributes?.path}
                   key={attributes?.path}
-                  onClick={() => handleNavigation(attributes?.path)}
+                  onClick={() => handleNavigation(attributes?.path!)}
                 >
                   {attributes?.label}
                 </MenuButton>
