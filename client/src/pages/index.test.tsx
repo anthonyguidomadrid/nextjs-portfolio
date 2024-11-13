@@ -24,7 +24,7 @@ describe('Home', () => {
     render(<Home {...DEFAULT_PROPS} />);
     const heading = screen.getByRole('heading', { level: 1 });
     expect(heading).toBeInTheDocument();
-    expect(heading).toHaveTextContent('Hello, World!');
+    expect(heading).toHaveTextContent('Welcome');
     const selectElement = screen.getByRole('combobox');
     await userEvent.selectOptions(selectElement, 'Español');
     expect(selectElement).toHaveValue('es');

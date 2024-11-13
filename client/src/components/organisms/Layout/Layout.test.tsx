@@ -21,6 +21,6 @@ describe('Layout', () => {
   });
 
   it('renders the footer', () => {
-    expect(screen.getByText('footer')).toBeVisible();
+    expect(screen.getByRole('contentinfo')).toBeVisible();
   });
 });
