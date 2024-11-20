@@ -22,3 +22,41 @@ query GetMenuItems($locale: I18NLocaleCode) {
     }
   }
 }
+
+query GetHomePage($locale: I18NLocaleCode) {
+  home(locale: $locale) {
+    data {
+      attributes {
+        Header {
+          Title
+          subTitle
+        }
+        SEO {
+          pageTitle
+          pageDescription
+          canonicalUrl
+          noFollow
+          noIndex
+          shareImages {
+            data {
+              attributes {
+                name
+                url
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  socialMedia {
+    data {
+      attributes {
+        socialMedia {
+          LinkedinUrl
+          GithubUrl
+        }
+      }
+    }
+  }
+}

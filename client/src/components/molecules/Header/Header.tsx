@@ -1,12 +1,4 @@
-import {
-  IconButton,
-  Button,
-  Box,
-  Divider,
-  List,
-  ListItem,
-  ListItemText,
-} from '@mui/material';
+import { IconButton, Button, Box } from '@mui/material';
 import React from 'react';
 import { HeaderProps } from './Header.props';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -14,19 +6,25 @@ import { useRouter } from 'next/router';
 import { LanguageSwitcher } from '~/components/atoms/LanguageSwitcher';
 import {
   DesktopMenuWrapper,
-  DrawerWrapper,
-  MenuButton,
   MobileMenuWrapper,
   NavBar,
   StyledDrawer,
-  StyledListItemButton,
   StyledToolBar,
 } from './Header.styles';
 import Image from 'next/image';
+import { Drawer } from './components/Drawer';
+import { DesktopMenuItems } from './components/DesktopMenuItems';
+import { HomeHeader } from './components/HomeHeader';
 
-export const Header: React.FC<HeaderProps> = ({ menuItems }) => {
+export const Header: React.FC<HeaderProps> = ({
+  menuItems,
+  title,
+  subtitle,
+  socialMedia,
+}) => {
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const router = useRouter();
+  const isHomePage = router.pathname === '/';
 
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
@@ -37,34 +35,22 @@ export const Header: React.FC<HeaderProps> = ({ menuItems }) => {
     setMobileOpen(false);
   };
 
-  const drawer = (
-    <DrawerWrapper onClick={handleDrawerToggle} data-testid='mobile-drawer'>
-      <Image
-        src='/svg/white-logo.svg'
-        alt='White Logo Drawer'
-        height={50}
-        width={50}
-      />
-      <Divider />
-      <List>
-        {menuItems.map(({ attributes }) => (
-          <ListItem key={attributes?.path} disablePadding>
-            <StyledListItemButton
-              isCurrentPath={router.pathname === attributes?.path}
-              onClick={() => handleNavigation(attributes?.path!)}
-            >
-              <ListItemText primary={attributes?.label} />
-            </StyledListItemButton>
-          </ListItem>
-        ))}
-      </List>
-      <LanguageSwitcher />
-    </DrawerWrapper>
-  );
+  if (isHomePage) {
+    return (
+      <NavBar isHomePage={true}>
+        <HomeHeader title={title} subtitle={subtitle} socialMedia={socialMedia}>
+          <DesktopMenuItems
+            menuItems={menuItems}
+            handleNavigation={handleNavigation}
+          />
+        </HomeHeader>
+      </NavBar>
+    );
+  }
 
   return (
-    <nav>
-      <NavBar>
+    <>
+      <NavBar isHomePage={false}>
         <StyledToolBar>
           {/* Left-aligned Logo */}
           <Button onClick={() => handleNavigation('/')}>
@@ -78,17 +64,10 @@ export const Header: React.FC<HeaderProps> = ({ menuItems }) => {
 
           {/* Desktop Menu Items */}
           <DesktopMenuWrapper data-testid='desktop-menu'>
-            <Box>
-              {menuItems.map(({ attributes }) => (
-                <MenuButton
-                  isCurrentPath={router.pathname === attributes?.path}
-                  key={attributes?.path}
-                  onClick={() => handleNavigation(attributes?.path!)}
-                >
-                  {attributes?.label}
-                </MenuButton>
-              ))}
-            </Box>
+            <DesktopMenuItems
+              menuItems={menuItems}
+              handleNavigation={handleNavigation}
+            />
             <LanguageSwitcher />
           </DesktopMenuWrapper>
 
@@ -117,8 +96,12 @@ export const Header: React.FC<HeaderProps> = ({ menuItems }) => {
           keepMounted: true, // Better open performance on mobile.
         }}
       >
-        {drawer}
+        <Drawer
+          handleDrawerToggle={handleDrawerToggle}
+          menuItems={menuItems}
+          handleNavigation={handleNavigation}
+        />
       </StyledDrawer>
-    </nav>
+    </>
   );
 };

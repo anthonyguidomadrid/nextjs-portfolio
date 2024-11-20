@@ -8,10 +8,16 @@ import {
   Toolbar,
 } from '@mui/material';
 
-export const NavBar = styled(AppBar)(({ theme }) => ({
-  backgroundColor: theme.palette.background.default,
-  zIndex: 1,
-}));
+export const NavBar = styled(AppBar)<{ isHomePage: boolean }>(
+  ({ theme, isHomePage }) => ({
+    backgroundColor: theme.palette.background.black,
+    zIndex: 1,
+    height: isHomePage ? '100%' : 'fit-content',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+  })
+);
 
 export const StyledToolBar = styled(Toolbar)(() => ({
   display: 'flex',
@@ -34,22 +40,13 @@ export const MobileMenuWrapper = styled(Box)(({ theme }) => ({
   },
 }));
 
-export const DrawerWrapper = styled(Box)(({ theme }) => ({
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  justifyContent: 'center',
-  margin: 'auto',
-  gap: theme.spacing(3),
-}));
-
 export const StyledDrawer = styled(Drawer)(({ theme }) => ({
   display: 'flex',
   '& .MuiDrawer-paper': {
     boxSizing: 'border-box',
     width: '80%',
     maxWidth: '500px',
-    backgroundColor: theme.palette.background.default,
+    backgroundColor: theme.palette.background.black,
     color: theme.palette.common.white,
   },
   [theme.breakpoints.up('md')]: {
@@ -63,28 +60,3 @@ export const StyledListItemButton = styled(ListItemButton)<{
   textAlign: 'center',
   color: isCurrentPath ? theme.palette.primary.main : 'inherit',
 }));
-
-export const MenuButton = styled(Button)<{ isCurrentPath: boolean }>(
-  ({ isCurrentPath, theme }) => ({
-    color: '#fff',
-    position: 'relative',
-    // Highlight the current path
-    '&::after': {
-      content: '""',
-      position: 'absolute',
-      bottom: -4,
-      left: 4,
-      width: '50%',
-      height: '2px',
-      backgroundColor: theme.palette.primary.main,
-      transform: isCurrentPath ? 'scaleX(1)' : 'scaleX(0)',
-      transformOrigin: 'bottom right',
-      transition: 'transform 0.3s ease-out',
-    },
-    // Hover underline effect
-    '&:hover::after': {
-      transform: 'scaleX(1)',
-      transformOrigin: 'bottom left',
-    },
-  })
-);

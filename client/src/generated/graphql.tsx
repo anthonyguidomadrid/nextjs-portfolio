@@ -1842,6 +1842,13 @@ export type GetMenuItemsQueryVariables = Exact<{
 
 export type GetMenuItemsQuery = { __typename?: 'Query', menuItems?: { __typename?: 'MenuItemEntityResponseCollection', data: Array<{ __typename?: 'MenuItemEntity', attributes?: { __typename?: 'MenuItem', label: string, path: string } | null }> } | null };
 
+export type GetHomePageQueryVariables = Exact<{
+  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
+}>;
+
+
+export type GetHomePageQuery = { __typename?: 'Query', home?: { __typename?: 'HomeEntityResponse', data?: { __typename?: 'HomeEntity', attributes?: { __typename?: 'Home', Header: { __typename?: 'ComponentHeadHeader', Title: string, subTitle: string }, SEO: { __typename?: 'ComponentHeadSeo', pageTitle: string, pageDescription: string, canonicalUrl?: string | null, noFollow: boolean, noIndex: boolean, shareImages?: { __typename?: 'UploadFileRelationResponseCollection', data: Array<{ __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', name: string, url: string } | null }> } | null } } | null } | null } | null, socialMedia?: { __typename?: 'SocialMediaEntityResponse', data?: { __typename?: 'SocialMediaEntity', attributes?: { __typename?: 'SocialMedia', socialMedia: Array<{ __typename?: 'ComponentFooterSocialMedia', LinkedinUrl: string, GithubUrl: string } | null> } | null } | null } | null };
+
 
 export const GetContactInformationDocument = gql`
     query GetContactInformation($locale: I18NLocaleCode) {
@@ -1936,3 +1943,75 @@ export type GetMenuItemsQueryHookResult = ReturnType<typeof useGetMenuItemsQuery
 export type GetMenuItemsLazyQueryHookResult = ReturnType<typeof useGetMenuItemsLazyQuery>;
 export type GetMenuItemsSuspenseQueryHookResult = ReturnType<typeof useGetMenuItemsSuspenseQuery>;
 export type GetMenuItemsQueryResult = Apollo.QueryResult<GetMenuItemsQuery, GetMenuItemsQueryVariables>;
+export const GetHomePageDocument = gql`
+    query GetHomePage($locale: I18NLocaleCode) {
+  home(locale: $locale) {
+    data {
+      attributes {
+        Header {
+          Title
+          subTitle
+        }
+        SEO {
+          pageTitle
+          pageDescription
+          canonicalUrl
+          noFollow
+          noIndex
+          shareImages {
+            data {
+              attributes {
+                name
+                url
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  socialMedia {
+    data {
+      attributes {
+        socialMedia {
+          LinkedinUrl
+          GithubUrl
+        }
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __useGetHomePageQuery__
+ *
+ * To run a query within a React component, call `useGetHomePageQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetHomePageQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetHomePageQuery({
+ *   variables: {
+ *      locale: // value for 'locale'
+ *   },
+ * });
+ */
+export function useGetHomePageQuery(baseOptions?: Apollo.QueryHookOptions<GetHomePageQuery, GetHomePageQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetHomePageQuery, GetHomePageQueryVariables>(GetHomePageDocument, options);
+      }
+export function useGetHomePageLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetHomePageQuery, GetHomePageQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetHomePageQuery, GetHomePageQueryVariables>(GetHomePageDocument, options);
+        }
+export function useGetHomePageSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<GetHomePageQuery, GetHomePageQueryVariables>) {
+          const options = baseOptions === Apollo.skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<GetHomePageQuery, GetHomePageQueryVariables>(GetHomePageDocument, options);
+        }
+export type GetHomePageQueryHookResult = ReturnType<typeof useGetHomePageQuery>;
+export type GetHomePageLazyQueryHookResult = ReturnType<typeof useGetHomePageLazyQuery>;
+export type GetHomePageSuspenseQueryHookResult = ReturnType<typeof useGetHomePageSuspenseQuery>;
+export type GetHomePageQueryResult = Apollo.QueryResult<GetHomePageQuery, GetHomePageQueryVariables>;
