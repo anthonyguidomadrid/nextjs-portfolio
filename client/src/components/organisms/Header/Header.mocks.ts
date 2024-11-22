@@ -1,4 +1,4 @@
-import { MenuItemEntity } from '~/generated/graphql';
+import { MenuItemEntity, SocialMedia } from '~/generated/graphql';
 
 export const MENU_ITEMS_MOCK: MenuItemEntity[] = [
   {
@@ -42,3 +42,13 @@ export const MENU_ITEMS_MOCK: MenuItemEntity[] = [
     },
   },
 ];
+
+export const SOCIAL_MEDIAS_MOCK: SocialMedia = {
+  socialMedia: [
+    {
+      id: '1',
+      GithubUrl: 'https://github.com',
+      LinkedinUrl: 'https://linkedin.com',
+    },
+  ],
+};

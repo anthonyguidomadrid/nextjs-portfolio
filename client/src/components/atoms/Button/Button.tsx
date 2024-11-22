@@ -1,4 +1,4 @@
-import { ButtonProps } from './Button.props';
+import { ButtonProps } from './Button.types';
 import { StyledButton } from './Button.styles';
 
 export const CustomButton = ({ labelText }: ButtonProps) => {

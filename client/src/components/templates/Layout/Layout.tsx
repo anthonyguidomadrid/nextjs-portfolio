@@ -1,7 +1,6 @@
-import { Header } from '~/components/molecules';
-import { LayoutProps } from './Layout.props';
+import { Header, Particles } from '~/components/organisms';
+import { LayoutProps } from './Layout.types';
 import { Footer } from '~/components/atoms/Footer';
-import Particles from '../Particles/Particles';
 
 export const Layout: React.FC<LayoutProps> = ({
   children,

@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { CustomButton } from './Button';
-import { ButtonProps } from './Button.props';
+import { ButtonProps } from './Button.types';
 
 const meta: Meta<typeof CustomButton> = {
   title: 'Atoms/Button',

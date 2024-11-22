@@ -1,4 +1,4 @@
-import { HeaderProps } from '../../Header.props';
+import { HeaderProps } from '~/components/organisms/Header/Header.types';
 
 export type HomeHeaderProps = Pick<
   HeaderProps,

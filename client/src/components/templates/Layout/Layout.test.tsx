@@ -1,6 +1,6 @@
 import { render } from '~/utils/test-utils';
 import { Layout } from './Layout';
-import { MENU_ITEMS_MOCK } from '~/components/molecules/Header/Header.mocks';
+import { MENU_ITEMS_MOCK } from '~/components/organisms/Header/Header.mocks';
 import { screen } from '@testing-library/react';
 
 describe('Layout', () => {

@@ -3,21 +3,14 @@
 import React, { useRef, useEffect } from 'react';
 import { useMousePosition } from '~/hooks/useMousePosition';
 import { ParticlesWrapper } from './Particles.styles';
+import { ParticlesProps } from './Particles.types';
 
-interface ParticlesProps {
-  className?: string;
-  quantity?: number;
-  staticity?: number;
-  ease?: number;
-  refresh?: boolean;
-}
-
-export default function Particles({
+export const Particles: React.FC<ParticlesProps> = ({
   quantity = 30,
   staticity = 50,
   ease = 50,
   refresh = false,
-}: ParticlesProps) {
+}) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const canvasContainerRef = useRef<HTMLDivElement>(null);
   const context = useRef<CanvasRenderingContext2D | null>(null);
@@ -231,4 +224,4 @@ export default function Particles({
       <canvas ref={canvasRef} />
     </ParticlesWrapper>
   );
-}
+};

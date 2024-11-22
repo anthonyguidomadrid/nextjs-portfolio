@@ -2,7 +2,7 @@ import App, { AppContext, AppProps } from 'next/app';
 import { appWithTranslation } from 'next-i18next';
 import { Provider } from 'react-redux';
 import { store } from '~/store';
-import { Layout } from '~/components';
+import { Layout } from '~/components/templates';
 import { initializeApollo } from '~/lib/client';
 import {
   GetHomePageDocument,

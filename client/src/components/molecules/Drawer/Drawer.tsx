@@ -1,7 +1,6 @@
 import { Divider, List, ListItem, ListItemText } from '@mui/material';
-import { DrawerWrapper } from './Drawer.styles';
+import { DrawerWrapper, StyledListItemButton } from './Drawer.styles';
 import Image from 'next/image';
-import { StyledListItemButton } from '../../Header.styles';
 import { LanguageSwitcher } from '~/components/atoms';
 import { useRouter } from 'next/router';
 import { DrawerProps } from './Drawer.types';
