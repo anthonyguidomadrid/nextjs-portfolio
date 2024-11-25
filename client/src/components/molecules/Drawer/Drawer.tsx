@@ -26,7 +26,7 @@ export const Drawer: React.FC<DrawerProps> = ({
           <ListItem key={attributes?.path} disablePadding>
             <StyledListItemButton
               isCurrentPath={router.pathname === attributes?.path}
-              onClick={() => handleNavigation(attributes?.path ?? '')}
+              onClick={() => handleNavigation(attributes?.path!)}
             >
               <ListItemText primary={attributes?.label} />
             </StyledListItemButton>

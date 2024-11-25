@@ -19,12 +19,12 @@ export const HomeHeader: React.FC<HomeHeaderProps> = ({
       {socialMedia?.socialMedia?.map((socialMedia, index) => {
         return (
           <Box key={index}>
-            <Link href={socialMedia?.GithubUrl ?? ''} target='_blank'>
+            <Link href={socialMedia?.GithubUrl!} target='_blank'>
               <SocialButton>
                 <GitHubIcon color='info' />
               </SocialButton>
             </Link>
-            <Link href={socialMedia?.LinkedinUrl ?? ''} target='_blank'>
+            <Link href={socialMedia?.LinkedinUrl!} target='_blank'>
               <SocialButton>
                 <LinkedInIcon color='info' />
               </SocialButton>

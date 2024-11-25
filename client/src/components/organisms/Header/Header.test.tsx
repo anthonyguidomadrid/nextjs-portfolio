@@ -4,13 +4,39 @@ import { render } from '~/utils/test-utils';
 import { Header } from './Header';
 import { MENU_ITEMS_MOCK } from './Header.mocks';
 import userEvent from '@testing-library/user-event';
+import { HeaderProps } from './Header.types';
 
 jest.mock('next/router', () => ({
   useRouter: jest.fn(),
 }));
 
+const DEFAULT_PROPS: HeaderProps = {
+  menuItems: MENU_ITEMS_MOCK,
+  title: 'Hello World!',
+  subtitle: 'This is a nice subtitle',
+};
+
 describe('Header', () => {
   const mockPush = jest.fn();
+
+  describe('Home Page', () => {
+    beforeEach(() => {
+      mockPush.mockClear();
+      (useRouter as jest.Mock).mockReturnValue({
+        locales: ['en', 'es', 'fr'],
+        locale: 'en',
+        pathname: '/',
+        asPath: '/',
+        push: mockPush,
+      });
+      render(<Header {...DEFAULT_PROPS} />);
+    });
+
+    it('renders the title and subtitle', () => {
+      expect(screen.getByText(DEFAULT_PROPS.title)).toBeVisible();
+      expect(screen.getByText(DEFAULT_PROPS.subtitle)).toBeVisible();
+    });
+  });
 
   describe('Desktop', () => {
     beforeEach(() => {
@@ -22,7 +48,7 @@ describe('Header', () => {
         asPath: '/test',
         push: mockPush,
       });
-      render(<Header menuItems={MENU_ITEMS_MOCK} />);
+      render(<Header {...DEFAULT_PROPS} />);
     });
 
     const getDesktopMenu = () => screen.getByTestId('desktop-menu');
@@ -67,7 +93,7 @@ describe('Header', () => {
 
       window.innerWidth = 600;
       fireEvent(window, new Event('resize'));
-      render(<Header menuItems={MENU_ITEMS_MOCK} />);
+      render(<Header {...DEFAULT_PROPS} />);
     });
 
     const getMobileMenu = () => screen.getByTestId('mobile-drawer');
