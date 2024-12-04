@@ -54,7 +54,7 @@ describe('Header', () => {
     const getDesktopMenu = () => screen.getByTestId('desktop-menu');
 
     it('renders the logo', () => {
-      expect(screen.getByAltText('White Logo Header')).toBeVisible();
+      expect(screen.getByTestId('main-logo-svg')).toBeVisible();
     });
 
     it('displays all menu item labels', () => {
@@ -112,7 +112,7 @@ describe('Header', () => {
 
     it('it renders the logo when menu is open', async () => {
       await toogleMenu();
-      expect(screen.getByAltText('White Logo Drawer')).toBeVisible();
+      expect(screen.getByTestId('main-logo-svg')).toBeVisible();
     });
 
     it('it displays all menu item labels when menu is open', async () => {

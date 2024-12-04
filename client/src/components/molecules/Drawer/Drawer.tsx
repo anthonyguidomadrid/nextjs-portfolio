@@ -1,7 +1,7 @@
 import { Divider, List, ListItem, ListItemText } from '@mui/material';
 import { DrawerWrapper, StyledListItemButton } from './Drawer.styles';
 import Image from 'next/image';
-import { LanguageSwitcher } from '~/components/atoms';
+import { LanguageSwitcher, Logo } from '~/components/atoms';
 import { useRouter } from 'next/router';
 import { DrawerProps } from './Drawer.types';
 
@@ -14,12 +14,7 @@ export const Drawer: React.FC<DrawerProps> = ({
 
   return (
     <DrawerWrapper onClick={handleDrawerToggle} data-testid='mobile-drawer'>
-      <Image
-        src='/svg/white-logo.svg'
-        alt='White Logo Drawer'
-        height={50}
-        width={50}
-      />
+      <Logo height={75} width={75} data-testid="main-logo-svg-drawer"/>
       <Divider />
       <List>
         {menuItems.map(({ attributes }) => (

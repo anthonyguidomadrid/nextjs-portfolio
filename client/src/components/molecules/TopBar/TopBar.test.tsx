@@ -20,7 +20,7 @@ describe('TopBar', () => {
     });
 
     it('renders the logo', () => {
-      expect(screen.getByAltText('White Logo Header')).toBeVisible();
+      expect(screen.getByTestId('main-logo-svg')).toBeVisible();
     });
 
     it('renders a list menu items', () => {

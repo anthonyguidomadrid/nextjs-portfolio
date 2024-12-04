@@ -18,7 +18,7 @@ describe('Drawer', () => {
   });
 
   it('renders the logo', () => {
-    expect(screen.getByAltText('White Logo Drawer')).toBeVisible();
+    expect(screen.getByTestId('main-logo-svg-drawer')).toBeVisible();
   });
 
   it('renders a list menu items', () => {
