@@ -32,19 +32,7 @@ query GetHomePage($locale: I18NLocaleCode) {
           subTitle
         }
         SEO {
-          pageTitle
-          pageDescription
-          canonicalUrl
-          noFollow
-          noIndex
-          shareImages {
-            data {
-              attributes {
-                name
-                url
-              }
-            }
-          }
+          ...SeoFields
         }
       }
     }
@@ -55,6 +43,38 @@ query GetHomePage($locale: I18NLocaleCode) {
         socialMedia {
           LinkedinUrl
           GithubUrl
+        }
+      }
+    }
+  }
+}
+
+query getAboutPage($locale: I18NLocaleCode) {
+  pageAbout(locale: $locale) {
+    data {
+      attributes {
+        Header {
+          Title
+          subTitle
+          description
+          picture {
+            data {
+              attributes {
+                ...ImageFields
+              }
+            }
+          }
+        }
+        SEO {
+          ...SeoFields
+        }
+        computerSkills(sort: "percentage:desc") {
+          Name
+          percentage
+        }
+        languages(sort: "percentage:desc") {
+          Name
+          percentage
         }
       }
     }

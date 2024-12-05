@@ -1828,6 +1828,10 @@ export type UsersPermissionsUserRelationResponseCollection = {
   data: Array<UsersPermissionsUserEntity>;
 };
 
+export type ImageFieldsFragment = { __typename?: 'UploadFile', alternativeText?: string | null, url: string };
+
+export type SeoFieldsFragment = { __typename?: 'ComponentHeadSeo', pageTitle: string, pageDescription: string, canonicalUrl?: string | null, noFollow: boolean, noIndex: boolean, shareImages?: { __typename?: 'UploadFileRelationResponseCollection', data: Array<{ __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, url: string } | null }> } | null };
+
 export type GetContactInformationQueryVariables = Exact<{
   locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
 }>;
@@ -1847,9 +1851,37 @@ export type GetHomePageQueryVariables = Exact<{
 }>;
 
 
-export type GetHomePageQuery = { __typename?: 'Query', home?: { __typename?: 'HomeEntityResponse', data?: { __typename?: 'HomeEntity', attributes?: { __typename?: 'Home', Header: { __typename?: 'ComponentHeadHeader', Title: string, subTitle: string }, SEO: { __typename?: 'ComponentHeadSeo', pageTitle: string, pageDescription: string, canonicalUrl?: string | null, noFollow: boolean, noIndex: boolean, shareImages?: { __typename?: 'UploadFileRelationResponseCollection', data: Array<{ __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', name: string, url: string } | null }> } | null } } | null } | null } | null, socialMedia?: { __typename?: 'SocialMediaEntityResponse', data?: { __typename?: 'SocialMediaEntity', attributes?: { __typename?: 'SocialMedia', socialMedia: Array<{ __typename?: 'ComponentFooterSocialMedia', LinkedinUrl: string, GithubUrl: string } | null> } | null } | null } | null };
+export type GetHomePageQuery = { __typename?: 'Query', home?: { __typename?: 'HomeEntityResponse', data?: { __typename?: 'HomeEntity', attributes?: { __typename?: 'Home', Header: { __typename?: 'ComponentHeadHeader', Title: string, subTitle: string }, SEO: { __typename?: 'ComponentHeadSeo', pageTitle: string, pageDescription: string, canonicalUrl?: string | null, noFollow: boolean, noIndex: boolean, shareImages?: { __typename?: 'UploadFileRelationResponseCollection', data: Array<{ __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, url: string } | null }> } | null } } | null } | null } | null, socialMedia?: { __typename?: 'SocialMediaEntityResponse', data?: { __typename?: 'SocialMediaEntity', attributes?: { __typename?: 'SocialMedia', socialMedia: Array<{ __typename?: 'ComponentFooterSocialMedia', LinkedinUrl: string, GithubUrl: string } | null> } | null } | null } | null };
+
+export type GetAboutPageQueryVariables = Exact<{
+  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
+}>;
 
 
+export type GetAboutPageQuery = { __typename?: 'Query', pageAbout?: { __typename?: 'PageAboutEntityResponse', data?: { __typename?: 'PageAboutEntity', attributes?: { __typename?: 'PageAbout', Header?: { __typename?: 'ComponentHeadHeader', Title: string, subTitle: string, description?: string | null, picture?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, url: string } | null } | null } | null } | null, SEO: { __typename?: 'ComponentHeadSeo', pageTitle: string, pageDescription: string, canonicalUrl?: string | null, noFollow: boolean, noIndex: boolean, shareImages?: { __typename?: 'UploadFileRelationResponseCollection', data: Array<{ __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, url: string } | null }> } | null }, computerSkills: Array<{ __typename?: 'ComponentMainSkill', Name: string, percentage?: number | null } | null>, languages: Array<{ __typename?: 'ComponentMainSkill', Name: string, percentage?: number | null } | null> } | null } | null } | null };
+
+export const ImageFieldsFragmentDoc = gql`
+    fragment ImageFields on UploadFile {
+  alternativeText
+  url
+}
+    `;
+export const SeoFieldsFragmentDoc = gql`
+    fragment SeoFields on ComponentHeadSeo {
+  pageTitle
+  pageDescription
+  canonicalUrl
+  noFollow
+  noIndex
+  shareImages {
+    data {
+      attributes {
+        ...ImageFields
+      }
+    }
+  }
+}
+    ${ImageFieldsFragmentDoc}`;
 export const GetContactInformationDocument = gql`
     query GetContactInformation($locale: I18NLocaleCode) {
   contactInformation(locale: $locale) {
@@ -1953,19 +1985,7 @@ export const GetHomePageDocument = gql`
           subTitle
         }
         SEO {
-          pageTitle
-          pageDescription
-          canonicalUrl
-          noFollow
-          noIndex
-          shareImages {
-            data {
-              attributes {
-                name
-                url
-              }
-            }
-          }
+          ...SeoFields
         }
       }
     }
@@ -1981,7 +2001,7 @@ export const GetHomePageDocument = gql`
     }
   }
 }
-    `;
+    ${SeoFieldsFragmentDoc}`;
 
 /**
  * __useGetHomePageQuery__
@@ -2015,3 +2035,70 @@ export type GetHomePageQueryHookResult = ReturnType<typeof useGetHomePageQuery>;
 export type GetHomePageLazyQueryHookResult = ReturnType<typeof useGetHomePageLazyQuery>;
 export type GetHomePageSuspenseQueryHookResult = ReturnType<typeof useGetHomePageSuspenseQuery>;
 export type GetHomePageQueryResult = Apollo.QueryResult<GetHomePageQuery, GetHomePageQueryVariables>;
+export const GetAboutPageDocument = gql`
+    query getAboutPage($locale: I18NLocaleCode) {
+  pageAbout(locale: $locale) {
+    data {
+      attributes {
+        Header {
+          Title
+          subTitle
+          description
+          picture {
+            data {
+              attributes {
+                ...ImageFields
+              }
+            }
+          }
+        }
+        SEO {
+          ...SeoFields
+        }
+        computerSkills(sort: "percentage:desc") {
+          Name
+          percentage
+        }
+        languages(sort: "percentage:desc") {
+          Name
+          percentage
+        }
+      }
+    }
+  }
+}
+    ${ImageFieldsFragmentDoc}
+${SeoFieldsFragmentDoc}`;
+
+/**
+ * __useGetAboutPageQuery__
+ *
+ * To run a query within a React component, call `useGetAboutPageQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetAboutPageQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetAboutPageQuery({
+ *   variables: {
+ *      locale: // value for 'locale'
+ *   },
+ * });
+ */
+export function useGetAboutPageQuery(baseOptions?: Apollo.QueryHookOptions<GetAboutPageQuery, GetAboutPageQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetAboutPageQuery, GetAboutPageQueryVariables>(GetAboutPageDocument, options);
+      }
+export function useGetAboutPageLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetAboutPageQuery, GetAboutPageQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetAboutPageQuery, GetAboutPageQueryVariables>(GetAboutPageDocument, options);
+        }
+export function useGetAboutPageSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<GetAboutPageQuery, GetAboutPageQueryVariables>) {
+          const options = baseOptions === Apollo.skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<GetAboutPageQuery, GetAboutPageQueryVariables>(GetAboutPageDocument, options);
+        }
+export type GetAboutPageQueryHookResult = ReturnType<typeof useGetAboutPageQuery>;
+export type GetAboutPageLazyQueryHookResult = ReturnType<typeof useGetAboutPageLazyQuery>;
+export type GetAboutPageSuspenseQueryHookResult = ReturnType<typeof useGetAboutPageSuspenseQuery>;
+export type GetAboutPageQueryResult = Apollo.QueryResult<GetAboutPageQuery, GetAboutPageQueryVariables>;

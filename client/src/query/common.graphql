@@ -1,0 +1,19 @@
+fragment ImageFields on UploadFile {
+  alternativeText
+  url
+}
+
+fragment SeoFields on ComponentHeadSeo {
+  pageTitle
+  pageDescription
+  canonicalUrl
+  noFollow
+  noIndex
+  shareImages {
+    data {
+      attributes {
+        ...ImageFields
+      }
+    }
+  }
+}
