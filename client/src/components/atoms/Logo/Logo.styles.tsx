@@ -1,11 +1,12 @@
-import { styled, SvgIcon } from '@mui/material';
+import { styled } from '@mui/material';
 
 export const AnimatedSvg = styled('svg')(({ theme }) => ({
-  fill: 'none',
   '& .stroke-animation': {
     stroke: theme.palette.common.white,
     strokeDasharray: 500,
     strokeDashoffset: 500,
+    strokeWith: '1',
+    fill: 'transparent',
     animation:
       'stroke-draw 2s ease-in-out forwards, fill-white 2s 2s ease-in-out forwards;',
   },

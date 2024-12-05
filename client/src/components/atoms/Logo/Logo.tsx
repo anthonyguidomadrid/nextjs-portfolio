@@ -1,15 +1,12 @@
 import { useMemo } from 'react';
 import { AnimatedSvg } from './Logo.styles';
 import { LogoProps } from './Logo.types';
+import theme from '~/utils/theme';
 
 export const Logo: React.FC<LogoProps> = ({ shouldAnimate, ...props }) => {
   const PATH_PROPS = useMemo(
     () => ({
-      stroke: 'white',
-      fill: shouldAnimate ? 'transparent' : 'white',
-      strokeWidth: '1',
-      strokeDasharray: '500',
-      strokeDashoffset: '500',
+      fill: theme.palette.common.white,
       ...(shouldAnimate && { className: 'stroke-animation' }),
     }),
     [shouldAnimate]
@@ -19,6 +16,8 @@ export const Logo: React.FC<LogoProps> = ({ shouldAnimate, ...props }) => {
       xmlns='http://www.w3.org/2000/svg'
       viewBox='0 0 442 383'
       data-testid='main-logo-svg'
+      height={100}
+      width={100}
       {...props}
     >
       <path
