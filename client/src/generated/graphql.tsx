@@ -1828,9 +1828,9 @@ export type UsersPermissionsUserRelationResponseCollection = {
   data: Array<UsersPermissionsUserEntity>;
 };
 
-export type ImageFieldsFragment = { __typename?: 'UploadFile', alternativeText?: string | null, url: string };
+export type ImageFieldsFragment = { __typename?: 'UploadFile', alternativeText?: string | null, url: string, height?: number | null, width?: number | null };
 
-export type SeoFieldsFragment = { __typename?: 'ComponentHeadSeo', pageTitle: string, pageDescription: string, canonicalUrl?: string | null, noFollow: boolean, noIndex: boolean, shareImages?: { __typename?: 'UploadFileRelationResponseCollection', data: Array<{ __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, url: string } | null }> } | null };
+export type SeoFieldsFragment = { __typename?: 'ComponentHeadSeo', pageTitle: string, pageDescription: string, canonicalUrl?: string | null, noFollow: boolean, noIndex: boolean, shareImages?: { __typename?: 'UploadFileRelationResponseCollection', data: Array<{ __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, url: string, height?: number | null, width?: number | null } | null }> } | null };
 
 export type GetContactInformationQueryVariables = Exact<{
   locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
@@ -1851,19 +1851,21 @@ export type GetHomePageQueryVariables = Exact<{
 }>;
 
 
-export type GetHomePageQuery = { __typename?: 'Query', home?: { __typename?: 'HomeEntityResponse', data?: { __typename?: 'HomeEntity', attributes?: { __typename?: 'Home', Header: { __typename?: 'ComponentHeadHeader', Title: string, subTitle: string }, SEO: { __typename?: 'ComponentHeadSeo', pageTitle: string, pageDescription: string, canonicalUrl?: string | null, noFollow: boolean, noIndex: boolean, shareImages?: { __typename?: 'UploadFileRelationResponseCollection', data: Array<{ __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, url: string } | null }> } | null } } | null } | null } | null, socialMedia?: { __typename?: 'SocialMediaEntityResponse', data?: { __typename?: 'SocialMediaEntity', attributes?: { __typename?: 'SocialMedia', socialMedia: Array<{ __typename?: 'ComponentFooterSocialMedia', LinkedinUrl: string, GithubUrl: string } | null> } | null } | null } | null };
+export type GetHomePageQuery = { __typename?: 'Query', home?: { __typename?: 'HomeEntityResponse', data?: { __typename?: 'HomeEntity', attributes?: { __typename?: 'Home', Header: { __typename?: 'ComponentHeadHeader', Title: string, subTitle: string }, SEO: { __typename?: 'ComponentHeadSeo', pageTitle: string, pageDescription: string, canonicalUrl?: string | null, noFollow: boolean, noIndex: boolean, shareImages?: { __typename?: 'UploadFileRelationResponseCollection', data: Array<{ __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, url: string, height?: number | null, width?: number | null } | null }> } | null } } | null } | null } | null, socialMedia?: { __typename?: 'SocialMediaEntityResponse', data?: { __typename?: 'SocialMediaEntity', attributes?: { __typename?: 'SocialMedia', socialMedia: Array<{ __typename?: 'ComponentFooterSocialMedia', LinkedinUrl: string, GithubUrl: string } | null> } | null } | null } | null };
 
 export type GetAboutPageQueryVariables = Exact<{
   locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
 }>;
 
 
-export type GetAboutPageQuery = { __typename?: 'Query', pageAbout?: { __typename?: 'PageAboutEntityResponse', data?: { __typename?: 'PageAboutEntity', attributes?: { __typename?: 'PageAbout', Header?: { __typename?: 'ComponentHeadHeader', Title: string, subTitle: string, description?: string | null, picture?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, url: string } | null } | null } | null } | null, SEO: { __typename?: 'ComponentHeadSeo', pageTitle: string, pageDescription: string, canonicalUrl?: string | null, noFollow: boolean, noIndex: boolean, shareImages?: { __typename?: 'UploadFileRelationResponseCollection', data: Array<{ __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, url: string } | null }> } | null }, computerSkills: Array<{ __typename?: 'ComponentMainSkill', Name: string, percentage?: number | null } | null>, languages: Array<{ __typename?: 'ComponentMainSkill', Name: string, percentage?: number | null } | null> } | null } | null } | null };
+export type GetAboutPageQuery = { __typename?: 'Query', pageAbout?: { __typename?: 'PageAboutEntityResponse', data?: { __typename?: 'PageAboutEntity', attributes?: { __typename?: 'PageAbout', Header?: { __typename?: 'ComponentHeadHeader', Title: string, subTitle: string, description?: string | null, picture?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, url: string, height?: number | null, width?: number | null } | null } | null } | null } | null, SEO: { __typename?: 'ComponentHeadSeo', pageTitle: string, pageDescription: string, canonicalUrl?: string | null, noFollow: boolean, noIndex: boolean, shareImages?: { __typename?: 'UploadFileRelationResponseCollection', data: Array<{ __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, url: string, height?: number | null, width?: number | null } | null }> } | null }, computerSkills: Array<{ __typename?: 'ComponentMainSkill', Name: string, percentage?: number | null } | null>, languages: Array<{ __typename?: 'ComponentMainSkill', Name: string, percentage?: number | null } | null> } | null } | null } | null };
 
 export const ImageFieldsFragmentDoc = gql`
     fragment ImageFields on UploadFile {
   alternativeText
   url
+  height
+  width
 }
     `;
 export const SeoFieldsFragmentDoc = gql`

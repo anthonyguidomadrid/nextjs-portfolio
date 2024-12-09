@@ -3,7 +3,7 @@ const { generate } = require('@graphql-codegen/cli');
 
 generate(
   {
-    schema: process.env.STRAPI_GRAPHQL_ENDPOINT,
+    schema: `${process.env.NEXT_PUBLIC_BASE_URL}/graphql`,
     documents: './src/**/*.graphql',
     generates: {
       './src/generated/graphql.tsx': {

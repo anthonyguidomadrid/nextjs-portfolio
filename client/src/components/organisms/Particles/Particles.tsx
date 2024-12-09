@@ -76,12 +76,20 @@ export const Particles: React.FC<ParticlesProps> = ({
   const resizeCanvas = () => {
     if (canvasContainerRef.current && canvasRef.current && context.current) {
       circles.current.length = 0;
+
+      // Set canvas size based on window size
       canvasSize.current.w = window.innerWidth;
       canvasSize.current.h = window.innerHeight;
+
+      // Apply device pixel ratio (dpr) for sharper rendering on high-DPI screens
       canvasRef.current.width = canvasSize.current.w * dpr;
       canvasRef.current.height = canvasSize.current.h * dpr;
+
+      // Set the canvas display size (CSS size)
       canvasRef.current.style.width = `${canvasSize.current.w}px`;
       canvasRef.current.style.height = `${canvasSize.current.h}px`;
+
+      // Scale the canvas context for the device pixel ratio
       context.current.scale(dpr, dpr);
     }
   };

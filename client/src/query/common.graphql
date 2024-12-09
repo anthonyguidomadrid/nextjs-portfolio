@@ -1,6 +1,8 @@
 fragment ImageFields on UploadFile {
   alternativeText
   url
+  height
+  width
 }
 
 fragment SeoFields on ComponentHeadSeo {

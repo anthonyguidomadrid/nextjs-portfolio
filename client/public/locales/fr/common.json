@@ -1,3 +1,9 @@
 {
-  "footer": { "copyright": "© {{year}} {{siteName}}. Tous droits réservés." }
+  "footer": { "copyright": "© {{year}} {{siteName}}. Tous droits réservés." },
+  "about": {
+    "title": {
+      "computer": "Compétences informatiques",
+      "languages": "Langues"
+    }
+  }
 }

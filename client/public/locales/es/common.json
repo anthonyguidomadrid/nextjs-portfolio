@@ -1,4 +1,11 @@
 {
-  "home": "Bienvenidos",
-  "footer": { "copyright": "© {{year}} {{siteName}}. Todos los derechos reservados." }
+  "footer": {
+    "copyright": "© {{year}} {{siteName}}. Todos los derechos reservados."
+  },
+  "about": {
+    "title": {
+      "computer": "Habilidades informáticas",
+      "languages": "Idiomas"
+    }
+  }
 }

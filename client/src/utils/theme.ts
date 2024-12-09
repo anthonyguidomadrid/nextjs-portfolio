@@ -22,6 +22,9 @@ const theme = createTheme({
       black: 'rgba(0, 0, 0, 0.35)',
       paper: 'rgba(255, 255, 255, 0.15)',
     },
+    text: {
+      primary: '#ffffff',
+    },
   },
   typography: {
     fontFamily: 'Poppins, Arial, sans-serif',
@@ -36,6 +39,18 @@ const theme = createTheme({
       fontWeight: '200',
       '@media (max-width:600px)': {
         fontSize: '16px',
+      },
+    },
+    h4: {
+      fontSize: '20px',
+      '@media (max-width:600px)': {
+        fontSize: '14px',
+      },
+    },
+    body1: {
+      fontSize: '16px',
+      '@media (max-width:600px)': {
+        fontSize: '14px',
       },
     },
   },

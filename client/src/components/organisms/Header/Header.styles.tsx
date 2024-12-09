@@ -27,8 +27,7 @@ export const StyledDrawer = styled(Drawer)(({ theme }) => ({
     boxSizing: 'border-box',
     width: '80%',
     maxWidth: '500px',
-    backgroundColor: theme.palette.background.black,
-    color: theme.palette.common.white,
+    backgroundColor: theme.palette.common.black,
   },
   [theme.breakpoints.up('md')]: {
     display: 'none',

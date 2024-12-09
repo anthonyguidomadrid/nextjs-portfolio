@@ -1,4 +1,12 @@
 {
-  "home": "Welcome",
-  "footer": { "copyright": "© {{year}} {{siteName}}. All rights reserved." }
+  "footer": { "copyright": "© {{year}} {{siteName}}. All rights reserved." },
+  "about": {
+    "title": {
+      "computer": "Computer skills",
+      "languages": "Languages"
+    },
+    "skills": {
+      "percentage": "{{percentage}} %"
+    }
+  }
 }
