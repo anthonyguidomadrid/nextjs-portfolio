@@ -33,7 +33,3 @@ export const StyledDrawer = styled(Drawer)(({ theme }) => ({
     display: 'none',
   },
 }));
-
-export const FadeInWrapper = styled(Box)(() => ({
-  animation: `${fadeIn} 0.5s ease-in-out`,
-}));

@@ -1,9 +1,9 @@
-import { IconButton, Button } from '@mui/material';
+import { IconButton, Button, Fade } from '@mui/material';
 import { HeaderProps } from './Header.types';
 import MenuIcon from '@mui/icons-material/Menu';
 import { useRouter } from 'next/router';
 import { LanguageSwitcher } from '~/components/atoms/LanguageSwitcher';
-import { FadeInWrapper, NavBar, StyledDrawer } from './Header.styles';
+import { NavBar, StyledDrawer } from './Header.styles';
 import Image from 'next/image';
 import { Drawer } from '~/components/molecules/Drawer';
 import { DesktopMenuItems } from '~/components/atoms/DesktopMenuItems';
@@ -34,18 +34,16 @@ export const Header: React.FC<HeaderProps> = ({
     <nav>
       <NavBar isHomePage={isHomePage}>
         {isHomePage && (
-          <FadeInWrapper>
-            <HomeHeader
-              title={title}
-              subtitle={subtitle}
-              socialMedia={socialMedia}
-            >
-              <DesktopMenuItems
-                menuItems={menuItems}
-                handleNavigation={handleNavigation}
-              />
-            </HomeHeader>
-          </FadeInWrapper>
+          <HomeHeader
+            title={title}
+            subtitle={subtitle}
+            socialMedia={socialMedia}
+          >
+            <DesktopMenuItems
+              menuItems={menuItems}
+              handleNavigation={handleNavigation}
+            />
+          </HomeHeader>
         )}
         {!isHomePage && (
           <Topbar

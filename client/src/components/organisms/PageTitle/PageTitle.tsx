@@ -1,12 +1,7 @@
-import { Box, Grid, Typography } from '@mui/material';
+import { Grid, Typography } from '@mui/material';
 import { PageTitleProps } from './PageTitle.types';
 import { RichText } from '~/components/atoms';
-import {
-  StyledImage,
-  StyledSubtitle,
-  StyledTitle,
-  StyledWrapper,
-} from './PageTitle.styles';
+import { StyledImage, StyledTitle, StyledWrapper } from './PageTitle.styles';
 
 export const PageTitle: React.FC<PageTitleProps> = ({
   title,

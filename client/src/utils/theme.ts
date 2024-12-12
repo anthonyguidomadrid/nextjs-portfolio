@@ -7,6 +7,15 @@ declare module '@mui/material/styles/createPalette' {
 }
 
 const theme = createTheme({
+  components: {
+    MuiLinearProgress: {
+      styleOverrides: {
+        bar: {
+          transition: 'all 2s ease',
+        },
+      },
+    },
+  },
   palette: {
     primary: {
       main: '#007aff',

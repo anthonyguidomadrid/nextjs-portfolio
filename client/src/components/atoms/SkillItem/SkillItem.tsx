@@ -1,14 +1,32 @@
-import { Grid, LinearProgress, Typography } from '@mui/material';
+import { Grid, Typography } from '@mui/material';
 import { useTranslation } from 'next-i18next';
 import { ComponentMainSkill } from '~/generated/graphql';
+import { DeterminateProgressBar } from './SkillItem.styles';
+import { useEffect, useState } from 'react';
+import { useInView } from 'react-intersection-observer';
 
 export const SkillItem: React.FC<ComponentMainSkill> = ({
   Name,
   percentage,
 }) => {
   const { t } = useTranslation();
+  const [progress, setProgress] = useState(0);
+  const { ref, inView } = useInView({
+    threshold: 0.1,
+  });
+
+  useEffect(() => {
+    if (inView) {
+      const timer = setTimeout(() => {
+        setProgress(percentage ?? 0);
+      }, 500);
+
+      return () => clearTimeout(timer);
+    }
+  }, [inView, percentage]);
+
   return (
-    <Grid container flexDirection='column'>
+    <Grid container flexDirection='column' ref={ref}>
       <Grid container justifyContent='space-between'>
         <Grid item>
           <Typography>{Name}</Typography>
@@ -19,7 +37,7 @@ export const SkillItem: React.FC<ComponentMainSkill> = ({
           </Typography>
         </Grid>
       </Grid>
-      <LinearProgress variant='determinate' value={percentage ?? 0} />
+      <DeterminateProgressBar variant='determinate' value={progress} />
     </Grid>
   );
 };
