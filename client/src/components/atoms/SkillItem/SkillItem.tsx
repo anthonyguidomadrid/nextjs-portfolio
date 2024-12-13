@@ -7,7 +7,7 @@ import { useInView } from 'react-intersection-observer';
 
 export const SkillItem: React.FC<ComponentMainSkill> = ({
   Name,
-  percentage,
+  percentage = 0,
 }) => {
   const { t } = useTranslation();
   const [progress, setProgress] = useState(0);

@@ -1,4 +1,4 @@
-import { render, RenderOptions } from '@testing-library/react';
+import { render, RenderOptions, screen } from '@testing-library/react';
 import { ReactElement } from 'react';
 import { I18nextProvider } from 'react-i18next';
 import i18n from './i18nForTests';
@@ -34,3 +34,10 @@ const customRender = (
 ) => render(ui, { wrapper: AllTheProviders, ...options });
 export * from '@testing-library/react';
 export { customRender as render };
+
+export const getBySplittedText = (text: string) =>
+  screen.getByText((_, node) => {
+    const hasText = () => node?.textContent === text;
+    const isParagraph = node?.tagName === 'P';
+    return hasText() && isParagraph;
+  });

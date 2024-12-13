@@ -11,7 +11,9 @@ export const PageWrapper: React.FC<PageWrapperProps> = ({ children }) => {
   }
   return (
     <Fade in={true} timeout={2000}>
-      <StyledPageWrapper>{children}</StyledPageWrapper>
+      <StyledPageWrapper data-testid='page-wrapper'>
+        {children}
+      </StyledPageWrapper>
     </Fade>
   );
 };

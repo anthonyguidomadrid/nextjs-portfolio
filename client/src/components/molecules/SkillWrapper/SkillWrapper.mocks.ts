@@ -1,52 +1,52 @@
 export const SKILLS_MOCK = [
   {
-    __typename: 'ComponentMainSkill',
     Name: 'HTML / CSS / BOOTSTRAP / TAILWIND / MUI  / JQUERY',
     percentage: 95,
+    id: '1',
   },
   {
-    __typename: 'ComponentMainSkill',
     Name: 'JAVASCRIPT / Typescript',
     percentage: 90,
+    id: '2',
   },
   {
-    __typename: 'ComponentMainSkill',
     Name: 'ReactJS / NextJS / ViteJS',
     percentage: 90,
+    id: '3',
   },
   {
-    __typename: 'ComponentMainSkill',
     Name: 'MYSQL / POSTGRESS / NOSQL / REST API',
     percentage: 75,
+    id: '4',
   },
   {
-    __typename: 'ComponentMainSkill',
     Name: 'NodeJS / Express / Mongoose',
     percentage: 70,
+    id: '5',
   },
   {
-    __typename: 'ComponentMainSkill',
     Name: 'GIT / CI CD',
     percentage: 70,
+    id: '6',
   },
   {
-    __typename: 'ComponentMainSkill',
     Name: 'figma / PHOTOSHOP / ILLUSTRATOR',
     percentage: 70,
+    id: '7',
   },
   {
-    __typename: 'ComponentMainSkill',
     Name: 'Jest / React Testing Library / Cypress / Playwright',
     percentage: 70,
+    id: '8',
   },
   {
-    __typename: 'ComponentMainSkill',
     Name: 'JAVA / PHP',
     percentage: 50,
+    id: '9',
   },
   {
-    __typename: 'ComponentMainSkill',
     Name: 'Azure Devops / Docker / Kubernetes ',
     percentage: 50,
+    id: '10',
   },
 ];
