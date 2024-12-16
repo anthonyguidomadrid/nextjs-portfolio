@@ -5,5 +5,19 @@
       "computer": "Compétences informatiques",
       "languages": "Langues"
     }
+  },
+  "resume": {
+    "title": {
+      "work-experiences": "Expériences professionnelles",
+      "education": "Éducation",
+      "certifications": "Certifications"
+    },
+    "button": {
+      "download-resume": "Télécharger le CV complet",
+      "show-credentials": "Afficher l'identifiant"
+    }
+  },
+  "date": {
+    "current": "Actuel"
   }
 }

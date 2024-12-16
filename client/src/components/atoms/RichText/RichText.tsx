@@ -4,9 +4,31 @@ import { Grid, Typography } from '@mui/material';
 
 export const RichText: React.FC<RichTextProps> = ({ content }) => {
   const processedContent = content.split('\n\n').map((paragraph, index) => {
+    const trimmedParagraph = paragraph.trim();
+
+    if (trimmedParagraph.includes('\n- ')) {
+      const listItems = trimmedParagraph
+        .split('\n')
+        .filter((line) => line.startsWith('- '))
+        .map((line, i) => (
+          <li key={i}>{line.replace(/^- /, '')}</li> // Remove the leading "- "
+        ));
+
+      return <ul key={index}>{listItems}</ul>;
+    }
+
+    if (trimmedParagraph.startsWith('**') && trimmedParagraph.endsWith('**')) {
+      const text = trimmedParagraph.replace(/^\*\*|\*\*$/g, ''); // Remove surrounding stars
+      return (
+        <Typography key={index} variant='subtitle1' gutterBottom>
+          {text}
+        </Typography>
+      );
+    }
+
     if (
-      paragraph.trim().startsWith('###') &&
-      paragraph.trim().endsWith('###')
+      trimmedParagraph.startsWith('###') &&
+      trimmedParagraph.endsWith('###')
     ) {
       const text = paragraph.trim().replace(/^###\s*|\s*###$/g, '');
       return (
@@ -15,7 +37,24 @@ export const RichText: React.FC<RichTextProps> = ({ content }) => {
         </Typography>
       );
     }
-    // Otherwise, treat it as a normal paragraph
+
+    if (trimmedParagraph.startsWith('##') && trimmedParagraph.endsWith('##')) {
+      const text = trimmedParagraph.replace(/^##\s*|\s*##$/g, '');
+      return (
+        <Typography key={index} variant='h5' gutterBottom>
+          {text}
+        </Typography>
+      );
+    }
+
+    if (trimmedParagraph.startsWith('#') && trimmedParagraph.endsWith('#')) {
+      const text = trimmedParagraph.replace(/^#\s*|\s*#$/g, '');
+      return (
+        <Typography key={index} variant='h6' gutterBottom>
+          {text}
+        </Typography>
+      );
+    }
     return (
       <Typography key={index} variant='body1'>
         {paragraph.split('\n').map((line, i) => (

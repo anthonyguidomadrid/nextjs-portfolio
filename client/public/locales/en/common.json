@@ -8,5 +8,19 @@
     "skills": {
       "percentage": "{{percentage}} %"
     }
+  },
+  "resume": {
+    "title": {
+      "work-experiences": "Work experiences",
+      "education": "Education",
+      "certifications": "Certifications"
+    },
+    "button": {
+      "download-resume": "Download full resume",
+      "show-credentials": "Show credentials"
+    }
+  },
+  "date": {
+    "current": "Current"
   }
 }

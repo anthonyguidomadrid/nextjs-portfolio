@@ -1832,6 +1832,8 @@ export type ImageFieldsFragment = { __typename?: 'UploadFile', alternativeText?:
 
 export type SeoFieldsFragment = { __typename?: 'ComponentHeadSeo', pageTitle: string, pageDescription: string, canonicalUrl?: string | null, noFollow: boolean, noIndex: boolean, shareImages?: { __typename?: 'UploadFileRelationResponseCollection', data: Array<{ __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, url: string, height?: number | null, width?: number | null } | null }> } | null };
 
+export type ResumeItemFragment = { __typename?: 'ComponentMainResumeItem', title: string, description: string, startingDate: any, endingDate?: any | null, location: string, company: string, link?: string | null, logo?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, url: string, height?: number | null, width?: number | null } | null } | null } | null };
+
 export type GetContactInformationQueryVariables = Exact<{
   locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
 }>;
@@ -1860,6 +1862,13 @@ export type GetAboutPageQueryVariables = Exact<{
 
 export type GetAboutPageQuery = { __typename?: 'Query', pageAbout?: { __typename?: 'PageAboutEntityResponse', data?: { __typename?: 'PageAboutEntity', attributes?: { __typename?: 'PageAbout', Header?: { __typename?: 'ComponentHeadHeader', Title: string, subTitle: string, description?: string | null, picture?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, url: string, height?: number | null, width?: number | null } | null } | null } | null } | null, SEO: { __typename?: 'ComponentHeadSeo', pageTitle: string, pageDescription: string, canonicalUrl?: string | null, noFollow: boolean, noIndex: boolean, shareImages?: { __typename?: 'UploadFileRelationResponseCollection', data: Array<{ __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, url: string, height?: number | null, width?: number | null } | null }> } | null }, computerSkills: Array<{ __typename?: 'ComponentMainSkill', Name: string, percentage?: number | null } | null>, languages: Array<{ __typename?: 'ComponentMainSkill', Name: string, percentage?: number | null } | null> } | null } | null } | null };
 
+export type GetResumePageQueryVariables = Exact<{
+  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
+}>;
+
+
+export type GetResumePageQuery = { __typename?: 'Query', pageResume?: { __typename?: 'PageResumeEntityResponse', data?: { __typename?: 'PageResumeEntity', attributes?: { __typename?: 'PageResume', Header: { __typename?: 'ComponentHeadHeader', Title: string, subTitle: string }, workExperiences: Array<{ __typename?: 'ComponentMainResumeItem', title: string, description: string, startingDate: any, endingDate?: any | null, location: string, company: string, link?: string | null, logo?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, url: string, height?: number | null, width?: number | null } | null } | null } | null } | null>, Education: Array<{ __typename?: 'ComponentMainResumeItem', title: string, description: string, startingDate: any, endingDate?: any | null, location: string, company: string, link?: string | null, logo?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, url: string, height?: number | null, width?: number | null } | null } | null } | null } | null>, Certification: Array<{ __typename?: 'ComponentMainSkill', Name: string, link?: string | null, date?: any | null, logo?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, alternativeText?: string | null } | null } | null } | null } | null>, CV: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string } | null } | null }, SEO: { __typename?: 'ComponentHeadSeo', pageTitle: string, pageDescription: string, canonicalUrl?: string | null, noFollow: boolean, noIndex: boolean, shareImages?: { __typename?: 'UploadFileRelationResponseCollection', data: Array<{ __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, url: string, height?: number | null, width?: number | null } | null }> } | null } } | null } | null } | null };
+
 export const ImageFieldsFragmentDoc = gql`
     fragment ImageFields on UploadFile {
   alternativeText
@@ -1882,6 +1891,24 @@ export const SeoFieldsFragmentDoc = gql`
       }
     }
   }
+}
+    ${ImageFieldsFragmentDoc}`;
+export const ResumeItemFragmentDoc = gql`
+    fragment ResumeItem on ComponentMainResumeItem {
+  title
+  description
+  logo {
+    data {
+      attributes {
+        ...ImageFields
+      }
+    }
+  }
+  startingDate
+  endingDate
+  location
+  company
+  link
 }
     ${ImageFieldsFragmentDoc}`;
 export const GetContactInformationDocument = gql`
@@ -2104,3 +2131,80 @@ export type GetAboutPageQueryHookResult = ReturnType<typeof useGetAboutPageQuery
 export type GetAboutPageLazyQueryHookResult = ReturnType<typeof useGetAboutPageLazyQuery>;
 export type GetAboutPageSuspenseQueryHookResult = ReturnType<typeof useGetAboutPageSuspenseQuery>;
 export type GetAboutPageQueryResult = Apollo.QueryResult<GetAboutPageQuery, GetAboutPageQueryVariables>;
+export const GetResumePageDocument = gql`
+    query getResumePage($locale: I18NLocaleCode) {
+  pageResume(locale: $locale) {
+    data {
+      attributes {
+        Header {
+          Title
+          subTitle
+        }
+        workExperiences {
+          ...ResumeItem
+        }
+        Education {
+          ...ResumeItem
+        }
+        Certification {
+          Name
+          logo {
+            data {
+              attributes {
+                url
+                alternativeText
+              }
+            }
+          }
+          link
+          date
+        }
+        CV {
+          data {
+            attributes {
+              url
+            }
+          }
+        }
+        SEO {
+          ...SeoFields
+        }
+      }
+    }
+  }
+}
+    ${ResumeItemFragmentDoc}
+${SeoFieldsFragmentDoc}`;
+
+/**
+ * __useGetResumePageQuery__
+ *
+ * To run a query within a React component, call `useGetResumePageQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetResumePageQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetResumePageQuery({
+ *   variables: {
+ *      locale: // value for 'locale'
+ *   },
+ * });
+ */
+export function useGetResumePageQuery(baseOptions?: Apollo.QueryHookOptions<GetResumePageQuery, GetResumePageQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetResumePageQuery, GetResumePageQueryVariables>(GetResumePageDocument, options);
+      }
+export function useGetResumePageLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetResumePageQuery, GetResumePageQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetResumePageQuery, GetResumePageQueryVariables>(GetResumePageDocument, options);
+        }
+export function useGetResumePageSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<GetResumePageQuery, GetResumePageQueryVariables>) {
+          const options = baseOptions === Apollo.skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<GetResumePageQuery, GetResumePageQueryVariables>(GetResumePageDocument, options);
+        }
+export type GetResumePageQueryHookResult = ReturnType<typeof useGetResumePageQuery>;
+export type GetResumePageLazyQueryHookResult = ReturnType<typeof useGetResumePageLazyQuery>;
+export type GetResumePageSuspenseQueryHookResult = ReturnType<typeof useGetResumePageSuspenseQuery>;
+export type GetResumePageQueryResult = Apollo.QueryResult<GetResumePageQuery, GetResumePageQueryVariables>;

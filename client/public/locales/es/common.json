@@ -7,5 +7,19 @@
       "computer": "Habilidades informáticas",
       "languages": "Idiomas"
     }
+  },
+  "resume": {
+    "title": {
+      "work-experiences": "Experiencias laborales",
+      "education": "Educación",
+      "certifications": "Certificaciones"
+    },
+    "button": {
+      "download-resume": "Descargar currículum completo",
+      "show-credentials": "Mostrar credenciales"
+    }
+  },
+  "date": {
+    "current": "Actual"
   }
 }

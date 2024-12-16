@@ -2,6 +2,7 @@ import { Grid, Typography } from '@mui/material';
 import { PageTitleProps } from './PageTitle.types';
 import { RichText } from '~/components/atoms';
 import { StyledImage, StyledTitle, StyledWrapper } from './PageTitle.styles';
+import { getMediaUrl } from '~/utils/getMediaUrl';
 
 export const PageTitle: React.FC<PageTitleProps> = ({
   title,
@@ -11,9 +12,8 @@ export const PageTitle: React.FC<PageTitleProps> = ({
   children,
   isMainTitle,
 }) => {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || '';
   const image = picture?.data?.attributes;
-  const imageUrl = `${baseUrl}${image?.url ?? ''}`;
+  const imageUrl = getMediaUrl(image?.url);
   return (
     <>
       <StyledTitle variant={isMainTitle ? 'h1' : 'h2'}>{title}</StyledTitle>
@@ -29,7 +29,7 @@ export const PageTitle: React.FC<PageTitleProps> = ({
             {imageUrl && (
               <Grid item xs={12} sm={6}>
                 <StyledImage
-                  src={`${baseUrl}${image?.url ?? ''}`}
+                  src={imageUrl}
                   alt={image?.alternativeText ?? ''}
                   height={image?.height ?? 100}
                   width={image?.width ?? 100}

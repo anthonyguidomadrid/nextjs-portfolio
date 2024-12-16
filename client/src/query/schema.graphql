@@ -80,3 +80,45 @@ query getAboutPage($locale: I18NLocaleCode) {
     }
   }
 }
+
+query getResumePage($locale: I18NLocaleCode) {
+  pageResume(locale: $locale) {
+    data {
+      attributes {
+        Header {
+          Title
+          subTitle
+        }
+        workExperiences {
+          ...ResumeItem
+        }
+        Education {
+          ...ResumeItem
+        }
+        Certification {
+          Name
+          logo {
+            data {
+              attributes {
+                url
+                alternativeText
+              }
+            }
+          }
+          link
+          date
+        }
+        CV {
+          data {
+            attributes {
+              url
+            }
+          }
+        }
+        SEO {
+          ...SeoFields
+        }
+      }
+    }
+  }
+}

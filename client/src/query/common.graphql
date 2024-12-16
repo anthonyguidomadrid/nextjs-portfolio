@@ -19,3 +19,20 @@ fragment SeoFields on ComponentHeadSeo {
     }
   }
 }
+
+fragment ResumeItem on ComponentMainResumeItem {
+  title
+  description
+  logo {
+    data {
+      attributes {
+        ...ImageFields
+      }
+    }
+  }
+  startingDate
+  endingDate
+  location
+  company
+  link
+}
