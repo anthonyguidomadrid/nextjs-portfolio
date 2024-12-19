@@ -6,6 +6,22 @@ declare module '@mui/material/styles/createPalette' {
   }
 }
 
+declare module '@mui/material/styles' {
+  interface TypographyVariants {
+    bold: React.CSSProperties;
+  }
+
+  interface TypographyVariantsOptions {
+    bold?: React.CSSProperties;
+  }
+}
+
+declare module '@mui/material/Typography' {
+  interface TypographyPropsVariantOverrides {
+    bold: true;
+  }
+}
+
 const theme = createTheme({
   components: {
     MuiLinearProgress: {
@@ -21,7 +37,7 @@ const theme = createTheme({
       main: '#007aff',
     },
     secondary: {
-      main: '#f50057',
+      main: '#ffffff',
     },
     info: {
       main: '#ffffff',
@@ -51,13 +67,30 @@ const theme = createTheme({
       },
     },
     h4: {
-      fontSize: '20px',
+      fontSize: '18px',
+      textTransform: 'uppercase',
+      fontWeight: 600,
       '@media (max-width:600px)': {
         fontSize: '14px',
       },
     },
     body1: {
       fontSize: '16px',
+      '@media (max-width:600px)': {
+        fontSize: '14px',
+      },
+    },
+    body2: {
+      fontWeight: 200,
+      fontSize: '16px',
+      '@media (max-width:600px)': {
+        fontSize: '14px',
+      },
+    },
+    bold: {
+      fontWeight: 600,
+      fontSize: '16px',
+      //@ts-ignore
       '@media (max-width:600px)': {
         fontSize: '14px',
       },

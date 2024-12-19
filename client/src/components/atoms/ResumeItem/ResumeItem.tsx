@@ -1,4 +1,4 @@
-import { Typography } from '@mui/material';
+import { Box, Grid, Typography } from '@mui/material';
 import { ResumeItemProps } from './ResumeItem.types';
 import { RichText } from '../RichText';
 import Image from 'next/image';
@@ -7,6 +7,7 @@ import Link from 'next/link';
 import { formatDateRange } from '~/utils/formatDates';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
+import { CompanyLogo } from './ResumeItem.styles';
 
 export const ResumeItem: React.FC<ResumeItemProps> = ({
   company,
@@ -22,25 +23,33 @@ export const ResumeItem: React.FC<ResumeItemProps> = ({
   const { locale } = useRouter();
   const { t } = useTranslation();
   return (
-    <>
-      {companyLogo && (
-        <Link href={link ?? ''} target='_blank'>
-          <Image
-            src={getMediaUrl(companyLogo?.url)}
-            alt={companyLogo?.alternativeText ?? ''}
-            height={100}
-            width={100}
-          />
-        </Link>
-      )}
-      <Typography variant='h4'>{title}</Typography>
-      <Typography>
-        {formatDateRange(startingDate, t, locale, endingDate)}
-      </Typography>
-      <Typography>
-        {company} ({location})
-      </Typography>
-      <RichText content={description} />
-    </>
+    <Grid container flexDirection='column' spacing={2}>
+      <Grid item>
+        <Grid container spacing={3} alignItems='center'>
+          {companyLogo && (
+            <Grid item xs={3}>
+              <Link href={link ?? ''} target='_blank'>
+                <CompanyLogo
+                  src={getMediaUrl(companyLogo.url)}
+                  alt={companyLogo.alternativeText ?? ''}
+                />
+              </Link>
+            </Grid>
+          )}
+          <Grid item xs={companyLogo ? 9 : 12}>
+            <Typography variant='h4'>{title}</Typography>
+            <Typography variant='body2'>
+              {formatDateRange(startingDate, t, locale, endingDate)}
+            </Typography>
+            <Typography>
+              {company} ({location})
+            </Typography>
+          </Grid>
+        </Grid>
+      </Grid>
+      <Grid item>
+        <RichText content={description} />
+      </Grid>
+    </Grid>
   );
 };

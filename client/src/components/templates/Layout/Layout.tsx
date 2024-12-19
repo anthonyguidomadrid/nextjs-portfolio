@@ -19,7 +19,7 @@ export const Layout: React.FC<LayoutProps> = ({
         socialMedia={socialMedia}
       />
       <PageWrapper>{children}</PageWrapper>
-      <Particles quantity={100} />
+      <Particles quantity={200} />
       <Footer />
     </>
   );
