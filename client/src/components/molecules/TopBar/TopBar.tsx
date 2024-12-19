@@ -5,7 +5,6 @@ import {
   StyledToolBar,
 } from './TopBar.styles';
 import { TopBarProps } from './TopBar.types';
-import Image from 'next/image';
 import { DesktopMenuItems, LanguageSwitcher, Logo } from '~/components/atoms';
 import MenuIcon from '@mui/icons-material/Menu';
 

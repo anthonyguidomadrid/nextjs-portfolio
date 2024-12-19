@@ -12,7 +12,7 @@ export const Timeline: React.FC<TimelineProps> = ({ resumeItems }) => {
   return (
     <StyledTimeLine>
       {resumeItems?.map((resumeItem) => (
-        <TimeLineItem key={resumeItem?.id}>
+        <TimeLineItem key={resumeItem?.title}>
           <TimelineSeparator>
             <TimelineDot />
             <TimelineConnector />

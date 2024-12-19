@@ -1,10 +1,6 @@
-import { IconButton, Button, Fade } from '@mui/material';
 import { HeaderProps } from './Header.types';
-import MenuIcon from '@mui/icons-material/Menu';
 import { useRouter } from 'next/router';
-import { LanguageSwitcher } from '~/components/atoms/LanguageSwitcher';
 import { NavBar, StyledDrawer } from './Header.styles';
-import Image from 'next/image';
 import { Drawer } from '~/components/molecules/Drawer';
 import { DesktopMenuItems } from '~/components/atoms/DesktopMenuItems';
 import { HomeHeader } from '~/components/molecules/HomeHeader';
@@ -27,7 +23,7 @@ export const Header: React.FC<HeaderProps> = ({
 
   const handleNavigation = (path: string) => {
     router.push(path);
-    setMobileOpen(true);
+    setMobileOpen(false);
   };
 
   return (
