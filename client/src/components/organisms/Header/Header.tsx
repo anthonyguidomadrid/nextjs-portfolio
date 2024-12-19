@@ -27,7 +27,7 @@ export const Header: React.FC<HeaderProps> = ({
 
   const handleNavigation = (path: string) => {
     router.push(path);
-    setMobileOpen(false);
+    setMobileOpen(true);
   };
 
   return (
@@ -62,7 +62,7 @@ export const Header: React.FC<HeaderProps> = ({
             open={mobileOpen}
             onClose={handleDrawerToggle}
             ModalProps={{
-              keepMounted: true, // Better open performance on mobile.
+              keepMounted: true,
             }}
           >
             <Drawer

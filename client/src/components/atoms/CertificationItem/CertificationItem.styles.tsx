@@ -3,6 +3,7 @@ import Image from 'next/image';
 
 export const CertificationCard = styled(Card)(({ theme }) => ({
   padding: theme.spacing(1, 2),
+  borderRadius: 0,
 }));
 
 export const CertificationImage = styled(Image)(() => ({

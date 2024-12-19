@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { CertificationItem } from '~/components/atoms';
 import { Timeline } from '~/components/molecules';
 import { PageTitle } from '~/components/organisms';
+import { InViewFadeIn } from '~/components/templates';
 import {
   GetAboutPageQuery,
   GetResumePageDocument,
@@ -66,9 +67,11 @@ const Resume: React.FC<ResumeProps> = ({ pageResume: { data } }) => {
       <Grid item>
         <PageTitle title={t('resume.title.certifications')}>
           <Grid container spacing={2}>
-            {certifications?.map((certification) => (
+            {certifications?.map((certification, index) => (
               <Grid item key={certification?.id} xs={12} md={6} lg={4}>
-                {certification && <CertificationItem {...certification} />}
+                <InViewFadeIn index={index}>
+                  {certification && <CertificationItem {...certification} />}
+                </InViewFadeIn>
               </Grid>
             ))}
           </Grid>
