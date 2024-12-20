@@ -97,6 +97,7 @@ const theme = createTheme({
     bold: {
       fontWeight: 600,
       fontSize: '16px',
+      fontFamily: 'Poppins, Arial, sans-serif',
       //@ts-ignore
       '@media (max-width:600px)': {
         fontSize: '14px',

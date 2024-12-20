@@ -1,7 +1,6 @@
 import { Box, Grid, Typography } from '@mui/material';
 import { ResumeItemProps } from './ResumeItem.types';
 import { RichText } from '../RichText';
-import Image from 'next/image';
 import { getMediaUrl } from '~/utils/getMediaUrl';
 import Link from 'next/link';
 import { formatDateRange } from '~/utils/formatDates';

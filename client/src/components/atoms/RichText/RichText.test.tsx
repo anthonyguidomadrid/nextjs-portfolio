@@ -3,13 +3,49 @@ import { RichText } from './RichText';
 import { getBySplittedText, render } from '~/utils/test-utils';
 
 describe('RichText', () => {
-  it('renders headings correctly', () => {
+  it('renders h4 headings correctly', () => {
     const content = '### Heading Text ###';
     render(<RichText content={content} />);
 
     const heading = screen.getByText('Heading Text');
     expect(heading).toBeInTheDocument();
     expect(heading.tagName).toBe('H4');
+  });
+
+  it('renders h5 headings correctly', () => {
+    const content = '## Heading Text ##';
+    render(<RichText content={content} />);
+
+    const heading = screen.getByText('Heading Text');
+    expect(heading).toBeInTheDocument();
+    expect(heading.tagName).toBe('H5');
+  });
+
+  it('renders h6 headings correctly', () => {
+    const content = '# Heading Text #';
+    render(<RichText content={content} />);
+
+    const heading = screen.getByText('Heading Text');
+    expect(heading).toBeInTheDocument();
+    expect(heading.tagName).toBe('H6');
+  });
+
+  it('renders bold text correctly', () => {
+    const content = '**Bold text**';
+    render(<RichText content={content} />);
+
+    const boldText = screen.getByText('Bold text');
+    expect(boldText).toBeInTheDocument();
+    expect(boldText.tagName).toBe('H6');
+  });
+
+  it('renders an unordered list', () => {
+    const content = `- First bullet point
+- Second bullet point`;
+    render(<RichText content={content} />);
+    const list = screen.getByRole('list');
+    expect(list).toBeVisible();
+    expect(list.children).toHaveLength(2);
   });
 
   it('renders paragraphs correctly', () => {

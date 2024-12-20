@@ -19,6 +19,9 @@ const config: StorybookConfig = {
       test: /\.svg$/,
       use: ['@svgr/webpack'],
     });
+    config.plugins = config.plugins?.filter(
+      (plugin) => plugin?.constructor.name !== 'CaseSensitivePathsPlugin'
+    );
 
     return config;
   },

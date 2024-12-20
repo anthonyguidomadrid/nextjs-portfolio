@@ -10,15 +10,13 @@ export const RichText: React.FC<RichTextProps> = ({ content }) => {
       const listItems = trimmedParagraph
         .split('\n')
         .filter((line) => line.startsWith('- '))
-        .map((line, i) => (
-          <li key={i}>{line.replace(/^- /, '')}</li> // Remove the leading "- "
-        ));
+        .map((line, i) => <li key={i}>{line.replace(/^- /, '')}</li>);
 
       return <ul key={index}>{listItems}</ul>;
     }
 
     if (trimmedParagraph.startsWith('**') && trimmedParagraph.endsWith('**')) {
-      const text = trimmedParagraph.replace(/^\*\*|\*\*$/g, ''); // Remove surrounding stars
+      const text = trimmedParagraph.replace(/^\*\*|\*\*$/g, '');
       return (
         <Typography key={index} variant='subtitle1' gutterBottom>
           {text}

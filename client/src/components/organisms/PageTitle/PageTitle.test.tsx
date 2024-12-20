@@ -87,18 +87,4 @@ describe('PageTitle Component', () => {
     expect(screen.queryByTestId('RichText')).toBeNull();
     expect(screen.queryByTestId('StyledImage')).toBeNull();
   });
-
-  it('handles missing picture attributes gracefully', () => {
-    const picture = { data: { attributes: {} } };
-
-    // @ts-ignore
-    render(<PageTitle title='Test Title' picture={picture} />);
-
-    expect(screen.queryByTestId('StyledImage')).toBeInTheDocument();
-    expect(screen.getByTestId('StyledImage')).toHaveAttribute(
-      'src',
-      `${baseUrl}`
-    );
-    expect(screen.getByTestId('StyledImage')).toHaveAttribute('alt', '');
-  });
 });

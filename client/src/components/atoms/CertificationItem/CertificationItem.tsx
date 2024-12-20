@@ -6,7 +6,6 @@ import { useRouter } from 'next/router';
 import { Grid, Link } from '@mui/material';
 import { getMediaUrl } from '~/utils/getMediaUrl';
 import { useTranslation } from 'next-i18next';
-import Image from 'next/image';
 import {
   CertificationCard,
   CertificationImage,
