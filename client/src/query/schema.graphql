@@ -122,3 +122,40 @@ query getResumePage($locale: I18NLocaleCode) {
     }
   }
 }
+
+query getProjectPage($locale: I18NLocaleCode, $categoryTag: String) {
+  categories(locale: $locale, sort: "Tag:asc") {
+    data {
+      attributes {
+        Tag
+        isMain
+      }
+    }
+  }
+  pageProject(locale: $locale) {
+    data {
+      attributes {
+        SEO {
+          ...SeoFields
+        }
+        Header {
+          Title
+          subTitle
+        }
+        projects(filters: { categories: { Tag: { eq: $categoryTag } } }) {
+          title
+          subTitle
+          date
+          thumbnail {
+            data {
+              attributes {
+                alternativeText
+                url
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

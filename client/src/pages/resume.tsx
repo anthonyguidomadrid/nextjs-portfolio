@@ -7,8 +7,8 @@ import { Timeline } from '~/components/molecules';
 import { PageTitle } from '~/components/organisms';
 import { InViewFadeIn } from '~/components/templates';
 import {
-  GetAboutPageQuery,
   GetResumePageDocument,
+  GetResumePageQuery,
   PageResumeEntityResponse,
 } from '~/generated/graphql';
 import { initializeApollo } from '~/lib/client';
@@ -33,8 +33,6 @@ const Resume: React.FC<ResumeProps> = ({ pageResume: { data } }) => {
             <PageTitle
               title={header?.Title}
               subtitle={header?.subTitle}
-              description={header?.description}
-              picture={header?.picture}
               isMainTitle={true}
             />
           </Grid>
@@ -43,8 +41,8 @@ const Resume: React.FC<ResumeProps> = ({ pageResume: { data } }) => {
               href={getMediaUrl(data?.attributes?.CV.data?.attributes?.url)}
               target='_blank'
             >
-              <Button variant='outlined' color='secondary'>
-                {t('resume.button.download-resume')}{' '}
+              <Button variant='outlined'>
+                {t('resume.button.download-resume')}
               </Button>
             </Link>
           </Grid>
@@ -84,7 +82,7 @@ const Resume: React.FC<ResumeProps> = ({ pageResume: { data } }) => {
 export async function getStaticProps({ locale }: { locale: string }) {
   const apolloClient = initializeApollo();
 
-  const { data } = await apolloClient.query<GetAboutPageQuery>({
+  const { data } = await apolloClient.query<GetResumePageQuery>({
     query: GetResumePageDocument,
     variables: { locale },
   });

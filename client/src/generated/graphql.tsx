@@ -51,6 +51,7 @@ export type Category = {
   __typename?: 'Category';
   Tag?: Maybe<Scalars['String']['output']>;
   createdAt?: Maybe<Scalars['DateTime']['output']>;
+  isMain?: Maybe<Scalars['Boolean']['output']>;
   locale?: Maybe<Scalars['String']['output']>;
   localizations?: Maybe<CategoryRelationResponseCollection>;
   publishedAt?: Maybe<Scalars['DateTime']['output']>;
@@ -87,6 +88,7 @@ export type CategoryFiltersInput = {
   and?: InputMaybe<Array<InputMaybe<CategoryFiltersInput>>>;
   createdAt?: InputMaybe<DateTimeFilterInput>;
   id?: InputMaybe<IdFilterInput>;
+  isMain?: InputMaybe<BooleanFilterInput>;
   locale?: InputMaybe<StringFilterInput>;
   localizations?: InputMaybe<CategoryFiltersInput>;
   not?: InputMaybe<CategoryFiltersInput>;
@@ -97,6 +99,7 @@ export type CategoryFiltersInput = {
 
 export type CategoryInput = {
   Tag?: InputMaybe<Scalars['String']['input']>;
+  isMain?: InputMaybe<Scalars['Boolean']['input']>;
   publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
@@ -1869,6 +1872,14 @@ export type GetResumePageQueryVariables = Exact<{
 
 export type GetResumePageQuery = { __typename?: 'Query', pageResume?: { __typename?: 'PageResumeEntityResponse', data?: { __typename?: 'PageResumeEntity', attributes?: { __typename?: 'PageResume', Header: { __typename?: 'ComponentHeadHeader', Title: string, subTitle: string }, workExperiences: Array<{ __typename?: 'ComponentMainResumeItem', title: string, description: string, startingDate: any, endingDate?: any | null, location: string, company: string, link?: string | null, logo?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, url: string, height?: number | null, width?: number | null } | null } | null } | null } | null>, Education: Array<{ __typename?: 'ComponentMainResumeItem', title: string, description: string, startingDate: any, endingDate?: any | null, location: string, company: string, link?: string | null, logo?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, url: string, height?: number | null, width?: number | null } | null } | null } | null } | null>, Certification: Array<{ __typename?: 'ComponentMainSkill', Name: string, link?: string | null, date?: any | null, logo?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, alternativeText?: string | null } | null } | null } | null } | null>, CV: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string } | null } | null }, SEO: { __typename?: 'ComponentHeadSeo', pageTitle: string, pageDescription: string, canonicalUrl?: string | null, noFollow: boolean, noIndex: boolean, shareImages?: { __typename?: 'UploadFileRelationResponseCollection', data: Array<{ __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, url: string, height?: number | null, width?: number | null } | null }> } | null } } | null } | null } | null };
 
+export type GetProjectPageQueryVariables = Exact<{
+  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
+  categoryTag?: InputMaybe<Scalars['String']['input']>;
+}>;
+
+
+export type GetProjectPageQuery = { __typename?: 'Query', categories?: { __typename?: 'CategoryEntityResponseCollection', data: Array<{ __typename?: 'CategoryEntity', attributes?: { __typename?: 'Category', Tag?: string | null, isMain?: boolean | null } | null }> } | null, pageProject?: { __typename?: 'PageProjectEntityResponse', data?: { __typename?: 'PageProjectEntity', attributes?: { __typename?: 'PageProject', SEO: { __typename?: 'ComponentHeadSeo', pageTitle: string, pageDescription: string, canonicalUrl?: string | null, noFollow: boolean, noIndex: boolean, shareImages?: { __typename?: 'UploadFileRelationResponseCollection', data: Array<{ __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, url: string, height?: number | null, width?: number | null } | null }> } | null }, Header: Array<{ __typename?: 'ComponentHeadHeader', Title: string, subTitle: string } | null>, projects: Array<{ __typename?: 'ComponentMainProject', title: string, subTitle: string, date: any, thumbnail: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, url: string } | null } | null } } | null> } | null } | null } | null };
+
 export const ImageFieldsFragmentDoc = gql`
     fragment ImageFields on UploadFile {
   alternativeText
@@ -2208,3 +2219,75 @@ export type GetResumePageQueryHookResult = ReturnType<typeof useGetResumePageQue
 export type GetResumePageLazyQueryHookResult = ReturnType<typeof useGetResumePageLazyQuery>;
 export type GetResumePageSuspenseQueryHookResult = ReturnType<typeof useGetResumePageSuspenseQuery>;
 export type GetResumePageQueryResult = Apollo.QueryResult<GetResumePageQuery, GetResumePageQueryVariables>;
+export const GetProjectPageDocument = gql`
+    query getProjectPage($locale: I18NLocaleCode, $categoryTag: String) {
+  categories(locale: $locale, sort: "Tag:asc") {
+    data {
+      attributes {
+        Tag
+        isMain
+      }
+    }
+  }
+  pageProject(locale: $locale) {
+    data {
+      attributes {
+        SEO {
+          ...SeoFields
+        }
+        Header {
+          Title
+          subTitle
+        }
+        projects(filters: {categories: {Tag: {eq: $categoryTag}}}) {
+          title
+          subTitle
+          date
+          thumbnail {
+            data {
+              attributes {
+                alternativeText
+                url
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+    ${SeoFieldsFragmentDoc}`;
+
+/**
+ * __useGetProjectPageQuery__
+ *
+ * To run a query within a React component, call `useGetProjectPageQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetProjectPageQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetProjectPageQuery({
+ *   variables: {
+ *      locale: // value for 'locale'
+ *      categoryTag: // value for 'categoryTag'
+ *   },
+ * });
+ */
+export function useGetProjectPageQuery(baseOptions?: Apollo.QueryHookOptions<GetProjectPageQuery, GetProjectPageQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetProjectPageQuery, GetProjectPageQueryVariables>(GetProjectPageDocument, options);
+      }
+export function useGetProjectPageLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetProjectPageQuery, GetProjectPageQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetProjectPageQuery, GetProjectPageQueryVariables>(GetProjectPageDocument, options);
+        }
+export function useGetProjectPageSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<GetProjectPageQuery, GetProjectPageQueryVariables>) {
+          const options = baseOptions === Apollo.skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<GetProjectPageQuery, GetProjectPageQueryVariables>(GetProjectPageDocument, options);
+        }
+export type GetProjectPageQueryHookResult = ReturnType<typeof useGetProjectPageQuery>;
+export type GetProjectPageLazyQueryHookResult = ReturnType<typeof useGetProjectPageLazyQuery>;
+export type GetProjectPageSuspenseQueryHookResult = ReturnType<typeof useGetProjectPageSuspenseQuery>;
+export type GetProjectPageQueryResult = Apollo.QueryResult<GetProjectPageQuery, GetProjectPageQueryVariables>;
