@@ -3,6 +3,7 @@ import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { SkillWrapper } from '~/components/molecules';
 import { PageTitle } from '~/components/organisms';
+import { InViewFadeIn } from '~/components/templates';
 import {
   GetAboutPageDocument,
   GetAboutPageQuery,
@@ -20,31 +21,33 @@ const About: React.FC<AboutProps> = ({ pageAbout: { data } }) => {
   const computerSkills = data?.attributes?.computerSkills;
   const languageSkills = data?.attributes?.languages;
   return (
-    <Grid container flexDirection='column' spacing={8}>
-      <Grid item>
-        <PageTitle
-          title={header?.Title}
-          subtitle={header?.subTitle}
-          description={header?.description}
-          picture={header?.picture}
-          isMainTitle={true}
-        />
+    <InViewFadeIn alwaysAnimate>
+      <Grid container flexDirection='column' spacing={8}>
+        <Grid item>
+          <PageTitle
+            title={header?.Title}
+            subtitle={header?.subTitle}
+            description={header?.description}
+            picture={header?.picture}
+            isMainTitle={true}
+          />
+        </Grid>
+        {computerSkills && (
+          <Grid item>
+            <PageTitle title={t('about.title.computer')}>
+              <SkillWrapper skills={computerSkills} />
+            </PageTitle>
+          </Grid>
+        )}
+        {languageSkills && (
+          <Grid item>
+            <PageTitle title={t('about.title.languages')}>
+              <SkillWrapper skills={languageSkills} />
+            </PageTitle>
+          </Grid>
+        )}
       </Grid>
-      {computerSkills && (
-        <Grid item>
-          <PageTitle title={t('about.title.computer')}>
-            <SkillWrapper skills={computerSkills} />
-          </PageTitle>
-        </Grid>
-      )}
-      {languageSkills && (
-        <Grid item>
-          <PageTitle title={t('about.title.languages')}>
-            <SkillWrapper skills={languageSkills} />
-          </PageTitle>
-        </Grid>
-      )}
-    </Grid>
+    </InViewFadeIn>
   );
 };
 

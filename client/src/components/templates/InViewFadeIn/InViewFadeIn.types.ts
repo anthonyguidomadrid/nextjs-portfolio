@@ -1,6 +1,7 @@
 export type InViewFadeInProps = {
-    children: React.ReactNode;
-    index: number;
-    threshold?: number;
-    delayTime?: number;
-  }
+  children: React.ReactNode;
+  alwaysAnimate?: boolean;
+  index?: number;
+  threshold?: number;
+  delayTime?: number;
+};

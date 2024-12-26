@@ -14,6 +14,7 @@ import {
 import { initializeApollo } from '~/lib/client';
 import { scroller } from 'react-scroll';
 import { getAllCategoryName } from '~/utils';
+import { InViewFadeIn } from '~/components/templates';
 
 interface PortfolioProps {
   pageProject: PageProjectEntityResponse;
@@ -54,49 +55,53 @@ const Portfolio: React.FC<PortfolioProps> = ({
     }
   };
   return (
-    <Grid container flexDirection='column' spacing={8}>
-      <Grid item>
-        <PageTitle
-          title={header?.Title}
-          subtitle={header?.subTitle}
-          description={header?.description}
-          picture={header?.picture}
-          isMainTitle={true}
-        />
-      </Grid>
-      <Grid item>
-        <Grid container spacing={2} justifyContent='center'>
-          {categoriesArray.map((category) => {
-            const tag = category.attributes?.Tag;
-            const isCurrent = tag === currentCategory;
-            return (
-              <Grid item key={tag}>
-                <Button
-                  key={tag}
-                  onClick={() => handleCategoryChange(tag)}
-                  variant='outlined'
-                  color={isCurrent ? 'secondary' : 'primary'}
-                >
-                  {tag}
-                </Button>
-              </Grid>
-            );
-          })}
+    <InViewFadeIn alwaysAnimate>
+      <Grid container flexDirection='column' spacing={8}>
+        <Grid item>
+          <PageTitle
+            title={header?.Title}
+            subtitle={header?.subTitle}
+            description={header?.description}
+            picture={header?.picture}
+            isMainTitle={true}
+          />
+        </Grid>
+        <Grid item>
+          <Grid container spacing={2} justifyContent='center'>
+            {categoriesArray.map((category) => {
+              const tag = category.attributes?.Tag;
+              const isCurrent = tag === currentCategory;
+              return (
+                <Grid item key={tag}>
+                  <Button
+                    key={tag}
+                    onClick={() => handleCategoryChange(tag)}
+                    variant='outlined'
+                    color={isCurrent ? 'secondary' : 'primary'}
+                  >
+                    {tag}
+                  </Button>
+                </Grid>
+              );
+            })}
+          </Grid>
+        </Grid>
+        <Grid item>
+          <Grid container spacing={4} id='projects'>
+            {projects?.map((project, index) => {
+              if (!project) return null;
+              return (
+                <Grid item key={project?.title} xs={12} md={6} lg={4}>
+                  <InViewFadeIn alwaysAnimate={true} index={index}>
+                    <PortfolioCard {...project} />
+                  </InViewFadeIn>
+                </Grid>
+              );
+            })}
+          </Grid>
         </Grid>
       </Grid>
-      <Grid item id='projects'>
-        <Grid container spacing={4}>
-          {projects?.map((project) => {
-            if (!project) return null;
-            return (
-              <Grid item key={project?.title} xs={12} md={6} lg={4}>
-                <PortfolioCard {...project} />
-              </Grid>
-            );
-          })}
-        </Grid>
-      </Grid>
-    </Grid>
+    </InViewFadeIn>
   );
 };
 

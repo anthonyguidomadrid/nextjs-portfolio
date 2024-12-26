@@ -26,56 +26,58 @@ const Resume: React.FC<ResumeProps> = ({ pageResume: { data } }) => {
   const certifications = data?.attributes?.Certification;
 
   return (
-    <Grid container flexDirection='column' spacing={8}>
-      <Grid item>
-        <Grid container flexDirection='column' spacing={3}>
-          <Grid item>
-            <PageTitle
-              title={header?.Title}
-              subtitle={header?.subTitle}
-              isMainTitle={true}
-            />
-          </Grid>
-          <Grid item>
-            <Link
-              href={getMediaUrl(data?.attributes?.CV.data?.attributes?.url)}
-              target='_blank'
-            >
-              <Button variant='outlined'>
-                {t('resume.button.download-resume')}
-              </Button>
-            </Link>
-          </Grid>
-        </Grid>
-      </Grid>
-      <Grid item>
-        <Grid container>
-          <Grid item xs={12} md={6}>
-            <PageTitle title={t('resume.title.work-experiences')}>
-              <Timeline resumeItems={workExperiences} />
-            </PageTitle>
-          </Grid>
-          <Grid item xs={12} md={6}>
-            <PageTitle title={t('resume.title.education')}>
-              <Timeline resumeItems={education} />
-            </PageTitle>
+    <InViewFadeIn alwaysAnimate>
+      <Grid container flexDirection='column' spacing={8}>
+        <Grid item>
+          <Grid container flexDirection='column' spacing={3}>
+            <Grid item>
+              <PageTitle
+                title={header?.Title}
+                subtitle={header?.subTitle}
+                isMainTitle={true}
+              />
+            </Grid>
+            <Grid item>
+              <Link
+                href={getMediaUrl(data?.attributes?.CV.data?.attributes?.url)}
+                target='_blank'
+              >
+                <Button variant='outlined'>
+                  {t('resume.button.download-resume')}
+                </Button>
+              </Link>
+            </Grid>
           </Grid>
         </Grid>
-      </Grid>
-      <Grid item>
-        <PageTitle title={t('resume.title.certifications')}>
-          <Grid container spacing={2}>
-            {certifications?.map((certification, index) => (
-              <Grid item key={certification?.id} xs={12} md={6} lg={4}>
-                <InViewFadeIn index={index}>
-                  {certification && <CertificationItem {...certification} />}
-                </InViewFadeIn>
-              </Grid>
-            ))}
+        <Grid item>
+          <Grid container>
+            <Grid item xs={12} md={6}>
+              <PageTitle title={t('resume.title.work-experiences')}>
+                <Timeline resumeItems={workExperiences} />
+              </PageTitle>
+            </Grid>
+            <Grid item xs={12} md={6}>
+              <PageTitle title={t('resume.title.education')}>
+                <Timeline resumeItems={education} />
+              </PageTitle>
+            </Grid>
           </Grid>
-        </PageTitle>
+        </Grid>
+        <Grid item>
+          <PageTitle title={t('resume.title.certifications')}>
+            <Grid container spacing={2}>
+              {certifications?.map((certification, index) => (
+                <Grid item key={certification?.id} xs={12} md={6} lg={4}>
+                  <InViewFadeIn index={index}>
+                    {certification && <CertificationItem {...certification} />}
+                  </InViewFadeIn>
+                </Grid>
+              ))}
+            </Grid>
+          </PageTitle>
+        </Grid>
       </Grid>
-    </Grid>
+    </InViewFadeIn>
   );
 };
 
