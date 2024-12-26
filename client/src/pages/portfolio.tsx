@@ -91,7 +91,7 @@ const Portfolio: React.FC<PortfolioProps> = ({
             {projects?.map((project, index) => {
               if (!project) return null;
               return (
-                <Grid item key={project?.title} xs={12} md={6} lg={4}>
+                <Grid item key={index} xs={12} md={6} lg={4}>
                   <InViewFadeIn alwaysAnimate={true} index={index}>
                     <PortfolioCard {...project} />
                   </InViewFadeIn>
