@@ -28,7 +28,7 @@ export const PortfolioCard: React.FC<PorfolioCardProps> = ({
         <CardMedia
           component='img'
           src={getMediaUrl(thumbnailImg?.url)}
-          alt={thumbnailImg?.alternativeText ?? title}
+          alt={thumbnailImg?.alternativeText || title}
         />
         <PortfolioCardContent className='hover-content'>
           <Typography variant='caption'>{formatDate(date, locale)}</Typography>
