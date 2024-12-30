@@ -22,5 +22,14 @@
   },
   "date": {
     "current": "Current"
+  },
+  "project": {
+    "modal": {
+      "categories": "Categories: {{categories}}",
+      "button": {
+        "code-url": "Code url",
+        "demo-url": "Demo url"
+      }
+    }
   }
 }

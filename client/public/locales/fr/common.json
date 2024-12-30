@@ -19,5 +19,14 @@
   },
   "date": {
     "current": "Actuel"
+  },
+  "project": {
+    "modal": {
+      "categories": "Catégories : {{categories}}",
+      "button": {
+        "code-url": "URL du code",
+        "demo-url": "URL de la démo"
+      }
+    }
   }
 }

@@ -91,6 +91,7 @@ export interface MainProject extends Schema.Component {
       'oneToMany',
       'api::category.category'
     >;
+    slug: Attribute.String & Attribute.Required;
   };
 }
 

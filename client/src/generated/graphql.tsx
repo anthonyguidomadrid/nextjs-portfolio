@@ -207,6 +207,7 @@ export type ComponentMainProject = {
   id: Scalars['ID']['output'];
   pictures: UploadFileRelationResponseCollection;
   projectUrl?: Maybe<Scalars['String']['output']>;
+  slug: Scalars['String']['output'];
   subTitle: Scalars['String']['output'];
   thumbnail: UploadFileEntityResponse;
   title: Scalars['String']['output'];
@@ -236,6 +237,7 @@ export type ComponentMainProjectFiltersInput = {
   not?: InputMaybe<ComponentMainProjectFiltersInput>;
   or?: InputMaybe<Array<InputMaybe<ComponentMainProjectFiltersInput>>>;
   projectUrl?: InputMaybe<StringFilterInput>;
+  slug?: InputMaybe<StringFilterInput>;
   subTitle?: InputMaybe<StringFilterInput>;
   title?: InputMaybe<StringFilterInput>;
 };
@@ -248,6 +250,7 @@ export type ComponentMainProjectInput = {
   id?: InputMaybe<Scalars['ID']['input']>;
   pictures?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
   projectUrl?: InputMaybe<Scalars['String']['input']>;
+  slug?: InputMaybe<Scalars['String']['input']>;
   subTitle?: InputMaybe<Scalars['String']['input']>;
   thumbnail?: InputMaybe<Scalars['ID']['input']>;
   title?: InputMaybe<Scalars['String']['input']>;
@@ -1878,7 +1881,15 @@ export type GetProjectPageQueryVariables = Exact<{
 }>;
 
 
-export type GetProjectPageQuery = { __typename?: 'Query', categories?: { __typename?: 'CategoryEntityResponseCollection', data: Array<{ __typename?: 'CategoryEntity', attributes?: { __typename?: 'Category', Tag?: string | null, isMain?: boolean | null } | null }> } | null, pageProject?: { __typename?: 'PageProjectEntityResponse', data?: { __typename?: 'PageProjectEntity', attributes?: { __typename?: 'PageProject', SEO: { __typename?: 'ComponentHeadSeo', pageTitle: string, pageDescription: string, canonicalUrl?: string | null, noFollow: boolean, noIndex: boolean, shareImages?: { __typename?: 'UploadFileRelationResponseCollection', data: Array<{ __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, url: string, height?: number | null, width?: number | null } | null }> } | null }, Header: Array<{ __typename?: 'ComponentHeadHeader', Title: string, subTitle: string } | null>, projects: Array<{ __typename?: 'ComponentMainProject', title: string, subTitle: string, date: any, thumbnail: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, url: string } | null } | null } } | null> } | null } | null } | null };
+export type GetProjectPageQuery = { __typename?: 'Query', categories?: { __typename?: 'CategoryEntityResponseCollection', data: Array<{ __typename?: 'CategoryEntity', attributes?: { __typename?: 'Category', Tag?: string | null, isMain?: boolean | null } | null }> } | null, pageProject?: { __typename?: 'PageProjectEntityResponse', data?: { __typename?: 'PageProjectEntity', attributes?: { __typename?: 'PageProject', SEO: { __typename?: 'ComponentHeadSeo', pageTitle: string, pageDescription: string, canonicalUrl?: string | null, noFollow: boolean, noIndex: boolean, shareImages?: { __typename?: 'UploadFileRelationResponseCollection', data: Array<{ __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, url: string, height?: number | null, width?: number | null } | null }> } | null }, Header: Array<{ __typename?: 'ComponentHeadHeader', Title: string, subTitle: string } | null>, projects: Array<{ __typename?: 'ComponentMainProject', slug: string, title: string, subTitle: string, date: any, thumbnail: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, url: string } | null } | null } } | null> } | null } | null } | null };
+
+export type GetProjectQueryVariables = Exact<{
+  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
+  slug?: InputMaybe<Scalars['String']['input']>;
+}>;
+
+
+export type GetProjectQuery = { __typename?: 'Query', pageProject?: { __typename?: 'PageProjectEntityResponse', data?: { __typename?: 'PageProjectEntity', attributes?: { __typename?: 'PageProject', projects: Array<{ __typename?: 'ComponentMainProject', id: string, slug: string, title: string, subTitle: string, description: string, date: any, projectUrl?: string | null, codeUrl: string, categories?: { __typename?: 'CategoryRelationResponseCollection', data: Array<{ __typename?: 'CategoryEntity', attributes?: { __typename?: 'Category', Tag?: string | null } | null }> } | null, pictures: { __typename?: 'UploadFileRelationResponseCollection', data: Array<{ __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, url: string } | null }> } } | null> } | null } | null } | null };
 
 export const ImageFieldsFragmentDoc = gql`
     fragment ImageFields on UploadFile {
@@ -2240,6 +2251,7 @@ export const GetProjectPageDocument = gql`
           subTitle
         }
         projects(filters: {categories: {Tag: {eq: $categoryTag}}}) {
+          slug
           title
           subTitle
           date
@@ -2291,3 +2303,72 @@ export type GetProjectPageQueryHookResult = ReturnType<typeof useGetProjectPageQ
 export type GetProjectPageLazyQueryHookResult = ReturnType<typeof useGetProjectPageLazyQuery>;
 export type GetProjectPageSuspenseQueryHookResult = ReturnType<typeof useGetProjectPageSuspenseQuery>;
 export type GetProjectPageQueryResult = Apollo.QueryResult<GetProjectPageQuery, GetProjectPageQueryVariables>;
+export const GetProjectDocument = gql`
+    query getProject($locale: I18NLocaleCode, $slug: String) {
+  pageProject(locale: $locale) {
+    data {
+      attributes {
+        projects(filters: {slug: {eq: $slug}}) {
+          id
+          slug
+          title
+          subTitle
+          description
+          date
+          categories {
+            data {
+              attributes {
+                Tag
+              }
+            }
+          }
+          projectUrl
+          codeUrl
+          pictures {
+            data {
+              attributes {
+                alternativeText
+                url
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __useGetProjectQuery__
+ *
+ * To run a query within a React component, call `useGetProjectQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetProjectQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetProjectQuery({
+ *   variables: {
+ *      locale: // value for 'locale'
+ *      slug: // value for 'slug'
+ *   },
+ * });
+ */
+export function useGetProjectQuery(baseOptions?: Apollo.QueryHookOptions<GetProjectQuery, GetProjectQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetProjectQuery, GetProjectQueryVariables>(GetProjectDocument, options);
+      }
+export function useGetProjectLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetProjectQuery, GetProjectQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetProjectQuery, GetProjectQueryVariables>(GetProjectDocument, options);
+        }
+export function useGetProjectSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<GetProjectQuery, GetProjectQueryVariables>) {
+          const options = baseOptions === Apollo.skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<GetProjectQuery, GetProjectQueryVariables>(GetProjectDocument, options);
+        }
+export type GetProjectQueryHookResult = ReturnType<typeof useGetProjectQuery>;
+export type GetProjectLazyQueryHookResult = ReturnType<typeof useGetProjectLazyQuery>;
+export type GetProjectSuspenseQueryHookResult = ReturnType<typeof useGetProjectSuspenseQuery>;
+export type GetProjectQueryResult = Apollo.QueryResult<GetProjectQuery, GetProjectQueryVariables>;

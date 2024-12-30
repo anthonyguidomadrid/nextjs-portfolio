@@ -14,6 +14,7 @@ export const PortfolioCard: React.FC<PorfolioCardProps> = ({
   subTitle,
   date,
   thumbnail,
+  onClick,
 }) => {
   const { locale } = useRouter();
   const thumbnailImg = thumbnail.data?.attributes;
@@ -21,6 +22,7 @@ export const PortfolioCard: React.FC<PorfolioCardProps> = ({
 
   return (
     <StyledPortfolioCard
+      onClick={onClick}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >

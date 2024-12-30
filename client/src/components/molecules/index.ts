@@ -4,3 +4,4 @@ export * from './PortfolioCard';
 export * from './SkillWrapper';
 export * from './Timeline';
 export * from './TopBar';
+export * from './ImageCarousel';

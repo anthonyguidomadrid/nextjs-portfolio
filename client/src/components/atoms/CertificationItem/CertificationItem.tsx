@@ -22,7 +22,12 @@ export const CertificationItem: React.FC<CertificationItemProps> = ({
   const { t } = useTranslation();
   return (
     <CertificationCard>
-      <Grid container alignItems='center' spacing={2}>
+      <Grid
+        container
+        alignItems='center'
+        spacing={2}
+        onClick={() => console.log('clicked')}
+      >
         <Grid item xs={2} lg={3}>
           <CertificationImage
             src={getMediaUrl(image?.url)}

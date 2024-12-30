@@ -100,8 +100,7 @@ query getResumePage($locale: I18NLocaleCode) {
           logo {
             data {
               attributes {
-                url
-                alternativeText
+                ...ImageFields
               }
             }
           }
@@ -143,14 +142,47 @@ query getProjectPage($locale: I18NLocaleCode, $categoryTag: String) {
           subTitle
         }
         projects(filters: { categories: { Tag: { eq: $categoryTag } } }) {
+          slug
           title
           subTitle
           date
           thumbnail {
             data {
               attributes {
-                alternativeText
-                url
+                ...ImageFields
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+query getProject($locale: I18NLocaleCode, $slug: String) {
+  pageProject(locale: $locale) {
+    data {
+      attributes {
+        projects(filters: { slug: { eq: $slug } }) {
+          id
+          slug
+          title
+          subTitle
+          description
+          date
+          categories {
+            data {
+              attributes {
+                Tag
+              }
+            }
+          }
+          projectUrl
+          codeUrl
+          pictures {
+            data {
+              attributes {
+                ...ImageFields
               }
             }
           }
