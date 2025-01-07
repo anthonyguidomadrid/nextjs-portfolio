@@ -1,10 +1,5 @@
 import {
   Button,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
   Grid,
 } from '@mui/material';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
@@ -24,7 +19,6 @@ import { initializeApollo } from '~/lib/client';
 import { scroller } from 'react-scroll';
 import { getAllCategoryName } from '~/utils';
 import { InViewFadeIn } from '~/components/templates';
-import { Maybe } from 'graphql/jsutils/Maybe';
 
 interface PortfolioProps {
   pageProject: PageProjectEntityResponse;

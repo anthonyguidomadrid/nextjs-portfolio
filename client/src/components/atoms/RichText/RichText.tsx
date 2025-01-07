@@ -30,7 +30,7 @@ export const RichText: React.FC<RichTextProps> = ({ content }) => {
     ) {
       const text = paragraph.trim().replace(/^###\s*|\s*###$/g, '');
       return (
-        <Typography key={index} variant='h4'>
+        <Typography key={index} variant='h3'>
           {text}
         </Typography>
       );

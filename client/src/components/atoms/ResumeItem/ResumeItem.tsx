@@ -36,7 +36,7 @@ export const ResumeItem: React.FC<ResumeItemProps> = ({
             </Grid>
           )}
           <Grid item xs={companyLogo ? 9 : 12}>
-            <Typography variant='h4'>{title}</Typography>
+            <Typography variant='h3'>{title}</Typography>
             <Typography variant='body2'>
               {formatDateRange(startingDate, t, locale, endingDate)}
             </Typography>

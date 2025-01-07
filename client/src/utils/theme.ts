@@ -80,7 +80,7 @@ const theme = createTheme({
         fontSize: '16px',
       },
     },
-    h4: {
+    h3: {
       fontSize: '18px',
       textTransform: 'uppercase',
       fontWeight: 600,

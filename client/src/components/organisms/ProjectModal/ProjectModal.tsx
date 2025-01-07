@@ -1,20 +1,19 @@
-import {
-  Button,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  Grid,
-  Typography,
-} from '@mui/material';
+import { Button, Fade, Grid, Typography, useMediaQuery } from '@mui/material';
 import { ProjectModalProps } from './ProjectModal.types';
 import { formatDate } from '~/utils';
-import { RichText } from '~/components/atoms';
+import { ModalNavigation, RichText } from '~/components/atoms';
 import Link from 'next/link';
 import { ImageCarousel } from '~/components/molecules';
-import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import { useTranslation } from 'next-i18next';
+import theme from '~/utils/theme';
+import CloseIcon from '@mui/icons-material/Close';
+import {
+  MobileModalNavWrapper,
+  StyledDialog,
+  StyledDialogActions,
+  StyledDialogContent,
+  StyledDialogContentText,
+} from './ProjectModal.styles';
 
 export const ProjectModal: React.FC<ProjectModalProps> = ({
   open,
@@ -35,33 +34,52 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
   onNext,
 }) => {
   const { t } = useTranslation();
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
   return (
-    <Dialog
+    <StyledDialog
       open={open}
       onClose={handleClose}
-      sx={{
-        '& .MuiPaper-root': {
-          backgroundColor: 'black',
-        },
-      }}
       maxWidth='lg'
+      fullScreen={isMobile}
+      fullWidth={isMobile}
+      TransitionComponent={Fade}
+      keepMounted
     >
       <Grid container>
-        <Grid item xs={6}>
+        <Grid item xs={12} md={6}>
+          {isMobile && (
+            <MobileModalNavWrapper container justifyContent='space-between'>
+              <Grid item>
+                <ModalNavigation
+                  isFirst={isFirst}
+                  isLast={isLast}
+                  onPrev={onPrev}
+                  onNext={onNext}
+                />
+              </Grid>
+              <Grid item>
+                <Button onClick={handleClose}>
+                  <CloseIcon />
+                </Button>
+              </Grid>
+            </MobileModalNavWrapper>
+          )}
           <ImageCarousel images={pictures.data} />
         </Grid>
-        <Grid item xs={6}>
-          <DialogContent>
-            <Button disabled={isFirst} onClick={onPrev}>
-              <ChevronLeftIcon />
-            </Button>
-            <Button disabled={isLast} onClick={onNext}>
-              <ChevronRightIcon />
-            </Button>
+        <Grid item xs={12} md={6}>
+          <StyledDialogContent>
+            {!isMobile && (
+              <ModalNavigation
+                isFirst={isFirst}
+                isLast={isLast}
+                onPrev={onPrev}
+                onNext={onNext}
+              />
+            )}
             <Typography>{formatDate(date)}</Typography>
-            <Typography variant='h3'>{title}</Typography>
-            <Typography variant='h6'>{subTitle}</Typography>
-            <DialogContentText sx={{ color: 'white' }}>
+            <Typography variant='h2'>{title}</Typography>
+            <Typography variant='h3'>{subTitle}</Typography>
+            <StyledDialogContentText>
               <RichText content={description} />
               <Typography variant='caption'>
                 {t('project.modal.categories', {
@@ -70,9 +88,9 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
                     .join(', '),
                 })}
               </Typography>
-            </DialogContentText>
-          </DialogContent>
-          <DialogActions>
+            </StyledDialogContentText>
+          </StyledDialogContent>
+          <StyledDialogActions>
             <Link href={codeUrl} target='_blank'>
               <Button>{t('project.modal.button.code-url')}</Button>
             </Link>
@@ -81,9 +99,9 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
                 <Button autoFocus>{t('project.modal.button.demo-url')}</Button>
               </Link>
             )}
-          </DialogActions>
+          </StyledDialogActions>
         </Grid>
       </Grid>
-    </Dialog>
+    </StyledDialog>
   );
 };

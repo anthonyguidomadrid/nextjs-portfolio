@@ -22,7 +22,7 @@ export const ImageCarousel: React.FC<ImageCarouselProps> = ({ images }) => {
             <img
               src={getMediaUrl(image.attributes?.url)}
               alt={image.attributes?.alternativeText ?? ''}
-              style={{ width: '100%', borderRadius: 8 }}
+              style={{ width: '100%' }}
             />
           </Box>
         ))}

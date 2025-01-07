@@ -34,7 +34,7 @@ export const PortfolioCard: React.FC<PorfolioCardProps> = ({
         />
         <PortfolioCardContent className='hover-content'>
           <Typography variant='caption'>{formatDate(date, locale)}</Typography>
-          <Typography gutterBottom variant='h4'>
+          <Typography gutterBottom variant='h3'>
             {title}
           </Typography>
           {isHovered && <Typography variant='body2'>{subTitle}</Typography>}
