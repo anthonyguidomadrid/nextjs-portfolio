@@ -1,10 +1,7 @@
-import { UploadFileEntityResponse } from '~/generated/graphql';
+import { ComponentHeadHeader } from '~/generated/graphql';
 
-export type PageTitleProps = {
-  title?: string;
-  isMainTitle?: boolean;
-  subtitle?: string;
-  description?: string | null;
-  picture?: UploadFileEntityResponse | null;
+export type PageTitleProps = Omit<ComponentHeadHeader, 'subTitle' | 'id'> & {
   children?: React.ReactNode;
+  isMainTitle?: boolean;
+  subTitle?: string;
 };

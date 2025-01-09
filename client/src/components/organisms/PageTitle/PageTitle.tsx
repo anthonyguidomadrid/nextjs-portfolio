@@ -5,8 +5,8 @@ import { StyledImage, StyledTitle, StyledWrapper } from './PageTitle.styles';
 import { getMediaUrl } from '~/utils/getMediaUrl';
 
 export const PageTitle: React.FC<PageTitleProps> = ({
-  title,
-  subtitle,
+  Title,
+  subTitle,
   description,
   picture,
   children,
@@ -16,8 +16,8 @@ export const PageTitle: React.FC<PageTitleProps> = ({
   const imageUrl = getMediaUrl(image?.url);
   return (
     <>
-      <StyledTitle variant={isMainTitle ? 'h1' : 'h2'}>{title}</StyledTitle>
-      <Typography variant={isMainTitle ? 'h2' : 'h3'}>{subtitle}</Typography>
+      <StyledTitle variant={isMainTitle ? 'h1' : 'h2'}>{Title}</StyledTitle>
+      <Typography variant={isMainTitle ? 'h2' : 'h3'}>{subTitle}</Typography>
       {(description || picture) && (
         <StyledWrapper>
           <Grid container columnSpacing={5} spacing={2}>

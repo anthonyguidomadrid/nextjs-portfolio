@@ -22,25 +22,21 @@ const About: React.FC<AboutProps> = ({ pageAbout: { data } }) => {
   return (
     <Fade in={true}>
       <Grid container flexDirection='column' spacing={8}>
-        <Grid item>
-          <PageTitle
-            title={header?.Title}
-            subtitle={header?.subTitle}
-            description={header?.description}
-            picture={header?.picture}
-            isMainTitle={true}
-          />
-        </Grid>
+        {header && (
+          <Grid item>
+            <PageTitle {...header} isMainTitle={true} />
+          </Grid>
+        )}
         {computerSkills && (
           <Grid item>
-            <PageTitle title={t('about.title.computer')}>
+            <PageTitle Title={t('about.title.computer')}>
               <SkillWrapper skills={computerSkills} />
             </PageTitle>
           </Grid>
         )}
         {languageSkills && (
           <Grid item>
-            <PageTitle title={t('about.title.languages')}>
+            <PageTitle Title={t('about.title.languages')}>
               <SkillWrapper skills={languageSkills} />
             </PageTitle>
           </Grid>

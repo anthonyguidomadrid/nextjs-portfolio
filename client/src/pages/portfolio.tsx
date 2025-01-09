@@ -108,15 +108,11 @@ const Portfolio: React.FC<PortfolioProps> = ({
       )}
       <Fade in={true}>
         <Grid container flexDirection='column' spacing={8}>
-          <Grid item>
-            <PageTitle
-              title={header?.Title}
-              subtitle={header?.subTitle}
-              description={header?.description}
-              picture={header?.picture}
-              isMainTitle={true}
-            />
-          </Grid>
+          {header && (
+            <Grid item>
+              <PageTitle {...header} isMainTitle={true} />
+            </Grid>
+          )}
           <Grid item>
             <Grid container spacing={2} justifyContent='center'>
               {categoriesArray.map((category) => {
