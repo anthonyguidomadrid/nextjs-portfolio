@@ -1,11 +1,11 @@
-import { Button, Grid } from '@mui/material';
+import { Box, Button, Fade, Grid, Grow } from '@mui/material';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Link from 'next/link';
+import { useInView } from 'react-intersection-observer';
 import { CertificationItem } from '~/components/atoms';
 import { Timeline } from '~/components/molecules';
 import { PageTitle } from '~/components/organisms';
-import { InViewFadeIn } from '~/components/templates';
 import {
   GetResumePageDocument,
   GetResumePageQuery,
@@ -19,14 +19,17 @@ interface ResumeProps {
 }
 
 const Resume: React.FC<ResumeProps> = ({ pageResume: { data } }) => {
-  const { t } = useTranslation();
   const header = data?.attributes?.Header;
   const workExperiences = data?.attributes?.workExperiences;
   const education = data?.attributes?.Education;
   const certifications = data?.attributes?.Certification;
+  const { t } = useTranslation();
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+  });
 
   return (
-    <InViewFadeIn alwaysAnimate>
+    <Fade in={true}>
       <Grid container flexDirection='column' spacing={8}>
         <Grid item>
           <Grid container flexDirection='column' spacing={3}>
@@ -66,18 +69,31 @@ const Resume: React.FC<ResumeProps> = ({ pageResume: { data } }) => {
         <Grid item>
           <PageTitle title={t('resume.title.certifications')}>
             <Grid container spacing={2}>
-              {certifications?.map((certification, index) => (
-                <Grid item key={certification?.id} xs={12} md={6} lg={4}>
-                  <InViewFadeIn index={index}>
-                    {certification && <CertificationItem {...certification} />}
-                  </InViewFadeIn>
-                </Grid>
-              ))}
+              {certifications?.map((certification, index) => {
+                return (
+                  certification && (
+                    <Grid
+                      item
+                      key={certification?.id}
+                      xs={12}
+                      md={6}
+                      lg={4}
+                      ref={ref}
+                    >
+                      <Grow in={inView} timeout={500 * index}>
+                        <Box>
+                          <CertificationItem {...certification} />
+                        </Box>
+                      </Grow>
+                    </Grid>
+                  )
+                );
+              })}
             </Grid>
           </PageTitle>
         </Grid>
       </Grid>
-    </InViewFadeIn>
+    </Fade>
   );
 };
 

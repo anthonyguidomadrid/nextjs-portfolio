@@ -1,7 +1,4 @@
-import {
-  Button,
-  Grid,
-} from '@mui/material';
+import { Box, Button, Fade, Grid, Grow } from '@mui/material';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
@@ -18,7 +15,6 @@ import {
 import { initializeApollo } from '~/lib/client';
 import { scroller } from 'react-scroll';
 import { getAllCategoryName } from '~/utils';
-import { InViewFadeIn } from '~/components/templates';
 
 interface PortfolioProps {
   pageProject: PageProjectEntityResponse;
@@ -110,7 +106,7 @@ const Portfolio: React.FC<PortfolioProps> = ({
           onNext={onNext}
         />
       )}
-      <InViewFadeIn alwaysAnimate>
+      <Fade in={true}>
         <Grid container flexDirection='column' spacing={8}>
           <Grid item>
             <PageTitle
@@ -147,19 +143,21 @@ const Portfolio: React.FC<PortfolioProps> = ({
                 if (!project) return null;
                 return (
                   <Grid item key={index} xs={12} md={6} lg={4}>
-                    <InViewFadeIn alwaysAnimate={true} index={index}>
-                      <PortfolioCard
-                        {...project}
-                        onClick={() => handleProjectChange(project.slug)}
-                      />
-                    </InViewFadeIn>
+                    <Grow in={true} timeout={1000 * index}>
+                      <Box>
+                        <PortfolioCard
+                          {...project}
+                          onClick={() => handleProjectChange(project.slug)}
+                        />
+                      </Box>
+                    </Grow>
                   </Grid>
                 );
               })}
             </Grid>
           </Grid>
         </Grid>
-      </InViewFadeIn>
+      </Fade>
     </>
   );
 };

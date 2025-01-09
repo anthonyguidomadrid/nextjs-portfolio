@@ -3,6 +3,7 @@ import Slider from 'react-slick';
 import { Box } from '@mui/material';
 import { ImageCarouselProps } from './ImageCarousel.types';
 import { getMediaUrl } from '~/utils';
+import { Carousel, StyledImage } from './ImageCarousel.styles';
 
 export const ImageCarousel: React.FC<ImageCarouselProps> = ({ images }) => {
   const settings = {
@@ -15,11 +16,11 @@ export const ImageCarousel: React.FC<ImageCarouselProps> = ({ images }) => {
   };
 
   return (
-    <Box sx={{ width: '80%', margin: 'auto', mt: 4 }}>
+    <Carousel>
       <Slider {...settings}>
         {images.map((image, index) => (
           <Box key={index}>
-            <img
+            <StyledImage
               src={getMediaUrl(image.attributes?.url)}
               alt={image.attributes?.alternativeText ?? ''}
               style={{ width: '100%' }}
@@ -27,6 +28,6 @@ export const ImageCarousel: React.FC<ImageCarouselProps> = ({ images }) => {
           </Box>
         ))}
       </Slider>
-    </Box>
+    </Carousel>
   );
 };

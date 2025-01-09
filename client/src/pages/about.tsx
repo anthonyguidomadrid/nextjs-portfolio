@@ -1,9 +1,8 @@
-import { Grid } from '@mui/material';
+import { Grid, Fade } from '@mui/material';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { SkillWrapper } from '~/components/molecules';
 import { PageTitle } from '~/components/organisms';
-import { InViewFadeIn } from '~/components/templates';
 import {
   GetAboutPageDocument,
   GetAboutPageQuery,
@@ -21,7 +20,7 @@ const About: React.FC<AboutProps> = ({ pageAbout: { data } }) => {
   const computerSkills = data?.attributes?.computerSkills;
   const languageSkills = data?.attributes?.languages;
   return (
-    <InViewFadeIn alwaysAnimate>
+    <Fade in={true}>
       <Grid container flexDirection='column' spacing={8}>
         <Grid item>
           <PageTitle
@@ -47,7 +46,7 @@ const About: React.FC<AboutProps> = ({ pageAbout: { data } }) => {
           </Grid>
         )}
       </Grid>
-    </InViewFadeIn>
+    </Fade>
   );
 };
 
