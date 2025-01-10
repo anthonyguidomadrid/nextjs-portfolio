@@ -10,6 +10,12 @@ jest.mock('next/router', () => ({
   useRouter: jest.fn(),
 }));
 
+jest.mock('react-slick', () => {
+  return jest.fn(({ children }) => (
+    <div data-testid='mock-slider'>{children}</div>
+  ));
+});
+
 const DEFAULT_PROPS: HeaderProps = {
   menuItems: MENU_ITEMS_MOCK,
   title: 'Hello World!',

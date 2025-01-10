@@ -3,6 +3,12 @@ import { Layout } from './Layout';
 import { MENU_ITEMS_MOCK } from '~/components/organisms/Header/Header.mocks';
 import { screen } from '@testing-library/react';
 
+jest.mock('react-slick', () => {
+  return jest.fn(({ children }) => (
+    <div data-testid='mock-slider'>{children}</div>
+  ));
+});
+
 describe('Layout', () => {
   beforeEach(() => {
     render(

@@ -3,13 +3,13 @@ import { RichText } from './RichText';
 import { getBySplittedText, render } from '~/utils/test-utils';
 
 describe('RichText', () => {
-  it('renders h4 headings correctly', () => {
+  it('renders h3 headings correctly', () => {
     const content = '### Heading Text ###';
     render(<RichText content={content} />);
 
     const heading = screen.getByText('Heading Text');
     expect(heading).toBeInTheDocument();
-    expect(heading.tagName).toBe('H4');
+    expect(heading.tagName).toBe('H3');
   });
 
   it('renders h5 headings correctly', () => {

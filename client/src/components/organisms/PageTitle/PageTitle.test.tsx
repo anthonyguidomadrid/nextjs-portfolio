@@ -28,7 +28,7 @@ describe('PageTitle Component', () => {
   });
 
   it('renders title and subtitle correctly', () => {
-    render(<PageTitle title='Main Title' subtitle='Sub Title' isMainTitle />);
+    render(<PageTitle Title='Main Title' subTitle='Sub Title' isMainTitle />);
 
     expect(screen.getByTestId('StyledTitle')).toHaveTextContent('Main Title');
     expect(screen.getByText('Sub Title')).toBeInTheDocument();
@@ -54,7 +54,7 @@ describe('PageTitle Component', () => {
 
     render(
       <PageTitle
-        title='Test Title'
+        Title='Test Title'
         description={description}
         picture={picture}
       />
@@ -73,7 +73,7 @@ describe('PageTitle Component', () => {
 
   it('renders children correctly', () => {
     render(
-      <PageTitle title='Title'>
+      <PageTitle Title='Title'>
         <div data-testid='child'>Child Content</div>
       </PageTitle>
     );
@@ -82,7 +82,7 @@ describe('PageTitle Component', () => {
   });
 
   it('does not render description or picture when not provided', () => {
-    render(<PageTitle title='Title' />);
+    render(<PageTitle Title='Title' />);
 
     expect(screen.queryByTestId('RichText')).toBeNull();
     expect(screen.queryByTestId('StyledImage')).toBeNull();
