@@ -6,6 +6,7 @@ import { DesktopMenuItems } from '~/components/atoms/DesktopMenuItems';
 import { HomeHeader } from '~/components/molecules/HomeHeader';
 import { useState } from 'react';
 import { Topbar } from '~/components/molecules';
+import { useScroll } from '~/hooks/useScroll';
 
 export const Header: React.FC<HeaderProps> = ({
   menuItems,
@@ -15,6 +16,7 @@ export const Header: React.FC<HeaderProps> = ({
 }) => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const router = useRouter();
+  const { isScrolled } = useScroll();
   const isHomePage = router.pathname === '/';
 
   const handleDrawerToggle = () => {
@@ -28,7 +30,7 @@ export const Header: React.FC<HeaderProps> = ({
 
   return (
     <nav>
-      <NavBar isHomePage={isHomePage}>
+      <NavBar isHomePage={isHomePage} isScrolled={isScrolled}>
         {isHomePage && (
           <HomeHeader
             title={title}

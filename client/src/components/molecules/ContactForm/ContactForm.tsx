@@ -1,4 +1,4 @@
-import { Box, Button, TextField } from '@mui/material';
+import { Button, TextField } from '@mui/material';
 import { useTranslation } from 'next-i18next';
 import { StyledForm } from './ContactForm.styles';
 
@@ -30,7 +30,7 @@ export const ContactForm = () => {
         required
       />
 
-      <Button type='submit' fullWidth variant='contained'>
+      <Button type='submit' fullWidth variant='outlined'>
         {t('contact.form.button.send')}
       </Button>
     </StyledForm>
