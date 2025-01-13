@@ -40,10 +40,7 @@ query GetHomePage($locale: I18NLocaleCode) {
   socialMedia {
     data {
       attributes {
-        socialMedia {
-          LinkedinUrl
-          GithubUrl
-        }
+        ...SocialMediaFields
       }
     }
   }
@@ -187,6 +184,40 @@ query getProject($locale: I18NLocaleCode, $slug: String) {
             }
           }
         }
+      }
+    }
+  }
+}
+
+query getContactPage($locale: I18NLocaleCode) {
+  pageContact(locale: $locale) {
+    data {
+      attributes {
+        SEO {
+          ...SeoFields
+        }
+        Header {
+          Title
+          subTitle
+        }
+      }
+    }
+  }
+  contactInformation(locale: $locale) {
+    data {
+      attributes {
+        Contact {
+          address
+          email
+          phone
+        }
+      }
+    }
+  }
+  socialMedia {
+    data {
+      attributes {
+        ...SocialMediaFields
       }
     }
   }

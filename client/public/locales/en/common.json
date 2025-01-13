@@ -31,5 +31,15 @@
         "demo-url": "Demo url"
       }
     }
+  },
+  "contact": {
+    "form": {
+      "name": "Name",
+      "email": "Email",
+      "message": "Message",
+      "button": {
+        "send": "Send"
+      }
+    }
   }
 }

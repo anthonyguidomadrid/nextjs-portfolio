@@ -28,5 +28,15 @@
         "demo-url": "URL de la démo"
       }
     }
+  },
+  "contact": {
+    "form": {
+      "name": "Nom",
+      "email": "Email",
+      "message": "Message",
+      "button": {
+        "send": "Envoyer"
+      }
+    }
   }
 }

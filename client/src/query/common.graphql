@@ -36,3 +36,10 @@ fragment ResumeItem on ComponentMainResumeItem {
   company
   link
 }
+
+fragment SocialMediaFields on SocialMedia {
+  socialMedia {
+    LinkedinUrl
+    GithubUrl
+  }
+}

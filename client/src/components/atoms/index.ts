@@ -8,3 +8,4 @@ export * from './ModalNavigation';
 export * from './ResumeItem';
 export * from './RichText';
 export * from './SkillItem';
+export * from './SocialMediaIcons';

@@ -1,3 +1,5 @@
+export * from './ContactInformation';
+export * from './ContactForm';
 export * from './Drawer';
 export * from './HomeHeader';
 export * from './PortfolioCard';

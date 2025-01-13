@@ -1,17 +1,8 @@
-import { AppBar, Box, Drawer, keyframes, styled, Toolbar } from '@mui/material';
-
-const fadeIn = keyframes`
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-`;
+import { AppBar, Drawer, keyframes, styled } from '@mui/material';
 
 export const NavBar = styled(AppBar)<{ isHomePage: boolean }>(
   ({ theme, isHomePage }) => ({
-    backgroundColor: theme.palette.background.black,
+    backgroundColor: theme.palette.background.default,
     zIndex: 1,
     height: isHomePage ? '100%' : '70px',
     display: 'flex',

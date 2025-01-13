@@ -1840,6 +1840,8 @@ export type SeoFieldsFragment = { __typename?: 'ComponentHeadSeo', pageTitle: st
 
 export type ResumeItemFragment = { __typename?: 'ComponentMainResumeItem', title: string, description: string, startingDate: any, endingDate?: any | null, location: string, company: string, link?: string | null, logo?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, url: string, height?: number | null, width?: number | null } | null } | null } | null };
 
+export type SocialMediaFieldsFragment = { __typename?: 'SocialMedia', socialMedia: Array<{ __typename?: 'ComponentFooterSocialMedia', LinkedinUrl: string, GithubUrl: string } | null> };
+
 export type GetContactInformationQueryVariables = Exact<{
   locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
 }>;
@@ -1873,7 +1875,7 @@ export type GetResumePageQueryVariables = Exact<{
 }>;
 
 
-export type GetResumePageQuery = { __typename?: 'Query', pageResume?: { __typename?: 'PageResumeEntityResponse', data?: { __typename?: 'PageResumeEntity', attributes?: { __typename?: 'PageResume', Header: { __typename?: 'ComponentHeadHeader', Title: string, subTitle: string }, workExperiences: Array<{ __typename?: 'ComponentMainResumeItem', title: string, description: string, startingDate: any, endingDate?: any | null, location: string, company: string, link?: string | null, logo?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, url: string, height?: number | null, width?: number | null } | null } | null } | null } | null>, Education: Array<{ __typename?: 'ComponentMainResumeItem', title: string, description: string, startingDate: any, endingDate?: any | null, location: string, company: string, link?: string | null, logo?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, url: string, height?: number | null, width?: number | null } | null } | null } | null } | null>, Certification: Array<{ __typename?: 'ComponentMainSkill', Name: string, link?: string | null, date?: any | null, logo?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, alternativeText?: string | null } | null } | null } | null } | null>, CV: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string } | null } | null }, SEO: { __typename?: 'ComponentHeadSeo', pageTitle: string, pageDescription: string, canonicalUrl?: string | null, noFollow: boolean, noIndex: boolean, shareImages?: { __typename?: 'UploadFileRelationResponseCollection', data: Array<{ __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, url: string, height?: number | null, width?: number | null } | null }> } | null } } | null } | null } | null };
+export type GetResumePageQuery = { __typename?: 'Query', pageResume?: { __typename?: 'PageResumeEntityResponse', data?: { __typename?: 'PageResumeEntity', attributes?: { __typename?: 'PageResume', Header: { __typename?: 'ComponentHeadHeader', Title: string, subTitle: string }, workExperiences: Array<{ __typename?: 'ComponentMainResumeItem', title: string, description: string, startingDate: any, endingDate?: any | null, location: string, company: string, link?: string | null, logo?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, url: string, height?: number | null, width?: number | null } | null } | null } | null } | null>, Education: Array<{ __typename?: 'ComponentMainResumeItem', title: string, description: string, startingDate: any, endingDate?: any | null, location: string, company: string, link?: string | null, logo?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, url: string, height?: number | null, width?: number | null } | null } | null } | null } | null>, Certification: Array<{ __typename?: 'ComponentMainSkill', Name: string, link?: string | null, date?: any | null, logo?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, url: string, height?: number | null, width?: number | null } | null } | null } | null } | null>, CV: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string } | null } | null }, SEO: { __typename?: 'ComponentHeadSeo', pageTitle: string, pageDescription: string, canonicalUrl?: string | null, noFollow: boolean, noIndex: boolean, shareImages?: { __typename?: 'UploadFileRelationResponseCollection', data: Array<{ __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, url: string, height?: number | null, width?: number | null } | null }> } | null } } | null } | null } | null };
 
 export type GetProjectPageQueryVariables = Exact<{
   locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
@@ -1881,7 +1883,7 @@ export type GetProjectPageQueryVariables = Exact<{
 }>;
 
 
-export type GetProjectPageQuery = { __typename?: 'Query', categories?: { __typename?: 'CategoryEntityResponseCollection', data: Array<{ __typename?: 'CategoryEntity', attributes?: { __typename?: 'Category', Tag?: string | null, isMain?: boolean | null } | null }> } | null, pageProject?: { __typename?: 'PageProjectEntityResponse', data?: { __typename?: 'PageProjectEntity', attributes?: { __typename?: 'PageProject', SEO: { __typename?: 'ComponentHeadSeo', pageTitle: string, pageDescription: string, canonicalUrl?: string | null, noFollow: boolean, noIndex: boolean, shareImages?: { __typename?: 'UploadFileRelationResponseCollection', data: Array<{ __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, url: string, height?: number | null, width?: number | null } | null }> } | null }, Header: Array<{ __typename?: 'ComponentHeadHeader', Title: string, subTitle: string } | null>, projects: Array<{ __typename?: 'ComponentMainProject', slug: string, title: string, subTitle: string, date: any, thumbnail: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, url: string } | null } | null } } | null> } | null } | null } | null };
+export type GetProjectPageQuery = { __typename?: 'Query', categories?: { __typename?: 'CategoryEntityResponseCollection', data: Array<{ __typename?: 'CategoryEntity', attributes?: { __typename?: 'Category', Tag?: string | null, isMain?: boolean | null } | null }> } | null, pageProject?: { __typename?: 'PageProjectEntityResponse', data?: { __typename?: 'PageProjectEntity', attributes?: { __typename?: 'PageProject', SEO: { __typename?: 'ComponentHeadSeo', pageTitle: string, pageDescription: string, canonicalUrl?: string | null, noFollow: boolean, noIndex: boolean, shareImages?: { __typename?: 'UploadFileRelationResponseCollection', data: Array<{ __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, url: string, height?: number | null, width?: number | null } | null }> } | null }, Header: Array<{ __typename?: 'ComponentHeadHeader', Title: string, subTitle: string } | null>, projects: Array<{ __typename?: 'ComponentMainProject', slug: string, title: string, subTitle: string, date: any, thumbnail: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, url: string, height?: number | null, width?: number | null } | null } | null } } | null> } | null } | null } | null };
 
 export type GetProjectQueryVariables = Exact<{
   locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
@@ -1889,7 +1891,14 @@ export type GetProjectQueryVariables = Exact<{
 }>;
 
 
-export type GetProjectQuery = { __typename?: 'Query', pageProject?: { __typename?: 'PageProjectEntityResponse', data?: { __typename?: 'PageProjectEntity', attributes?: { __typename?: 'PageProject', projects: Array<{ __typename?: 'ComponentMainProject', id: string, slug: string, title: string, subTitle: string, description: string, date: any, projectUrl?: string | null, codeUrl: string, categories?: { __typename?: 'CategoryRelationResponseCollection', data: Array<{ __typename?: 'CategoryEntity', attributes?: { __typename?: 'Category', Tag?: string | null } | null }> } | null, pictures: { __typename?: 'UploadFileRelationResponseCollection', data: Array<{ __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, url: string } | null }> } } | null> } | null } | null } | null };
+export type GetProjectQuery = { __typename?: 'Query', pageProject?: { __typename?: 'PageProjectEntityResponse', data?: { __typename?: 'PageProjectEntity', attributes?: { __typename?: 'PageProject', projects: Array<{ __typename?: 'ComponentMainProject', id: string, slug: string, title: string, subTitle: string, description: string, date: any, projectUrl?: string | null, codeUrl: string, categories?: { __typename?: 'CategoryRelationResponseCollection', data: Array<{ __typename?: 'CategoryEntity', attributes?: { __typename?: 'Category', Tag?: string | null } | null }> } | null, pictures: { __typename?: 'UploadFileRelationResponseCollection', data: Array<{ __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, url: string, height?: number | null, width?: number | null } | null }> } } | null> } | null } | null } | null };
+
+export type GetContactPageQueryVariables = Exact<{
+  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
+}>;
+
+
+export type GetContactPageQuery = { __typename?: 'Query', pageContact?: { __typename?: 'PageContactEntityResponse', data?: { __typename?: 'PageContactEntity', attributes?: { __typename?: 'PageContact', SEO: { __typename?: 'ComponentHeadSeo', pageTitle: string, pageDescription: string, canonicalUrl?: string | null, noFollow: boolean, noIndex: boolean, shareImages?: { __typename?: 'UploadFileRelationResponseCollection', data: Array<{ __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, url: string, height?: number | null, width?: number | null } | null }> } | null }, Header: { __typename?: 'ComponentHeadHeader', Title: string, subTitle: string } } | null } | null } | null, contactInformation?: { __typename?: 'ContactInformationEntityResponse', data?: { __typename?: 'ContactInformationEntity', attributes?: { __typename?: 'ContactInformation', Contact: { __typename?: 'ComponentFooterContact', address: string, email: string, phone: string } } | null } | null } | null, socialMedia?: { __typename?: 'SocialMediaEntityResponse', data?: { __typename?: 'SocialMediaEntity', attributes?: { __typename?: 'SocialMedia', socialMedia: Array<{ __typename?: 'ComponentFooterSocialMedia', LinkedinUrl: string, GithubUrl: string } | null> } | null } | null } | null };
 
 export const ImageFieldsFragmentDoc = gql`
     fragment ImageFields on UploadFile {
@@ -1933,6 +1942,14 @@ export const ResumeItemFragmentDoc = gql`
   link
 }
     ${ImageFieldsFragmentDoc}`;
+export const SocialMediaFieldsFragmentDoc = gql`
+    fragment SocialMediaFields on SocialMedia {
+  socialMedia {
+    LinkedinUrl
+    GithubUrl
+  }
+}
+    `;
 export const GetContactInformationDocument = gql`
     query GetContactInformation($locale: I18NLocaleCode) {
   contactInformation(locale: $locale) {
@@ -2044,15 +2061,13 @@ export const GetHomePageDocument = gql`
   socialMedia {
     data {
       attributes {
-        socialMedia {
-          LinkedinUrl
-          GithubUrl
-        }
+        ...SocialMediaFields
       }
     }
   }
 }
-    ${SeoFieldsFragmentDoc}`;
+    ${SeoFieldsFragmentDoc}
+${SocialMediaFieldsFragmentDoc}`;
 
 /**
  * __useGetHomePageQuery__
@@ -2173,8 +2188,7 @@ export const GetResumePageDocument = gql`
           logo {
             data {
               attributes {
-                url
-                alternativeText
+                ...ImageFields
               }
             }
           }
@@ -2196,6 +2210,7 @@ export const GetResumePageDocument = gql`
   }
 }
     ${ResumeItemFragmentDoc}
+${ImageFieldsFragmentDoc}
 ${SeoFieldsFragmentDoc}`;
 
 /**
@@ -2258,8 +2273,7 @@ export const GetProjectPageDocument = gql`
           thumbnail {
             data {
               attributes {
-                alternativeText
-                url
+                ...ImageFields
               }
             }
           }
@@ -2268,7 +2282,8 @@ export const GetProjectPageDocument = gql`
     }
   }
 }
-    ${SeoFieldsFragmentDoc}`;
+    ${SeoFieldsFragmentDoc}
+${ImageFieldsFragmentDoc}`;
 
 /**
  * __useGetProjectPageQuery__
@@ -2327,8 +2342,7 @@ export const GetProjectDocument = gql`
           pictures {
             data {
               attributes {
-                alternativeText
-                url
+                ...ImageFields
               }
             }
           }
@@ -2337,7 +2351,7 @@ export const GetProjectDocument = gql`
     }
   }
 }
-    `;
+    ${ImageFieldsFragmentDoc}`;
 
 /**
  * __useGetProjectQuery__
@@ -2372,3 +2386,72 @@ export type GetProjectQueryHookResult = ReturnType<typeof useGetProjectQuery>;
 export type GetProjectLazyQueryHookResult = ReturnType<typeof useGetProjectLazyQuery>;
 export type GetProjectSuspenseQueryHookResult = ReturnType<typeof useGetProjectSuspenseQuery>;
 export type GetProjectQueryResult = Apollo.QueryResult<GetProjectQuery, GetProjectQueryVariables>;
+export const GetContactPageDocument = gql`
+    query getContactPage($locale: I18NLocaleCode) {
+  pageContact(locale: $locale) {
+    data {
+      attributes {
+        SEO {
+          ...SeoFields
+        }
+        Header {
+          Title
+          subTitle
+        }
+      }
+    }
+  }
+  contactInformation(locale: $locale) {
+    data {
+      attributes {
+        Contact {
+          address
+          email
+          phone
+        }
+      }
+    }
+  }
+  socialMedia {
+    data {
+      attributes {
+        ...SocialMediaFields
+      }
+    }
+  }
+}
+    ${SeoFieldsFragmentDoc}
+${SocialMediaFieldsFragmentDoc}`;
+
+/**
+ * __useGetContactPageQuery__
+ *
+ * To run a query within a React component, call `useGetContactPageQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetContactPageQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetContactPageQuery({
+ *   variables: {
+ *      locale: // value for 'locale'
+ *   },
+ * });
+ */
+export function useGetContactPageQuery(baseOptions?: Apollo.QueryHookOptions<GetContactPageQuery, GetContactPageQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetContactPageQuery, GetContactPageQueryVariables>(GetContactPageDocument, options);
+      }
+export function useGetContactPageLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetContactPageQuery, GetContactPageQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetContactPageQuery, GetContactPageQueryVariables>(GetContactPageDocument, options);
+        }
+export function useGetContactPageSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<GetContactPageQuery, GetContactPageQueryVariables>) {
+          const options = baseOptions === Apollo.skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<GetContactPageQuery, GetContactPageQueryVariables>(GetContactPageDocument, options);
+        }
+export type GetContactPageQueryHookResult = ReturnType<typeof useGetContactPageQuery>;
+export type GetContactPageLazyQueryHookResult = ReturnType<typeof useGetContactPageLazyQuery>;
+export type GetContactPageSuspenseQueryHookResult = ReturnType<typeof useGetContactPageSuspenseQuery>;
+export type GetContactPageQueryResult = Apollo.QueryResult<GetContactPageQuery, GetContactPageQueryVariables>;

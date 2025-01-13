@@ -7,9 +7,10 @@ import {
   styled,
 } from '@mui/material';
 
-export const StyledDialog = styled(Dialog)(() => ({
+export const StyledDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiPaper-root': {
-    backgroundColor: 'black',
+    backgroundColor: theme.palette.common.black,
+    backgroundImage: 'none',
     minHeight: '80vh',
   },
 }));
