@@ -1,38 +1,93 @@
-import { Button, TextField } from '@mui/material';
+import {
+  Alert,
+  Button,
+  CircularProgress,
+  Snackbar,
+  TextField,
+} from '@mui/material';
 import { useTranslation } from 'next-i18next';
-import { StyledForm } from './ContactForm.styles';
+import { StyledAlert, StyledForm } from './ContactForm.styles';
+import { ChangeEvent, FormEvent, useState } from 'react';
+import { useEmailService } from '~/hooks';
+import { DEFAULT_STATE } from './ContactForm.constants';
 
 export const ContactForm = () => {
   const { t } = useTranslation();
+  const { sendEmail, isLoading, isSuccess } = useEmailService();
+  const [formData, setFormData] = useState(DEFAULT_STATE);
+  const [isSnackbarOpen, setSnackbarOpen] = useState(false);
+  const severity = isSuccess ? 'success' : 'error';
+
+  const handleChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({ ...prevData, [name]: value }));
+  };
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    await sendEmail(formData);
+    setFormData(DEFAULT_STATE);
+    setSnackbarOpen(true);
+  };
+
+  const onSnackbarClose = () => setSnackbarOpen(false);
+
   return (
-    <StyledForm component='form'>
-      <TextField
-        label={t('contact.form.name')}
-        variant='standard'
-        fullWidth
-        required
-      />
-
-      <TextField
-        label={t('contact.form.email')}
-        variant='standard'
-        type='email'
-        fullWidth
-        required
-      />
-
-      <TextField
-        label={t('contact.form.message')}
-        variant='standard'
-        multiline
-        rows={4}
-        fullWidth
-        required
-      />
-
-      <Button type='submit' fullWidth variant='outlined'>
-        {t('contact.form.button.send')}
-      </Button>
-    </StyledForm>
+    <>
+      <Snackbar
+        open={isSnackbarOpen}
+        autoHideDuration={6000}
+        onClose={onSnackbarClose}
+      >
+        <StyledAlert
+          onClose={onSnackbarClose}
+          severity={severity}
+          variant='filled'
+        >
+          {t(`contact.form.${severity}`)}
+        </StyledAlert>
+      </Snackbar>
+      <StyledForm onSubmit={handleSubmit}>
+        <TextField
+          name='name'
+          label={t('contact.form.name')}
+          variant='standard'
+          fullWidth
+          required
+          value={formData.name}
+          onChange={handleChange}
+        />
+        <TextField
+          name='email'
+          label={t('contact.form.email')}
+          variant='standard'
+          type='email'
+          fullWidth
+          required
+          value={formData.email}
+          onChange={handleChange}
+        />
+        <TextField
+          name='message'
+          label={t('contact.form.message')}
+          variant='standard'
+          multiline
+          rows={4}
+          fullWidth
+          required
+          value={formData.message}
+          onChange={handleChange}
+        />
+        <Button type='submit' fullWidth variant='outlined' disabled={isLoading}>
+          {isLoading ? (
+            <CircularProgress size={24} color='inherit' />
+          ) : (
+            t('contact.form.button.send')
+          )}
+        </Button>
+      </StyledForm>
+    </>
   );
 };

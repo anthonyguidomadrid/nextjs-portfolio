@@ -64,6 +64,14 @@ const theme = createTheme({
     info: {
       main: '#ffffff',
     },
+    success: {
+      main: '#1b5e20',
+      contrastText: '#fff',
+    },
+    error: {
+      main: '#ab003c',
+      contrastText: '#fff',
+    },
     background: {
       default: 'rgba(0, 0, 0, 0.85)',
       black: 'rgba(0, 0, 0, 0.35)',

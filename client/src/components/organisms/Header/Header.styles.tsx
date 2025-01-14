@@ -13,7 +13,7 @@ export const NavBar = styled(AppBar)<{
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'center',
-  transition: 'height 0.3s ease-in-out; color 0.5 ease-in-out',
+  transition: 'height 0.3s ease-in-out, background-color 0.3s ease-in-out',
 }));
 
 export const StyledDrawer = styled(Drawer)(({ theme }) => ({

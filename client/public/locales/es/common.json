@@ -38,7 +38,9 @@
       "message": "Mensaje",
       "button": {
         "send": "Enviar"
-      }
+      },
+      "success": "¡Gracias! Tu mensaje ha sido enviado con éxito.",
+      "error": "¡Ups! Algo salió mal al enviar tu mensaje. Por favor, contáctame directamente por correo electrónico."
     }
   }
 }

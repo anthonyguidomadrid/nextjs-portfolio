@@ -36,7 +36,9 @@
       "message": "Message",
       "button": {
         "send": "Envoyer"
-      }
+      },
+      "success": "Merci ! Votre message a été envoyé avec succès.",
+      "error": "Oups ! Une erreur s'est produite lors de l'envoi de votre message. Veuillez me contacter directement par e-mail."
     }
   }
 }
