@@ -1,7 +1,7 @@
 import { Meta, StoryObj } from '@storybook/react';
 import { ContactInformation } from './ContactInformation';
 import { ContactInformationProps } from './ContactInformation.types';
-import { CONTACT_INFORMATION_MOCK } from './ContactInformation-mocks';
+import { CONTACT_INFORMATION_MOCK } from './ContactInformation.mocks';
 
 const meta: Meta<typeof ContactInformation> = {
   title: 'Molecules/ContactInformation',

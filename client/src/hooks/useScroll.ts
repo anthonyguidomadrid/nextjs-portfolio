@@ -4,7 +4,7 @@ export const useScroll = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 0); // If scrolled down, set to true
+      setIsScrolled(window.scrollY > 0);
     };
 
     window.addEventListener('scroll', handleScroll);

@@ -18,9 +18,9 @@ type Story = StoryObj<PageTitleProps>;
 
 export const MainTitle: Story = {
   args: {
-    title: 'This is the title',
+    Title: 'This is the title',
     isMainTitle: true,
-    subtitle: 'This is the subtitle',
+    subTitle: 'This is the subtitle',
     description: RICH_TEXT_MOCK,
     picture: {
       __typename: 'UploadFileEntityResponse',
@@ -46,7 +46,7 @@ export const MainTitle: Story = {
 
 export const SecondaryTitle: Story = {
   args: {
-    title: 'This is the title',
-    subtitle: 'This is the subtitle',
+    Title: 'This is the title',
+    subTitle: 'This is the subtitle',
   },
 };
