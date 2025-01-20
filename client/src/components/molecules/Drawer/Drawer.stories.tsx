@@ -7,13 +7,11 @@ const meta: Meta<typeof Drawer> = {
   title: 'Molecules/Drawer',
   component: Drawer,
   parameters: {
-    layout: 'centered',
     backgrounds: {
       values: [{ name: 'Grey', value: 'grey' }],
       default: 'Grey',
     },
   },
-  tags: ['autodocs'],
 };
 
 export default meta;

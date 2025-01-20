@@ -6,10 +6,6 @@ import { SkillWrapperProps } from './SkillWrapper.types';
 const meta: Meta<typeof SkillWrapper> = {
   title: 'Molecules/SkillWrapper',
   component: SkillWrapper,
-  parameters: {
-    layout: 'centered',
-  },
-  tags: ['autodocs'],
 };
 
 export default meta;

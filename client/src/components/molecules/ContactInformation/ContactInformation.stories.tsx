@@ -7,13 +7,11 @@ const meta: Meta<typeof ContactInformation> = {
   title: 'Molecules/ContactInformation',
   component: ContactInformation,
   parameters: {
-    layout: 'centered',
     backgrounds: {
       values: [{ name: 'Grey', value: 'grey' }],
       default: 'Grey',
     },
   },
-  tags: ['autodocs'],
 };
 
 export default meta;

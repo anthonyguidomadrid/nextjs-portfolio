@@ -6,10 +6,6 @@ import { RICH_TEXT_MOCK } from '~/components/atoms/RichText/RichText.mocks';
 const meta: Meta<typeof PageTitle> = {
   title: 'Organisms/PageTitle',
   component: PageTitle,
-  parameters: {
-    layout: 'centered',
-  },
-  tags: ['autodocs'],
 };
 
 export default meta;

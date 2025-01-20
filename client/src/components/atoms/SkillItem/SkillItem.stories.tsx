@@ -5,10 +5,6 @@ import { ComponentMainSkill } from '~/generated/graphql';
 const meta: Meta<typeof SkillItem> = {
   title: 'Atoms/SkillItem',
   component: SkillItem,
-  parameters: {
-    layout: 'centered',
-  },
-  tags: ['autodocs'],
 };
 
 export default meta;

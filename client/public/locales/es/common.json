@@ -42,5 +42,12 @@
       "success": "¡Gracias! Tu mensaje ha sido enviado con éxito.",
       "error": "¡Ups! Algo salió mal al enviar tu mensaje. Por favor, contáctame directamente por correo electrónico."
     }
+  },
+  "not-found": {
+    "title": "404 - Página No Encontrada",
+    "subtitle": "¡Ups! La página que buscas no existe.",
+    "button": {
+      "back-home": "Volver a inicio"
+    }
   }
 }

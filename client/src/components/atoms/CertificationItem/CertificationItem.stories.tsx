@@ -7,13 +7,11 @@ const meta: Meta<typeof CertificationItem> = {
   title: 'Atoms/CertificationItem',
   component: CertificationItem,
   parameters: {
-    layout: 'centered',
     backgrounds: {
       values: [{ name: 'Black', value: '#000' }],
       default: 'Black',
     },
   },
-  tags: ['autodocs'],
 };
 
 export default meta;

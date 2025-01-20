@@ -5,10 +5,6 @@ import { ModalNavigationProps } from './ModalNavigation.types';
 const meta: Meta<typeof ModalNavigation> = {
   title: 'Atoms/ModalNavigation',
   component: ModalNavigation,
-  parameters: {
-    layout: 'centered',
-  },
-  tags: ['autodocs'],
 };
 
 export default meta;
@@ -19,6 +15,24 @@ export const Primary: Story = {
   args: {
     isFirst: false,
     isLast: false,
+    onPrev: () => {},
+    onNext: () => {},
+  },
+};
+
+export const First: Story = {
+  args: {
+    isFirst: true,
+    isLast: false,
+    onPrev: () => {},
+    onNext: () => {},
+  },
+};
+
+export const Last: Story = {
+  args: {
+    isFirst: false,
+    isLast: true,
     onPrev: () => {},
     onNext: () => {},
   },

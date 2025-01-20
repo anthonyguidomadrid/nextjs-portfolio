@@ -7,7 +7,6 @@ const meta: Meta<typeof ResumeItem> = {
   title: 'Atoms/ResumeItem',
   component: ResumeItem,
   parameters: {
-    layout: 'centered',
     nextjs: {
       router: {
         locales: ['en', 'es', 'fr'],
@@ -15,7 +14,6 @@ const meta: Meta<typeof ResumeItem> = {
       },
     },
   },
-  tags: ['autodocs'],
 };
 
 export default meta;

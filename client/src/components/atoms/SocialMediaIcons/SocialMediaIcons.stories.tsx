@@ -7,13 +7,11 @@ const meta: Meta<typeof SocialMediaIcons> = {
   title: 'Atoms/SocialMediaIcons',
   component: SocialMediaIcons,
   parameters: {
-    layout: 'centered',
     backgrounds: {
       values: [{ name: 'Black', value: '#000' }],
       default: 'Black',
     },
   },
-  tags: ['autodocs'],
 };
 
 export default meta;

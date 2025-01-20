@@ -10,7 +10,6 @@ const meta: Meta<typeof Layout> = {
   title: 'Templates/Layout',
   component: Layout,
   parameters: {
-    layout: 'centered',
     backgrounds: {
       values: [{ name: 'Grey', value: 'grey' }],
       default: 'Grey',
@@ -23,7 +22,6 @@ const meta: Meta<typeof Layout> = {
       },
     },
   },
-  tags: ['autodocs'],
 };
 
 export default meta;

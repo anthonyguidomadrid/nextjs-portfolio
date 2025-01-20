@@ -6,11 +6,6 @@ const meta: Meta<typeof PageWrapper> = {
   title: 'Templates/PageWrapper',
   component: PageWrapper,
   parameters: {
-    layout: 'centered',
-    backgrounds: {
-      values: [{ name: 'Grey', value: 'grey' }],
-      default: 'Grey',
-    },
     nextjs: {
       router: {
         pathname: '/about',
@@ -19,7 +14,6 @@ const meta: Meta<typeof PageWrapper> = {
       },
     },
   },
-  tags: ['autodocs'],
 };
 
 export default meta;

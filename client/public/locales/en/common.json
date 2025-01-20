@@ -43,5 +43,12 @@
       "success": "Thank you! Your message has been sent successfully.",
       "error": "Oops! Something went wrong while sending your message. Please reach out to me directly via email."
     }
+  },
+  "not-found": {
+    "title": "404 - Page Not Found",
+    "subtitle": "Oops! The page you are looking for does not exist.",
+    "button": {
+      "back-home": "Go back home"
+    }
   }
 }

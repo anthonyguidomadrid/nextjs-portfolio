@@ -1,4 +1,4 @@
-import { AppBar, Drawer, keyframes, styled } from '@mui/material';
+import { AppBar, Drawer, styled } from '@mui/material';
 
 export const NavBar = styled(AppBar)<{
   isHomePage: boolean;

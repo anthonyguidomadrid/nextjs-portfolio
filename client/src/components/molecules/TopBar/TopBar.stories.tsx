@@ -12,7 +12,6 @@ const meta: Meta<typeof Topbar> = {
       default: 'Grey',
     },
   },
-  tags: ['autodocs'],
 };
 
 export default meta;

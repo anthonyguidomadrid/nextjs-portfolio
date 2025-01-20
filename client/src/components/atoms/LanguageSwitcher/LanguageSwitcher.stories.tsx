@@ -5,7 +5,6 @@ const meta: Meta<typeof LanguageSwitcher> = {
   title: 'Atoms/LanguageSwitcher',
   component: LanguageSwitcher,
   parameters: {
-    layout: 'centered',
     nextjs: {
       router: {
         locales: ['en', 'es', 'fr'],
@@ -17,7 +16,6 @@ const meta: Meta<typeof LanguageSwitcher> = {
       default: 'Black',
     },
   },
-  tags: ['autodocs'],
 };
 
 export default meta;

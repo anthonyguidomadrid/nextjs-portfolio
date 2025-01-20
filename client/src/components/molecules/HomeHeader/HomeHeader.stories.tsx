@@ -7,13 +7,11 @@ const meta: Meta<typeof HomeHeader> = {
   title: 'Molecules/HomeHeader',
   component: HomeHeader,
   parameters: {
-    layout: 'centered',
     backgrounds: {
       values: [{ name: 'Grey', value: 'grey' }],
       default: 'Grey',
     },
   },
-  tags: ['autodocs'],
 };
 
 export default meta;

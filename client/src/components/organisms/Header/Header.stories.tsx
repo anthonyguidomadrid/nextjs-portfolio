@@ -6,10 +6,6 @@ import { MENU_ITEMS_MOCK, SOCIAL_MEDIAS_MOCK } from './Header.mocks';
 const meta: Meta<typeof Header> = {
   title: 'Organisms/Header',
   component: Header,
-  parameters: {
-    layout: 'centered',
-  },
-  tags: ['autodocs'],
 };
 
 export default meta;

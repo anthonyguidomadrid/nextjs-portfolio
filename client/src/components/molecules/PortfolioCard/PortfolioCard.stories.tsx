@@ -7,13 +7,11 @@ const meta: Meta<typeof PortfolioCard> = {
   title: 'Molecules/PortfolioCard',
   component: PortfolioCard,
   parameters: {
-    layout: 'centered',
     backgrounds: {
       values: [{ name: 'Grey', value: 'grey' }],
       default: 'Grey',
     },
   },
-  tags: ['autodocs'],
 };
 
 export default meta;

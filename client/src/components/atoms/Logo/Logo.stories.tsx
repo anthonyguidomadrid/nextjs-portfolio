@@ -6,13 +6,11 @@ const meta: Meta<typeof Logo> = {
   title: 'Atoms/Logo',
   component: Logo,
   parameters: {
-    layout: 'centered',
     backgrounds: {
       values: [{ name: 'Black', value: '#000' }],
       default: 'Black',
     },
   },
-  tags: ['autodocs'],
 };
 
 export default meta;

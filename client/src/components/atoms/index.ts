@@ -1,5 +1,4 @@
 export * from './Logo';
-export * from './Button';
 export * from './CertificationItem';
 export * from './DesktopMenuItems';
 export * from './Footer';

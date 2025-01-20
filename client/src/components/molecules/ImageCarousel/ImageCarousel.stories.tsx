@@ -6,10 +6,6 @@ import { PROJECT_MOCK } from '~/components/organisms/ProjectModal/ProjectModal.m
 const meta: Meta<typeof ImageCarousel> = {
   title: 'Molecules/ImageCarousel',
   component: ImageCarousel,
-  parameters: {
-    layout: 'centered',
-  },
-  tags: ['autodocs'],
 };
 
 export default meta;
