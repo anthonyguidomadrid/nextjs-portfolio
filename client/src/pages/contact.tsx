@@ -9,8 +9,9 @@ import {
   SocialMediaEntityResponse,
 } from '~/generated/graphql';
 import { initializeApollo } from '~/lib/client';
-import { ContactInformation } from '~/components/molecules';
+import { ContactInformation, PrivacyPolicyModal } from '~/components/molecules';
 import { ContactForm } from '~/components/molecules/ContactForm/ContactForm';
+import { useState } from 'react';
 
 interface ContactProps {
   pageContact: PageContactEntityResponse;
@@ -27,28 +28,33 @@ const Contact: React.FC<ContactProps> = ({
   const contact = contactInformationData?.attributes?.Contact;
 
   return (
-    <Fade in={true}>
-      <Grid container flexDirection='column' spacing={8}>
-        <Grid item>
-          {header && <PageTitle {...header} isMainTitle={true} />}
-        </Grid>
-        <Grid item>
-          <Grid container spacing={4}>
-            <Grid item xs={12} md={6}>
-              {contact && socialMediaData?.attributes && (
-                <ContactInformation
-                  contact={contact}
-                  socialMedia={socialMediaData?.attributes}
-                />
-              )}
-            </Grid>
-            <Grid item xs={12} md={6}>
-              <ContactForm />
+    <>
+      <PrivacyPolicyModal
+        content={pageContactData?.attributes?.PrivacyPolicy}
+      />
+      <Fade in={true}>
+        <Grid container flexDirection='column' spacing={8}>
+          <Grid item>
+            {header && <PageTitle {...header} isMainTitle={true} />}
+          </Grid>
+          <Grid item>
+            <Grid container spacing={4}>
+              <Grid item xs={12} md={6}>
+                {contact && socialMediaData?.attributes && (
+                  <ContactInformation
+                    contact={contact}
+                    socialMedia={socialMediaData?.attributes}
+                  />
+                )}
+              </Grid>
+              <Grid item xs={12} md={6}>
+                <ContactForm />
+              </Grid>
             </Grid>
           </Grid>
         </Grid>
-      </Grid>
-    </Fade>
+      </Fade>
+    </>
   );
 };
 

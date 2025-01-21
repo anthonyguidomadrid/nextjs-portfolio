@@ -1066,6 +1066,7 @@ export interface ApiPageContactPageContact extends Schema.SingleType {
     singularName: 'page-contact';
     pluralName: 'page-contacts';
     displayName: 'Page - Contact';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -1084,6 +1085,13 @@ export interface ApiPageContactPageContact extends Schema.SingleType {
         };
       }>;
     Header: Attribute.Component<'head.header'> &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    PrivacyPolicy: Attribute.Blocks &
       Attribute.Required &
       Attribute.SetPluginOptions<{
         i18n: {

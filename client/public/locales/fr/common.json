@@ -39,6 +39,13 @@
       },
       "success": "Merci ! Votre message a été envoyé avec succès.",
       "error": "Oups ! Une erreur s'est produite lors de l'envoi de votre message. Veuillez me contacter directement par e-mail."
+    },
+    "privacy-policy": {
+      "title": "Politique de Confidentialité",
+      "checkbox": "Je consens au traitement de mes données personnelles tel que décrit dans la <button class='privacy-policy-btn'>Politique de Confidentialité</button>.",
+      "button": {
+        "close": "Fermer"
+      }
     }
   },
   "not-found": {

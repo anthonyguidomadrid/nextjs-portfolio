@@ -1,14 +1,16 @@
 import {
   Alert,
   Button,
+  Checkbox,
   CircularProgress,
+  FormControlLabel,
   Snackbar,
   TextField,
 } from '@mui/material';
-import { useTranslation } from 'next-i18next';
+import { Trans, useTranslation } from 'next-i18next';
 import { StyledAlert, StyledForm } from './ContactForm.styles';
 import { ChangeEvent, FormEvent, useState } from 'react';
-import { useEmailService } from '~/hooks';
+import { useEmailService, usePrivacyModal } from '~/hooks';
 import { DEFAULT_STATE } from './ContactForm.constants';
 
 export const ContactForm = () => {
@@ -16,7 +18,9 @@ export const ContactForm = () => {
   const { sendEmail, isLoading, isSuccess } = useEmailService();
   const [formData, setFormData] = useState(DEFAULT_STATE);
   const [isSnackbarOpen, setSnackbarOpen] = useState(false);
+  const [isPrivacyPolicyChecked, setPrivacyPolicyChecked] = useState(false);
   const severity = isSuccess ? 'success' : 'error';
+  const { openModal } = usePrivacyModal();
 
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -31,6 +35,12 @@ export const ContactForm = () => {
     setFormData(DEFAULT_STATE);
     setSnackbarOpen(true);
   };
+
+  const handleCheckboxChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setPrivacyPolicyChecked(e.target.checked);
+  };
+
+  const handlePrivacyPolicyClick = () => openModal();
 
   const onSnackbarClose = () => setSnackbarOpen(false);
 
@@ -79,6 +89,29 @@ export const ContactForm = () => {
           required
           value={formData.message}
           onChange={handleChange}
+        />
+        <FormControlLabel
+          control={
+            <Checkbox
+              checked={isPrivacyPolicyChecked}
+              onChange={handleCheckboxChange}
+              name='privacyPolicy'
+              required
+            />
+          }
+          label={
+            <Trans
+              i18nKey='contact.privacy-policy.checkbox'
+              components={{
+                button: (
+                  <button
+                    onClick={handlePrivacyPolicyClick}
+                    className='privacy-policy-btn'
+                  />
+                ),
+              }}
+            />
+          }
         />
         <Button type='submit' fullWidth variant='outlined' disabled={isLoading}>
           {isLoading ? (

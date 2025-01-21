@@ -1067,6 +1067,7 @@ export type PageAboutRelationResponseCollection = {
 export type PageContact = {
   __typename?: 'PageContact';
   Header: ComponentHeadHeader;
+  PrivacyPolicy: Scalars['JSON']['output'];
   SEO: ComponentHeadSeo;
   createdAt?: Maybe<Scalars['DateTime']['output']>;
   locale?: Maybe<Scalars['String']['output']>;
@@ -1093,6 +1094,7 @@ export type PageContactEntityResponse = {
 
 export type PageContactInput = {
   Header?: InputMaybe<ComponentHeadHeaderInput>;
+  PrivacyPolicy?: InputMaybe<Scalars['JSON']['input']>;
   SEO?: InputMaybe<ComponentHeadSeoInput>;
   publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
@@ -1898,7 +1900,7 @@ export type GetContactPageQueryVariables = Exact<{
 }>;
 
 
-export type GetContactPageQuery = { __typename?: 'Query', pageContact?: { __typename?: 'PageContactEntityResponse', data?: { __typename?: 'PageContactEntity', attributes?: { __typename?: 'PageContact', SEO: { __typename?: 'ComponentHeadSeo', pageTitle: string, pageDescription: string, canonicalUrl?: string | null, noFollow: boolean, noIndex: boolean, shareImages?: { __typename?: 'UploadFileRelationResponseCollection', data: Array<{ __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, url: string, height?: number | null, width?: number | null } | null }> } | null }, Header: { __typename?: 'ComponentHeadHeader', Title: string, subTitle: string } } | null } | null } | null, contactInformation?: { __typename?: 'ContactInformationEntityResponse', data?: { __typename?: 'ContactInformationEntity', attributes?: { __typename?: 'ContactInformation', Contact: { __typename?: 'ComponentFooterContact', address: string, email: string, phone: string } } | null } | null } | null, socialMedia?: { __typename?: 'SocialMediaEntityResponse', data?: { __typename?: 'SocialMediaEntity', attributes?: { __typename?: 'SocialMedia', socialMedia: Array<{ __typename?: 'ComponentFooterSocialMedia', LinkedinUrl: string, GithubUrl: string } | null> } | null } | null } | null };
+export type GetContactPageQuery = { __typename?: 'Query', pageContact?: { __typename?: 'PageContactEntityResponse', data?: { __typename?: 'PageContactEntity', attributes?: { __typename?: 'PageContact', PrivacyPolicy: any, SEO: { __typename?: 'ComponentHeadSeo', pageTitle: string, pageDescription: string, canonicalUrl?: string | null, noFollow: boolean, noIndex: boolean, shareImages?: { __typename?: 'UploadFileRelationResponseCollection', data: Array<{ __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, url: string, height?: number | null, width?: number | null } | null }> } | null }, Header: { __typename?: 'ComponentHeadHeader', Title: string, subTitle: string } } | null } | null } | null, contactInformation?: { __typename?: 'ContactInformationEntityResponse', data?: { __typename?: 'ContactInformationEntity', attributes?: { __typename?: 'ContactInformation', Contact: { __typename?: 'ComponentFooterContact', address: string, email: string, phone: string } } | null } | null } | null, socialMedia?: { __typename?: 'SocialMediaEntityResponse', data?: { __typename?: 'SocialMediaEntity', attributes?: { __typename?: 'SocialMedia', socialMedia: Array<{ __typename?: 'ComponentFooterSocialMedia', LinkedinUrl: string, GithubUrl: string } | null> } | null } | null } | null };
 
 export const ImageFieldsFragmentDoc = gql`
     fragment ImageFields on UploadFile {
@@ -2398,6 +2400,7 @@ export const GetContactPageDocument = gql`
           Title
           subTitle
         }
+        PrivacyPolicy
       }
     }
   }

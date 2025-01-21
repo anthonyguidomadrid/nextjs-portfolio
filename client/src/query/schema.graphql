@@ -200,6 +200,7 @@ query getContactPage($locale: I18NLocaleCode) {
           Title
           subTitle
         }
+        PrivacyPolicy
       }
     }
   }

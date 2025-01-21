@@ -41,6 +41,13 @@
       },
       "success": "¡Gracias! Tu mensaje ha sido enviado con éxito.",
       "error": "¡Ups! Algo salió mal al enviar tu mensaje. Por favor, contáctame directamente por correo electrónico."
+    },
+    "privacy-policy": {
+      "title": "Política de Privacidad",
+      "checkbox": "Consiento el tratamiento de mis datos personales según lo indicado en la <button class='privacy-policy-btn'>Política de Privacidad</button>.",
+      "button": {
+        "close": "Cerrar"
+      }
     }
   },
   "not-found": {
