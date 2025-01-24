@@ -3,13 +3,19 @@ import { ContactForm } from './ContactForm';
 import { useEmailService } from '~/hooks';
 import { DEFAULT_STATE } from './ContactForm.constants';
 import { render } from '~/utils/test-utils';
+import { usePrivacyModal } from '~/hooks';
 
 jest.mock('../../../hooks/useEmailService.ts', () => ({
   useEmailService: jest.fn(),
 }));
 
+jest.mock('../../../hooks/usePrivacyModal.ts', () => ({
+  usePrivacyModal: jest.fn(),
+}));
+
 describe('ContactForm', () => {
   const mockSendEmail = jest.fn();
+  const mockOpenModal = jest.fn();
   beforeEach(() => {
     jest.clearAllMocks();
     (useEmailService as jest.Mock).mockReturnValue({
@@ -17,10 +23,13 @@ describe('ContactForm', () => {
       isLoading: false,
       isSuccess: false,
     });
+    (usePrivacyModal as jest.Mock).mockReturnValue({
+      openModal: mockOpenModal,
+    });
   });
 
   const getInput = (name: string) => screen.getByRole('textbox', { name });
-  const getSendButton = () => screen.getByRole('button');
+  const getSendButton = () => screen.getByLabelText('Send');
   const getSuccessMessage = () =>
     screen.queryByText('Thank you! Your message has been sent successfully.');
   const MOCKED_NAME = 'John Doe';
@@ -33,6 +42,7 @@ describe('ContactForm', () => {
     fireEvent.change(getInput('Message'), {
       target: { value: MOCKED_MESSAGE },
     });
+    fireEvent.click(screen.getByRole('checkbox'));
   };
 
   it('renders the form with all fields and a submit button', () => {
@@ -151,5 +161,17 @@ describe('ContactForm', () => {
     await waitFor(() => {
       expect(getSuccessMessage()).not.toBeInTheDocument();
     });
+  });
+
+  it('opens the privacy modal when the Privacy Policy button is clicked', () => {
+    render(<ContactForm />);
+
+    const privacyPolicyButton = screen.getByRole('button', {
+      name: 'Privacy Policy',
+    });
+
+    fireEvent.click(privacyPolicyButton);
+
+    expect(mockOpenModal).toHaveBeenCalledTimes(1);
   });
 });

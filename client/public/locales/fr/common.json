@@ -42,7 +42,7 @@
     },
     "privacy-policy": {
       "title": "Politique de Confidentialité",
-      "checkbox": "Je consens au traitement de mes données personnelles tel que décrit dans la <button class='privacy-policy-btn'>Politique de Confidentialité</button>.",
+      "checkbox": "Je consens au traitement de mes données personnelles tel que décrit dans la <button>Politique de Confidentialité</button>.",
       "button": {
         "close": "Fermer"
       }

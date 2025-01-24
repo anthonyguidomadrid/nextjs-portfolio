@@ -1,5 +1,4 @@
 import {
-  Alert,
   Button,
   Checkbox,
   CircularProgress,
@@ -8,7 +7,11 @@ import {
   TextField,
 } from '@mui/material';
 import { Trans, useTranslation } from 'next-i18next';
-import { StyledAlert, StyledForm } from './ContactForm.styles';
+import {
+  PrivacyPolicyButton,
+  StyledAlert,
+  StyledForm,
+} from './ContactForm.styles';
 import { ChangeEvent, FormEvent, useState } from 'react';
 import { useEmailService, usePrivacyModal } from '~/hooks';
 import { DEFAULT_STATE } from './ContactForm.constants';
@@ -104,16 +107,19 @@ export const ContactForm = () => {
               i18nKey='contact.privacy-policy.checkbox'
               components={{
                 button: (
-                  <button
-                    onClick={handlePrivacyPolicyClick}
-                    className='privacy-policy-btn'
-                  />
+                  <PrivacyPolicyButton onClick={handlePrivacyPolicyClick} />
                 ),
               }}
             />
           }
         />
-        <Button type='submit' fullWidth variant='outlined' disabled={isLoading}>
+        <Button
+          type='submit'
+          fullWidth
+          variant='outlined'
+          disabled={isLoading}
+          aria-label='Send'
+        >
           {isLoading ? (
             <CircularProgress size={24} color='inherit' />
           ) : (

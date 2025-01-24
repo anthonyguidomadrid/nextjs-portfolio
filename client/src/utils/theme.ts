@@ -52,6 +52,15 @@ const theme = createTheme({
         },
       },
     },
+    MuiDialog: {
+      styleOverrides: {
+        paper: {
+          backgroundColor: '#000000',
+          backgroundImage: 'none',
+          minHeight: '80vh',
+        },
+      },
+    },
   },
   palette: {
     mode: 'dark',

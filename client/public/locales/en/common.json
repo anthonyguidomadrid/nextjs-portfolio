@@ -45,7 +45,7 @@
     },
     "privacy-policy": {
       "title": "Privacy Policy",
-      "checkbox": "I consent to the processing of my personal data as outlined in the <button class='privacy-policy-btn'>Privacy Policy</button>.",
+      "checkbox": "I consent to the processing of my personal data as outlined in the <button>Privacy Policy</button>.",
       "button": {
         "close": "Close"
       }

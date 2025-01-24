@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../store'; // adjust this import to your actual store path
+import { RootState } from '../store';
 import { closePrivacyModal, openPrivacyModal } from '~/slices';
 
 export const usePrivacyModal = () => {

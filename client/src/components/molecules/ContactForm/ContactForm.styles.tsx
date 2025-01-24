@@ -1,4 +1,4 @@
-import { Alert, styled } from '@mui/material';
+import { Alert, Button, styled } from '@mui/material';
 
 export const StyledForm = styled('form')(() => ({
   display: 'flex',
@@ -7,3 +7,9 @@ export const StyledForm = styled('form')(() => ({
 }));
 
 export const StyledAlert = styled(Alert)(() => ({ width: '100%' }));
+
+export const PrivacyPolicyButton = styled(Button)(() => ({
+  textTransform: 'none',
+  padding: 0,
+  fontSize: 'inherit',
+}));

@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { PrivacyPolicyModalProps } from './PrivacyPolicyModal.types';
 import { BlocksRenderer } from '@strapi/blocks-react-renderer';
 import {
@@ -7,40 +6,34 @@ import {
   DialogActions,
   DialogContent,
   DialogTitle,
-  IconButton,
+  Fade,
+  useMediaQuery,
 } from '@mui/material';
-import CloseIcon from '@mui/icons-material/Close';
 import { usePrivacyModal } from '~/hooks';
+import { useTranslation } from 'next-i18next';
+import theme from '~/utils/theme';
 
 export const PrivacyPolicyModal: React.FC<PrivacyPolicyModalProps> = ({
   content,
 }) => {
   const { isOpen, closeModal } = usePrivacyModal();
+  const { t } = useTranslation();
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+
   return (
     <Dialog
       onClose={closeModal}
-      aria-labelledby='customized-dialog-title'
       open={isOpen}
+      fullScreen={isMobile}
+      TransitionComponent={Fade}
     >
-      <DialogTitle>Privacy Policy</DialogTitle>
-      <IconButton
-        aria-label='close'
-        onClick={closeModal}
-        sx={(theme) => ({
-          position: 'absolute',
-          right: 8,
-          top: 8,
-          color: theme.palette.grey[500],
-        })}
-      >
-        <CloseIcon />
-      </IconButton>
+      <DialogTitle>{t('contact.privacy-policy.title')}</DialogTitle>
       <DialogContent dividers>
         <BlocksRenderer content={content} />
       </DialogContent>
       <DialogActions>
         <Button autoFocus onClick={closeModal}>
-          Close
+          {t('contact.privacy-policy.button.close')}
         </Button>
       </DialogActions>
     </Dialog>

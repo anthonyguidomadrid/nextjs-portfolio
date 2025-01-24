@@ -44,7 +44,7 @@
     },
     "privacy-policy": {
       "title": "Política de Privacidad",
-      "checkbox": "Consiento el tratamiento de mis datos personales según lo indicado en la <button class='privacy-policy-btn'>Política de Privacidad</button>.",
+      "checkbox": "Consiento el tratamiento de mis datos personales según lo indicado en la <button>Política de Privacidad</button>.",
       "button": {
         "close": "Cerrar"
       }
