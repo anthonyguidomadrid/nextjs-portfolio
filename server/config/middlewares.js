@@ -1,4 +1,4 @@
-odule.exports = ({ env }) => [
+module.exports = ({ env }) => [
   'strapi::logger',
   'strapi::errors',
   'strapi::security',
