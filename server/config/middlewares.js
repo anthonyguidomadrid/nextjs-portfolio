@@ -7,7 +7,7 @@ module.exports = ({ env }) => [
     config: {
       origin: [
         'http://localhost:3000',
-        'https://*.vercel.app',
+        'https://nextjs-portfolio-git-main-anthonyguidomadrids-projects.vercel.app',
         'https://anthonyguido.dev',
       ],
       methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'HEAD', 'OPTIONS'],
