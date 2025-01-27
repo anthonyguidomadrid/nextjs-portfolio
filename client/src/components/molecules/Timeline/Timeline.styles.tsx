@@ -1,5 +1,6 @@
-import Timeline from '@mui/lab/Timeline';
 import { styled } from '@mui/material';
+import Timeline from '@mui/lab/Timeline';
+
 
 export const StyledTimeLine = styled(Timeline)(({ theme }) => ({
   padding: 0,
