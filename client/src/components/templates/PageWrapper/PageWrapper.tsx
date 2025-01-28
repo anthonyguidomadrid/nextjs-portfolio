@@ -1,7 +1,7 @@
 import { PageWrapperProps } from './PageWrapper.types';
 import { useRouter } from 'next/router';
 import { StyledPageWrapper } from './PageWrapper.styles';
-import { Fade } from '@mui/material';
+// import { Fade } from '@mui/material';
 
 export const PageWrapper: React.FC<PageWrapperProps> = ({ children }) => {
   const router = useRouter();
@@ -10,10 +10,10 @@ export const PageWrapper: React.FC<PageWrapperProps> = ({ children }) => {
     return children;
   }
   return (
-    <Fade in={true} timeout={2000}>
+    // <Fade in={true} timeout={2000}>
       <StyledPageWrapper data-testid='page-wrapper'>
         {children}
       </StyledPageWrapper>
-    </Fade>
+    // </Fade>
   );
 };
