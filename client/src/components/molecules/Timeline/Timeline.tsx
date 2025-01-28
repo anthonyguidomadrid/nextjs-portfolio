@@ -10,8 +10,8 @@ import { TimelineItem } from '@mui/lab';
 export const Timeline: React.FC<TimelineProps> = ({ resumeItems }) => {
   return (
     <StyledTimeLine>
-      {resumeItems?.map((resumeItem) => (
-        <TimelineItem key={resumeItem?.title}>
+      {resumeItems?.map((resumeItem, index) => (
+        <TimelineItem key={index}>
           <TimelineSeparator>
             <TimelineDot />
             <TimelineConnector />
