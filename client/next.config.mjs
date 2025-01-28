@@ -12,7 +12,7 @@ const nextConfig = {
     return config;
   },
   images: {
-    domains: ['localhost'],
+    domains: ['localhost', 'nextjs-portfolio-tstk.onrender.com'],
   },
 };
 
