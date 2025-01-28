@@ -8,6 +8,7 @@ describe('PortfolioCard ', () => {
   const DEFAULT_PROPS: PorfolioCardProps = {
     title: 'Sample Title',
     subTitle: 'Sample SubTitle',
+    slug: 'sample-slug',
     date: '2023-12-25',
     thumbnail: {
       data: {
@@ -40,7 +41,7 @@ describe('PortfolioCard ', () => {
     expect(screen.getByText(formatDate(DEFAULT_PROPS.date))).toBeVisible();
     expect(screen.getByAltText(MOCKED_IMAGE?.alternativeText!)).toHaveAttribute(
       'src',
-      `http://localhost:1337${MOCKED_IMAGE?.url}`
+      `${MOCKED_IMAGE?.url}`
     );
   });
 

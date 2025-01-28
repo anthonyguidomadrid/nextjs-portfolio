@@ -30,7 +30,7 @@ describe('ImageCarousel Component', () => {
     DEFAULT_PROPS.images.forEach((image, index) => {
       expect(renderedImages[index]).toHaveAttribute(
         'src',
-        `http://localhost:1337${image.attributes?.url}`
+        `${image.attributes?.url}`
       );
       expect(renderedImages[index]).toHaveAttribute(
         'alt',
