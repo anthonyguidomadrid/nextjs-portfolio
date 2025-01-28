@@ -1,14 +1,9 @@
-module.exports = ({ env }) => [
+module.exports = () => [
   "strapi::logger",
   "strapi::errors",
   "strapi::security",
   "strapi::poweredBy",
-  {
-    name: "strapi::cors",
-    config: {
-      enabled: false,
-    },
-  },
+  "strapi::cors",
   "strapi::query",
   "strapi::body",
   "strapi::session",
