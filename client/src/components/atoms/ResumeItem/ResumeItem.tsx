@@ -1,7 +1,6 @@
 import { Box, Grid, Typography } from '@mui/material';
 import { ResumeItemProps } from './ResumeItem.types';
 import { RichText } from '../RichText';
-import { getMediaUrl } from '~/utils/getMediaUrl';
 import Link from 'next/link';
 import { formatDateRange } from '~/utils/formatDates';
 import { useRouter } from 'next/router';
@@ -29,7 +28,7 @@ export const ResumeItem: React.FC<ResumeItemProps> = ({
             <Grid item xs={3}>
               <Link href={link ?? ''} target='_blank'>
                 <CompanyLogo
-                  src={getMediaUrl(companyLogo.url)}
+                  src={companyLogo.url ?? ''}
                   alt={companyLogo.alternativeText ?? ''}
                 />
               </Link>

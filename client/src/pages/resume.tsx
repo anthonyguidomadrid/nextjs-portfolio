@@ -12,7 +12,6 @@ import {
   PageResumeEntityResponse,
 } from '~/generated/graphql';
 import { initializeApollo } from '~/lib/client';
-import { getMediaUrl } from '~/utils/getMediaUrl';
 
 interface ResumeProps {
   pageResume: PageResumeEntityResponse;
@@ -38,8 +37,9 @@ const Resume: React.FC<ResumeProps> = ({ pageResume: { data } }) => {
             </Grid>
             <Grid item>
               <Link
-                href={getMediaUrl(data?.attributes?.CV.data?.attributes?.url)}
+                href='/cv/AG_CV_English_2024.pdf'
                 target='_blank'
+                locale={false}
               >
                 <Button variant='outlined'>
                   {t('resume.button.download-resume')}

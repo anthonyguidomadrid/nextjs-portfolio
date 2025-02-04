@@ -2,7 +2,6 @@ import { Grid, Typography } from '@mui/material';
 import { PageTitleProps } from './PageTitle.types';
 import { RichText } from '~/components/atoms';
 import { StyledImage, StyledTitle, StyledWrapper } from './PageTitle.styles';
-import { getMediaUrl } from '~/utils/getMediaUrl';
 
 export const PageTitle: React.FC<PageTitleProps> = ({
   Title,
@@ -13,7 +12,7 @@ export const PageTitle: React.FC<PageTitleProps> = ({
   isMainTitle,
 }) => {
   const image = picture?.data?.attributes;
-  const imageUrl = getMediaUrl(image?.url);
+  const imageUrl = image?.url;
   return (
     <>
       <StyledTitle variant={isMainTitle ? 'h1' : 'h2'}>{Title}</StyledTitle>

@@ -3,6 +3,15 @@ import { RichTextProps } from './RichText.types';
 import { Grid, Typography } from '@mui/material';
 
 export const RichText: React.FC<RichTextProps> = ({ content }) => {
+  const processBoldText = (text: string) => {
+    return text.split(/(\*\*[^*]+\*\*)/).map((part, index) => {
+      if (part.startsWith('**') && part.endsWith('**')) {
+        return <strong key={index}>{part.replace(/^\*\*|\*\*$/g, '')}</strong>;
+      }
+      return part;
+    });
+  };
+
   const processedContent = content.split('\n\n').map((paragraph, index) => {
     const trimmedParagraph = paragraph.trim();
 
@@ -19,7 +28,7 @@ export const RichText: React.FC<RichTextProps> = ({ content }) => {
       const text = trimmedParagraph.replace(/^\*\*|\*\*$/g, '');
       return (
         <Typography key={index} variant='subtitle1' gutterBottom>
-          {text}
+          <strong>{text}</strong>
         </Typography>
       );
     }
@@ -53,11 +62,12 @@ export const RichText: React.FC<RichTextProps> = ({ content }) => {
         </Typography>
       );
     }
+
     return (
       <Typography key={index} variant='body1'>
         {paragraph.split('\n').map((line, i) => (
           <React.Fragment key={i}>
-            {line}
+            {processBoldText(line)}
             {i < paragraph.split('\n').length - 1 && <br />}
           </React.Fragment>
         ))}

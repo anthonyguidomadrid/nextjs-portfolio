@@ -115,22 +115,29 @@ const Portfolio: React.FC<PortfolioProps> = ({
           )}
           <Grid item>
             <Grid container spacing={2} justifyContent='center'>
-              {categoriesArray.map((category) => {
-                const tag = category.attributes?.Tag;
-                const isCurrent = tag === currentCategory;
-                return (
-                  <Grid item key={tag}>
-                    <Button
-                      key={tag}
-                      onClick={() => handleCategoryChange(tag)}
-                      variant='outlined'
-                      color={isCurrent ? 'secondary' : 'primary'}
-                    >
-                      {tag}
-                    </Button>
-                  </Grid>
-                );
-              })}
+              {[...categoriesArray]
+                .sort(
+                  (a, b) =>
+                    (b.attributes?.isMain === true ? 1 : 0) -
+                    (a.attributes?.isMain === true ? 1 : 0)
+                )
+                .map((category) => {
+                  const tag = category.attributes?.Tag;
+                  const isCurrent = tag === currentCategory;
+
+                  return (
+                    <Grid item key={tag}>
+                      <Button
+                        key={tag}
+                        onClick={() => handleCategoryChange(tag)}
+                        variant='outlined'
+                        color={isCurrent ? 'secondary' : 'primary'}
+                      >
+                        {tag}
+                      </Button>
+                    </Grid>
+                  );
+                })}
             </Grid>
           </Grid>
           <Grid item>

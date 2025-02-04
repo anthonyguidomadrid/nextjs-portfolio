@@ -11,7 +11,6 @@ import {
 import { initializeApollo } from '~/lib/client';
 import { ContactInformation, PrivacyPolicyModal } from '~/components/molecules';
 import { ContactForm } from '~/components/molecules/ContactForm/ContactForm';
-import { useState } from 'react';
 
 interface ContactProps {
   pageContact: PageContactEntityResponse;

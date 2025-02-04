@@ -2002,7 +2002,7 @@ export type GetContactInformationSuspenseQueryHookResult = ReturnType<typeof use
 export type GetContactInformationQueryResult = Apollo.QueryResult<GetContactInformationQuery, GetContactInformationQueryVariables>;
 export const GetMenuItemsDocument = gql`
     query GetMenuItems($locale: I18NLocaleCode) {
-  menuItems(locale: $locale) {
+  menuItems(locale: $locale, sort: ["id:asc"]) {
     data {
       attributes {
         label

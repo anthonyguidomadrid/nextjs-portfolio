@@ -1,6 +1,5 @@
 import { Typography, CardActionArea, CardMedia } from '@mui/material';
 import { PorfolioCardProps } from './PortfolioCard.types';
-import { getMediaUrl } from '~/utils/getMediaUrl';
 import { formatDate } from '~/utils/formatDates';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
@@ -29,7 +28,7 @@ export const PortfolioCard: React.FC<PorfolioCardProps> = ({
       <CardActionArea>
         <CardMedia
           component='img'
-          src={getMediaUrl(thumbnailImg?.url)}
+          src={thumbnailImg?.url ?? ''}
           alt={thumbnailImg?.alternativeText || title}
         />
         <PortfolioCardContent className='hover-content'>

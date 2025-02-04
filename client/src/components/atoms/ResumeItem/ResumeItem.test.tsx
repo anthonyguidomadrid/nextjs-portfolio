@@ -3,7 +3,6 @@ import { ResumeItem } from './ResumeItem';
 import { RESUME_ITEM_MOCK } from './ResumeItem.mocks';
 import { render } from '~/utils/test-utils';
 import { formatDate } from '~/utils/formatDates';
-import { getMediaUrl } from '~/utils/getMediaUrl';
 
 describe('ResumeItem', () => {
   const companyLogo = RESUME_ITEM_MOCK.logo?.data?.attributes;
@@ -26,10 +25,7 @@ describe('ResumeItem', () => {
     expect(screen.getByText(RESUME_ITEM_MOCK.description)).toBeVisible();
 
     expect(getCompanyLogo()).toBeVisible();
-    expect(getCompanyLogo()).toHaveAttribute(
-      'src',
-      getMediaUrl(companyLogo?.url)
-    );
+    expect(getCompanyLogo()).toHaveAttribute('src', companyLogo?.url);
 
     const link = screen.getByRole('link');
     expect(link).toBeVisible();

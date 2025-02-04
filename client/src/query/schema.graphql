@@ -13,7 +13,7 @@ query GetContactInformation($locale: I18NLocaleCode) {
 }
 
 query GetMenuItems($locale: I18NLocaleCode) {
-  menuItems(locale: $locale) {
+  menuItems(locale: $locale, sort: ["id:asc"]) {
     data {
       attributes {
         label

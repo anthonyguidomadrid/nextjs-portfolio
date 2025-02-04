@@ -1,7 +1,6 @@
 import Slider from 'react-slick';
 import { Box } from '@mui/material';
 import { ImageCarouselProps } from './ImageCarousel.types';
-import { getMediaUrl } from '~/utils';
 import { Carousel, StyledImage } from './ImageCarousel.styles';
 
 export const ImageCarousel: React.FC<ImageCarouselProps> = ({ images }) => {
@@ -20,7 +19,7 @@ export const ImageCarousel: React.FC<ImageCarouselProps> = ({ images }) => {
         {images.map((image, index) => (
           <Box key={index}>
             <StyledImage
-              src={getMediaUrl(image.attributes?.url)}
+              src={image.attributes?.url ?? ''}
               alt={image.attributes?.alternativeText ?? ''}
               style={{ width: '100%' }}
             />

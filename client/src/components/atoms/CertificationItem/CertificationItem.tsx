@@ -4,7 +4,6 @@ import { CertificationItemProps } from './CertificationItem.types';
 import { formatDate } from '~/utils/formatDates';
 import { useRouter } from 'next/router';
 import { Grid, Link } from '@mui/material';
-import { getMediaUrl } from '~/utils/getMediaUrl';
 import { useTranslation } from 'next-i18next';
 import {
   CertificationCard,
@@ -30,7 +29,7 @@ export const CertificationItem: React.FC<CertificationItemProps> = ({
       >
         <Grid item xs={2} lg={3}>
           <CertificationImage
-            src={getMediaUrl(image?.url)}
+            src={image?.url ?? ''}
             alt={image?.alternativeText ?? ''}
             height={image?.height ?? 100}
             width={image?.width ?? 100}
