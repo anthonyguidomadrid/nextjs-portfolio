@@ -1,7 +1,7 @@
 import { Box, Button, Fade, Grid, Grow } from '@mui/material';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useRouter } from 'next/router';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { PortfolioCard } from '~/components/molecules';
 import { PageTitle, ProjectModal } from '~/components/organisms';
 import {
@@ -65,6 +65,14 @@ const Portfolio: React.FC<PortfolioProps> = ({
       });
     }
   };
+
+  useEffect(() => {
+    const fetchProjects = async () => {
+      await handleCategoryChange(getAllCategoryName(locale));
+    };
+
+    fetchProjects();
+  }, [locale]);
 
   const handleProjectChange = async (slug?: string) => {
     if (!slug) return;

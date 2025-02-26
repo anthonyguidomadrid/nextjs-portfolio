@@ -10,7 +10,7 @@ export const SkillItem: React.FC<ComponentMainSkill> = ({
   percentage = 0,
 }) => {
   const { t } = useTranslation();
-  const [progress, setProgress] = useState(0);
+  const [progress, setProgress] = useState(1);
   const { ref, inView } = useInView({
     threshold: 0.1,
   });

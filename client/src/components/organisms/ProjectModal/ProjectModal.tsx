@@ -1,6 +1,6 @@
 import { Button, Fade, Grid, Typography, useMediaQuery } from '@mui/material';
 import { ProjectModalProps } from './ProjectModal.types';
-import { formatDate } from '~/utils';
+import { formatDate, getAllCategoryName } from '~/utils';
 import { ModalNavigation, RichText } from '~/components/atoms';
 import Link from 'next/link';
 import { ImageCarousel } from '~/components/molecules';
@@ -14,6 +14,7 @@ import {
   StyledDialogContent,
   StyledDialogContentText,
 } from './ProjectModal.styles';
+import { useRouter } from 'next/router';
 
 export const ProjectModal: React.FC<ProjectModalProps> = ({
   open,
@@ -34,6 +35,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
   onNext,
 }) => {
   const { t } = useTranslation();
+  const { locale } = useRouter();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
   return (
     <StyledDialog
@@ -76,7 +78,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
                 onNext={onNext}
               />
             )}
-            <Typography>{formatDate(date)}</Typography>
+            <Typography>{formatDate(date, locale)}</Typography>
             <Typography variant='h2'>{title}</Typography>
             <Typography variant='h3'>{subTitle}</Typography>
             <StyledDialogContentText>
@@ -85,6 +87,9 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
                 {t('project.modal.categories', {
                   categories: categories?.data
                     .map((category) => category.attributes?.Tag)
+                    .filter(
+                      (category) => category !== getAllCategoryName(locale)
+                    )
                     .join(', '),
                 })}
               </Typography>

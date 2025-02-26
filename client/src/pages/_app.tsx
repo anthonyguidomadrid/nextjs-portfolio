@@ -17,6 +17,7 @@ import { CssBaseline, ThemeProvider } from '@mui/material';
 import theme from '~/utils/theme';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import '../globals.css';
 
 interface MyAppProps extends AppProps {
   menuItems: { data: MenuItemEntity[] };
