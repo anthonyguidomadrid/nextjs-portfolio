@@ -19,9 +19,6 @@ export const StyledDialogContent = styled(DialogContent)(({ theme }) => ({
   justifyContent: 'space-between',
   gap: theme.spacing(2),
   marginBottom: theme.spacing(2),
-  [theme.breakpoints.down('md')]: {
-    maxHeight: '45vh',
-  },
 }));
 
 export const StyledDialogContentText = styled(Box)(({ theme }) => ({

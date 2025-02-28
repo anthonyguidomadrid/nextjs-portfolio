@@ -13,7 +13,6 @@ import {
   PageProjectEntityResponse,
 } from '~/generated/graphql';
 import { initializeApollo } from '~/lib/client';
-import { scroller } from 'react-scroll';
 import { getAllCategoryName } from '~/utils';
 import { SpinnerWrapper } from '~/components/templates/PageWrapper/PageWrapper.styles';
 
@@ -52,6 +51,7 @@ const Portfolio: React.FC<PortfolioProps> = ({
   const handleCategoryChange = async (categoryTag?: string | null) => {
     if (!categoryTag) return;
     setCurrentCategory(categoryTag);
+    setIsLoading(true);
     const { data } = await apolloClient.query<GetProjectPageQuery>({
       query: GetProjectPageDocument,
       variables: { locale, categoryTag },
@@ -60,12 +60,8 @@ const Portfolio: React.FC<PortfolioProps> = ({
       setProjects(
         data.pageProject.data.attributes.projects as ComponentMainProject[]
       );
-      scroller.scrollTo('projects', {
-        duration: 1000,
-        delay: 0,
-        smooth: 'easeInOutQuad',
-      });
     }
+    setIsLoading(false);
   };
 
   useEffect(() => {
