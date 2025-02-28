@@ -1,4 +1,11 @@
-import { Button, Fade, Grid, Typography, useMediaQuery } from '@mui/material';
+import {
+  Button,
+  DialogActions,
+  Fade,
+  Grid,
+  Typography,
+  useMediaQuery,
+} from '@mui/material';
 import { ProjectModalProps } from './ProjectModal.types';
 import { formatDate, getAllCategoryName } from '~/utils';
 import { ModalNavigation, RichText } from '~/components/atoms';
@@ -10,7 +17,6 @@ import CloseIcon from '@mui/icons-material/Close';
 import {
   MobileModalNavWrapper,
   StyledDialog,
-  StyledDialogActions,
   StyledDialogContent,
   StyledDialogContentText,
 } from './ProjectModal.styles';
@@ -95,7 +101,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
               </Typography>
             </StyledDialogContentText>
           </StyledDialogContent>
-          <StyledDialogActions>
+          <DialogActions>
             <Link href={codeUrl} target='_blank'>
               <Button>{t('project.modal.button.code-url')}</Button>
             </Link>
@@ -104,7 +110,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
                 <Button autoFocus>{t('project.modal.button.demo-url')}</Button>
               </Link>
             )}
-          </StyledDialogActions>
+          </DialogActions>
         </Grid>
       </Grid>
     </StyledDialog>

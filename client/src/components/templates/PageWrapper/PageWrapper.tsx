@@ -1,19 +1,26 @@
 import { PageWrapperProps } from './PageWrapper.types';
 import { useRouter } from 'next/router';
 import { StyledPageWrapper } from './PageWrapper.styles';
-import { Fade } from '@mui/material';
+import { Fade, useMediaQuery } from '@mui/material';
+import { ConditionalWrapper } from '../ConditionalWrapper/ConditionalWrapper';
+import theme from '~/utils/theme';
 
 export const PageWrapper: React.FC<PageWrapperProps> = ({ children }) => {
   const router = useRouter();
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
   const isHomePage = router.pathname === '/';
   if (isHomePage) {
     return children;
   }
   return (
-    <Fade in={true} timeout={2000}>
+    <ConditionalWrapper
+      wrapperProps={{ in: true, timeout: 2000 }}
+      wrapper={Fade}
+      condition={!isMobile}
+    >
       <StyledPageWrapper data-testid='page-wrapper'>
         {children}
       </StyledPageWrapper>
-    </Fade>
+    </ConditionalWrapper>
   );
 };

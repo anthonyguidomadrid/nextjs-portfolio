@@ -19,3 +19,16 @@ export const StyledPageWrapper = styled(Box)(({ theme }) => ({
   marginRight: 'auto',
   backgroundColor: theme.palette.background.black,
 }));
+
+export const SpinnerWrapper = styled(Box)(({ theme }) => ({
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  position: 'fixed',
+  top: 0,
+  left: 0,
+  right: 0,
+  bottom: 0,
+  backgroundColor: theme.palette.background.black,
+  zIndex: 9999,
+}));

@@ -35,10 +35,3 @@ export const StyledDialogContentText = styled(DialogContentText)(
   })
 );
 
-export const StyledDialogActions = styled(DialogActions)(({ theme }) => ({
-  [theme.breakpoints.up('md')]: {
-    position: 'absolute',
-    bottom: 0,
-    right: 0,
-  },
-}));

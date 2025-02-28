@@ -1,4 +1,4 @@
-import { Box, Button, Fade, Grid, Grow } from '@mui/material';
+import { Box, Button, CircularProgress, Fade, Grid, Grow } from '@mui/material';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
@@ -15,6 +15,7 @@ import {
 import { initializeApollo } from '~/lib/client';
 import { scroller } from 'react-scroll';
 import { getAllCategoryName } from '~/utils';
+import { SpinnerWrapper } from '~/components/templates/PageWrapper/PageWrapper.styles';
 
 interface PortfolioProps {
   pageProject: PageProjectEntityResponse;
@@ -27,10 +28,11 @@ const Portfolio: React.FC<PortfolioProps> = ({
 }) => {
   const apolloClient = initializeApollo();
   const { locale } = useRouter();
-  const header = pageProjectData?.attributes?.Header[0];
   const [projects, setProjects] = useState<(ComponentMainProject | null)[]>(
     pageProjectData?.attributes?.projects ?? []
   );
+  const header = pageProjectData?.attributes?.Header[0];
+  const SCROLL_PROPS = { duration: 1000, delay: 0, smooth: 'easeInOutQuad' };
 
   const [currentCategory, setCurrentCategory] = useState(
     getAllCategoryName(locale)
@@ -38,6 +40,7 @@ const Portfolio: React.FC<PortfolioProps> = ({
   const [selectedProject, setSelectedProject] =
     useState<ComponentMainProject | null>(null);
   const [open, setOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -58,11 +61,7 @@ const Portfolio: React.FC<PortfolioProps> = ({
       setProjects(
         data.pageProject.data.attributes.projects as ComponentMainProject[]
       );
-      scroller.scrollTo('projects', {
-        duration: 1000,
-        delay: 0,
-        smooth: 'easeInOutQuad',
-      });
+      scroller.scrollTo('projects', SCROLL_PROPS);
     }
   };
 
@@ -76,16 +75,19 @@ const Portfolio: React.FC<PortfolioProps> = ({
 
   const handleProjectChange = async (slug?: string) => {
     if (!slug) return;
+    setSelectedProject(null);
+    setIsLoading(true);
     const { data } = await apolloClient.query<GetProjectPageQuery>({
       query: GetProjectDocument,
       variables: { locale, slug },
     });
-    if (data.pageProject?.data?.attributes?.projects) {
-      setSelectedProject(
-        data.pageProject.data.attributes.projects[0] as ComponentMainProject
-      );
+    const projects = data.pageProject?.data?.attributes?.projects;
+    if (projects) {
+      setSelectedProject(projects[0] as ComponentMainProject);
       handleClickOpen();
+      scroller.scrollTo('0', SCROLL_PROPS);
     }
+    setIsLoading(false);
   };
 
   const getProjectIndex = () =>
@@ -113,6 +115,11 @@ const Portfolio: React.FC<PortfolioProps> = ({
           onPrev={onPrev}
           onNext={onNext}
         />
+      )}
+      {isLoading && (
+        <SpinnerWrapper>
+          <CircularProgress />
+        </SpinnerWrapper>
       )}
       <Fade in={true}>
         <Grid container flexDirection='column' spacing={8}>
