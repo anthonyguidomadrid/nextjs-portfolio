@@ -43,13 +43,13 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
   const { t } = useTranslation();
   const { locale } = useRouter();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+
   return (
     <StyledDialog
       open={open}
       onClose={handleClose}
       maxWidth='lg'
       fullScreen={isMobile}
-      fullWidth={isMobile}
       TransitionComponent={Fade}
       keepMounted
     >

@@ -1,11 +1,11 @@
-import { Box, Grid, Typography } from '@mui/material';
+import { Grid, Typography } from '@mui/material';
 import { ResumeItemProps } from './ResumeItem.types';
 import { RichText } from '../RichText';
 import Link from 'next/link';
 import { formatDateRange } from '~/utils/formatDates';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
-import { CompanyLogo } from './ResumeItem.styles';
+import { CompanyDetailsWrapper, CompanyLogo } from './ResumeItem.styles';
 
 export const ResumeItem: React.FC<ResumeItemProps> = ({
   company,
@@ -20,34 +20,31 @@ export const ResumeItem: React.FC<ResumeItemProps> = ({
   const companyLogo = logo?.data?.attributes;
   const { locale } = useRouter();
   const { t } = useTranslation();
+
   return (
-    <Grid container flexDirection='column' spacing={2}>
-      <Grid item>
-        <Grid container spacing={3} alignItems='center'>
-          {companyLogo && (
-            <Grid item xs={3}>
-              <Link href={link ?? ''} target='_blank'>
-                <CompanyLogo
-                  src={companyLogo.url ?? ''}
-                  alt={companyLogo.alternativeText ?? ''}
-                />
-              </Link>
-            </Grid>
-          )}
-          <Grid item xs={companyLogo ? 9 : 12}>
-            <Typography variant='h3'>{title}</Typography>
-            <Typography variant='body2'>
-              {formatDateRange(startingDate, t, locale, endingDate)}
-            </Typography>
-            <Typography>
-              {company} ({location})
-            </Typography>
+    <>
+      <CompanyDetailsWrapper container spacing={3} alignItems='center'>
+        {companyLogo && (
+          <Grid item xs={3}>
+            <Link href={link ?? ''} target='_blank'>
+              <CompanyLogo
+                src={companyLogo.url ?? ''}
+                alt={companyLogo.alternativeText ?? ''}
+              />
+            </Link>
           </Grid>
+        )}
+        <Grid item xs={companyLogo ? 9 : 12}>
+          <Typography variant='h3'>{title}</Typography>
+          <Typography variant='body2'>
+            {formatDateRange(startingDate, t, locale, endingDate)}
+          </Typography>
+          <Typography>
+            {company} ({location})
+          </Typography>
         </Grid>
-      </Grid>
-      <Grid item>
-        <RichText content={description} />
-      </Grid>
-    </Grid>
+      </CompanyDetailsWrapper>
+      <RichText content={description} />
+    </>
   );
 };

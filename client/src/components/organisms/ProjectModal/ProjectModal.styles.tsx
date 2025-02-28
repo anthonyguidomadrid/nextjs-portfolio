@@ -1,11 +1,4 @@
-import {
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  Grid,
-  styled,
-} from '@mui/material';
+import { Box, Dialog, DialogContent, Grid, styled } from '@mui/material';
 
 export const StyledDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiPaper-root': {
@@ -26,12 +19,8 @@ export const StyledDialogContent = styled(DialogContent)(({ theme }) => ({
   gap: theme.spacing(2),
 }));
 
-export const StyledDialogContentText = styled(DialogContentText)(
-  ({ theme }) => ({
-    color: theme.palette.common.white,
-    display: 'flex',
-    flexDirection: 'column',
-    gap: theme.spacing(2),
-  })
-);
-
+export const StyledDialogContentText = styled(Box)(({ theme }) => ({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: theme.spacing(2),
+}));

@@ -32,7 +32,6 @@ const Portfolio: React.FC<PortfolioProps> = ({
     pageProjectData?.attributes?.projects ?? []
   );
   const header = pageProjectData?.attributes?.Header[0];
-  const SCROLL_PROPS = { duration: 1000, delay: 0, smooth: 'easeInOutQuad' };
 
   const [currentCategory, setCurrentCategory] = useState(
     getAllCategoryName(locale)
@@ -61,7 +60,11 @@ const Portfolio: React.FC<PortfolioProps> = ({
       setProjects(
         data.pageProject.data.attributes.projects as ComponentMainProject[]
       );
-      scroller.scrollTo('projects', SCROLL_PROPS);
+      scroller.scrollTo('projects', {
+        duration: 1000,
+        delay: 0,
+        smooth: 'easeInOutQuad',
+      });
     }
   };
 
@@ -85,7 +88,6 @@ const Portfolio: React.FC<PortfolioProps> = ({
     if (projects) {
       setSelectedProject(projects[0] as ComponentMainProject);
       handleClickOpen();
-      scroller.scrollTo('0', SCROLL_PROPS);
     }
     setIsLoading(false);
   };
