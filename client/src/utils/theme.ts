@@ -101,8 +101,9 @@ const theme = createTheme({
     h2: {
       fontSize: '28px',
       fontWeight: '200',
+      lineHeight: '1.5',
       '@media (max-width:600px)': {
-        fontSize: '16px',
+        fontSize: '18px',
       },
     },
     h3: {

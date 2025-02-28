@@ -10,7 +10,7 @@ export const StyledTitle = styled(Typography)(({ theme }) => ({
   position: 'relative',
   display: 'inline-block',
   paddingBottom: theme.spacing(1),
-  marginBottom: theme.spacing(3),
+  marginBottom: theme.spacing(2),
   pb: 1,
   '&::after': {
     content: '""',

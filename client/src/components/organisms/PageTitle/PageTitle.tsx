@@ -16,7 +16,9 @@ export const PageTitle: React.FC<PageTitleProps> = ({
   return (
     <>
       <StyledTitle variant={isMainTitle ? 'h1' : 'h2'}>{Title}</StyledTitle>
-      <Typography variant={isMainTitle ? 'h2' : 'h3'}>{subTitle}</Typography>
+      {subTitle && (
+        <Typography variant={isMainTitle ? 'h2' : 'h3'}>{subTitle}</Typography>
+      )}
       {(description || picture) && (
         <StyledWrapper>
           <Grid container columnSpacing={5} spacing={2}>
