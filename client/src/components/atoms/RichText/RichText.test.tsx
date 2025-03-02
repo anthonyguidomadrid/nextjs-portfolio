@@ -36,7 +36,7 @@ describe('RichText', () => {
 
     const boldText = screen.getByText('Bold text');
     expect(boldText).toBeInTheDocument();
-    expect(boldText.tagName).toBe('H6');
+    expect(boldText.tagName).toBe('STRONG');
   });
 
   it('renders an unordered list', () => {

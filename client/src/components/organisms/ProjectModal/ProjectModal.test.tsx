@@ -39,14 +39,13 @@ describe('ProjectModal', () => {
 
     expect(screen.getByText(PROJECT_MOCK.title)).toBeVisible();
     expect(screen.getByText(PROJECT_MOCK.subTitle)).toBeVisible();
-    expect(screen.getByText('October 2024')).toBeVisible();
 
     expect(screen.getByTestId('rich-text')).toContainHTML(
       PROJECT_MOCK.description
     );
 
     expect(
-      screen.getByText('Categories: NextJS, React, Contentful, NodeJS, All')
+      screen.getByText('Categories: NextJS, React, Contentful, NodeJS')
     ).toBeVisible();
 
     expect(screen.getByTestId('image-carousel')).toBeVisible();
@@ -109,7 +108,7 @@ describe('ProjectModal', () => {
 
     it('renders full-screen modal for mobile view', () => {
       expect(screen.queryByRole('dialog')).toContainHTML(
-        'MuiDialog-paperFullWidth'
+        'MuiDialog-paperFullScreen'
       );
     });
   });

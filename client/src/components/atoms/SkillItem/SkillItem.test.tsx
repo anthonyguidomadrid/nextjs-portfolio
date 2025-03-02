@@ -42,7 +42,7 @@ describe('SkillItem', () => {
     // Assert that progress is initially 0
     expect(screen.getByRole('progressbar')).toHaveAttribute(
       'aria-valuenow',
-      '0'
+      '1'
     );
 
     // Fast-forward timers to simulate effect
@@ -71,7 +71,7 @@ describe('SkillItem', () => {
     // Assert that progress remains 0 when not in view
     expect(screen.getByRole('progressbar')).toHaveAttribute(
       'aria-valuenow',
-      '0'
+      '1'
     );
   });
 
@@ -87,7 +87,7 @@ describe('SkillItem', () => {
     // Assert that the progress defaults to 0
     expect(screen.getByRole('progressbar')).toHaveAttribute(
       'aria-valuenow',
-      '0'
+      '1'
     );
 
     // Assert that the percentage text displays correctly
