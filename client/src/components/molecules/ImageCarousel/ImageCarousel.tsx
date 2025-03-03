@@ -22,6 +22,8 @@ export const ImageCarousel: React.FC<ImageCarouselProps> = ({ images }) => {
               src={image.attributes?.url ?? ''}
               alt={image.attributes?.alternativeText ?? ''}
               style={{ width: '100%' }}
+              height={image.attributes?.height ?? 0}
+              width={image.attributes?.width ?? 0}
             />
           </Box>
         ))}

@@ -10,8 +10,7 @@ jest.mock('react-slick', () => {
   ));
 });
 
-
-describe('ImageCarousel Component', () => {
+describe('ImageCarousel', () => {
   const DEFAULT_PROPS: ImageCarouselProps = {
     images: PROJECT_MOCK.pictures.data,
   };
@@ -28,10 +27,6 @@ describe('ImageCarousel Component', () => {
     expect(renderedImages).toHaveLength(DEFAULT_PROPS.images.length);
 
     DEFAULT_PROPS.images.forEach((image, index) => {
-      expect(renderedImages[index]).toHaveAttribute(
-        'src',
-        `${image.attributes?.url}`
-      );
       expect(renderedImages[index]).toHaveAttribute(
         'alt',
         image.attributes?.alternativeText

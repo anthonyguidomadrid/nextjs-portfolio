@@ -18,6 +18,14 @@ import theme from '~/utils/theme';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import '../globals.css';
+import { Poppins } from 'next/font/google';
+
+const poppins = Poppins({
+  subsets: ['latin'],
+  weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
+  style: ['normal', 'italic'],
+  display: 'swap',
+});
 
 interface MyAppProps extends AppProps {
   menuItems: { data: MenuItemEntity[] };
@@ -45,6 +53,8 @@ const MyApp = ({
           title={homeAttributes?.Header.Title}
           subtitle={homeAttributes?.Header.subTitle}
           socialMedia={socialMediaAttributes}
+          className={poppins.className}
+
         >
           <Component {...pageProps} />
         </Layout>

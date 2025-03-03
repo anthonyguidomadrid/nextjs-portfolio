@@ -30,6 +30,8 @@ export const ResumeItem: React.FC<ResumeItemProps> = ({
               <CompanyLogo
                 src={companyLogo.url ?? ''}
                 alt={companyLogo.alternativeText ?? ''}
+                height={companyLogo.height ?? 0}
+                width={companyLogo.width ?? 0}
               />
             </Link>
           </Grid>

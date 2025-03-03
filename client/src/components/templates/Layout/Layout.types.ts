@@ -6,4 +6,5 @@ export type LayoutProps = {
   title?: string;
   subtitle?: string;
   socialMedia?: Maybe<SocialMedia>;
+  className?: string;
 };

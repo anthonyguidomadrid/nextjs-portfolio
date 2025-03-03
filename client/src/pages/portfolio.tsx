@@ -1,7 +1,7 @@
 import { Box, Button, CircularProgress, Fade, Grid, Grow } from '@mui/material';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { PortfolioCard } from '~/components/molecules';
 import { PageTitle, ProjectModal } from '~/components/organisms';
 import {
@@ -27,6 +27,7 @@ const Portfolio: React.FC<PortfolioProps> = ({
 }) => {
   const apolloClient = initializeApollo();
   const { locale } = useRouter();
+  const isFirstRender = useRef(true);
   const [projects, setProjects] = useState<(ComponentMainProject | null)[]>(
     pageProjectData?.attributes?.projects ?? []
   );
@@ -48,45 +49,56 @@ const Portfolio: React.FC<PortfolioProps> = ({
     setOpen(false);
   };
 
-  const handleCategoryChange = async (categoryTag?: string | null) => {
-    if (!categoryTag) return;
-    setCurrentCategory(categoryTag);
-    setIsLoading(true);
-    const { data } = await apolloClient.query<GetProjectPageQuery>({
-      query: GetProjectPageDocument,
-      variables: { locale, categoryTag },
-    });
-    if (data.pageProject?.data?.attributes?.projects) {
-      setProjects(
-        data.pageProject.data.attributes.projects as ComponentMainProject[]
-      );
-    }
-    setIsLoading(false);
-  };
+  const handleCategoryChange = useCallback(
+    async (categoryTag?: string | null) => {
+      if (!categoryTag) return;
+      setCurrentCategory(categoryTag);
+      setIsLoading(true);
+      const { data } = await apolloClient.query<GetProjectPageQuery>({
+        query: GetProjectPageDocument,
+        variables: { locale, categoryTag },
+      });
+      if (data.pageProject?.data?.attributes?.projects) {
+        setProjects(
+          data.pageProject.data.attributes.projects as ComponentMainProject[]
+        );
+      }
+      setIsLoading(false);
+    },
+    [apolloClient, locale]
+  );
 
   useEffect(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return;
+    }
+
     const fetchProjects = async () => {
       await handleCategoryChange(getAllCategoryName(locale));
     };
 
     fetchProjects();
-  }, [locale]);
+  }, [handleCategoryChange, locale]);
 
-  const handleProjectChange = async (slug?: string) => {
-    if (!slug) return;
-    setSelectedProject(null);
-    setIsLoading(true);
-    const { data } = await apolloClient.query<GetProjectPageQuery>({
-      query: GetProjectDocument,
-      variables: { locale, slug },
-    });
-    const projects = data.pageProject?.data?.attributes?.projects;
-    if (projects) {
-      setSelectedProject(projects[0] as ComponentMainProject);
-      handleClickOpen();
-    }
-    setIsLoading(false);
-  };
+  const handleProjectChange = useCallback(
+    async (slug?: string) => {
+      if (!slug) return;
+      setSelectedProject(null);
+      setIsLoading(true);
+      const { data } = await apolloClient.query<GetProjectPageQuery>({
+        query: GetProjectDocument,
+        variables: { locale, slug },
+      });
+      const projects = data.pageProject?.data?.attributes?.projects;
+      if (projects) {
+        setSelectedProject(projects[0] as ComponentMainProject);
+        handleClickOpen();
+      }
+      setIsLoading(false);
+    },
+    [apolloClient, locale]
+  );
 
   const getProjectIndex = () =>
     projects.findIndex((p) => p?.slug === selectedProject?.slug);
