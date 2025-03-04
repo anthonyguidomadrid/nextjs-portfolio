@@ -15,6 +15,7 @@ import {
 import { initializeApollo } from '~/lib/client';
 import { getAllCategoryName } from '~/utils';
 import { SpinnerWrapper } from '~/components/templates/PageWrapper/PageWrapper.styles';
+import { Seo } from '~/components/atoms';
 
 interface PortfolioProps {
   pageProject: PageProjectEntityResponse;
@@ -32,6 +33,7 @@ const Portfolio: React.FC<PortfolioProps> = ({
     pageProjectData?.attributes?.projects ?? []
   );
   const header = pageProjectData?.attributes?.Header[0];
+  const seo = pageProjectData?.attributes?.SEO;
 
   const [currentCategory, setCurrentCategory] = useState(
     getAllCategoryName(locale)
@@ -115,6 +117,7 @@ const Portfolio: React.FC<PortfolioProps> = ({
 
   return (
     <>
+      {seo && <Seo {...seo} />}
       {selectedProject && (
         <ProjectModal
           open={open}

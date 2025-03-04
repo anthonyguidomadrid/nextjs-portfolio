@@ -3,7 +3,7 @@ import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Link from 'next/link';
 import { useInView } from 'react-intersection-observer';
-import { CertificationItem } from '~/components/atoms';
+import { CertificationItem, Seo } from '~/components/atoms';
 import { Timeline } from '~/components/molecules';
 import { PageTitle } from '~/components/organisms';
 import {
@@ -22,74 +22,78 @@ const Resume: React.FC<ResumeProps> = ({ pageResume: { data } }) => {
   const workExperiences = data?.attributes?.workExperiences;
   const education = data?.attributes?.Education;
   const certifications = data?.attributes?.Certification;
+  const seo = data?.attributes?.SEO;
   const { t } = useTranslation();
   const { ref, inView } = useInView({
     triggerOnce: true,
   });
 
   return (
-    <Fade in={true}>
-      <Grid container flexDirection='column' spacing={8}>
-        <Grid item>
-          <Grid container flexDirection='column' spacing={3}>
-            <Grid item>
-              {header && <PageTitle {...header} isMainTitle={true} />}
-            </Grid>
-            <Grid item>
-              <Link
-                href='/cv/AG_CV_English_2024.pdf'
-                target='_blank'
-                locale={false}
-              >
-                <Button variant='outlined'>
-                  {t('resume.button.download-resume')}
-                </Button>
-              </Link>
-            </Grid>
-          </Grid>
-        </Grid>
-        <Grid item>
-          <Grid container>
-            <Grid item xs={12} md={6}>
-              <PageTitle Title={t('resume.title.work-experiences')}>
-                <Timeline resumeItems={workExperiences} />
-              </PageTitle>
-            </Grid>
-            <Grid item xs={12} md={6}>
-              <PageTitle Title={t('resume.title.education')}>
-                <Timeline resumeItems={education} />
-              </PageTitle>
+    <>
+      {seo && <Seo {...seo} />}
+      <Fade in={true}>
+        <Grid container flexDirection='column' spacing={8}>
+          <Grid item>
+            <Grid container flexDirection='column' spacing={3}>
+              <Grid item>
+                {header && <PageTitle {...header} isMainTitle={true} />}
+              </Grid>
+              <Grid item>
+                <Link
+                  href='/cv/AG_CV_English_2024.pdf'
+                  target='_blank'
+                  locale={false}
+                >
+                  <Button variant='outlined'>
+                    {t('resume.button.download-resume')}
+                  </Button>
+                </Link>
+              </Grid>
             </Grid>
           </Grid>
-        </Grid>
-        <Grid item>
-          <PageTitle Title={t('resume.title.certifications')}>
-            <Grid container spacing={2}>
-              {certifications?.map((certification, index) => {
-                return (
-                  certification && (
-                    <Grid
-                      item
-                      key={certification?.id}
-                      xs={12}
-                      md={6}
-                      lg={4}
-                      ref={ref}
-                    >
-                      <Grow in={inView} timeout={500 * index}>
-                        <Box>
-                          <CertificationItem {...certification} />
-                        </Box>
-                      </Grow>
-                    </Grid>
-                  )
-                );
-              })}
+          <Grid item>
+            <Grid container>
+              <Grid item xs={12} md={6}>
+                <PageTitle Title={t('resume.title.work-experiences')}>
+                  <Timeline resumeItems={workExperiences} />
+                </PageTitle>
+              </Grid>
+              <Grid item xs={12} md={6}>
+                <PageTitle Title={t('resume.title.education')}>
+                  <Timeline resumeItems={education} />
+                </PageTitle>
+              </Grid>
             </Grid>
-          </PageTitle>
+          </Grid>
+          <Grid item>
+            <PageTitle Title={t('resume.title.certifications')}>
+              <Grid container spacing={2}>
+                {certifications?.map((certification, index) => {
+                  return (
+                    certification && (
+                      <Grid
+                        item
+                        key={certification?.id}
+                        xs={12}
+                        md={6}
+                        lg={4}
+                        ref={ref}
+                      >
+                        <Grow in={inView} timeout={500 * index}>
+                          <Box>
+                            <CertificationItem {...certification} />
+                          </Box>
+                        </Grow>
+                      </Grid>
+                    )
+                  );
+                })}
+              </Grid>
+            </PageTitle>
+          </Grid>
         </Grid>
-      </Grid>
-    </Fade>
+      </Fade>
+    </>
   );
 };
 

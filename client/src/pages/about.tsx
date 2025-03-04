@@ -1,6 +1,7 @@
 import { Grid, Fade } from '@mui/material';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { Seo } from '~/components/atoms';
 import { SkillWrapper } from '~/components/molecules';
 import { PageTitle } from '~/components/organisms';
 import {
@@ -19,30 +20,35 @@ const About: React.FC<AboutProps> = ({ pageAbout: { data } }) => {
   const header = data?.attributes?.Header;
   const computerSkills = data?.attributes?.computerSkills;
   const languageSkills = data?.attributes?.languages;
+  const seo = data?.attributes?.SEO;
+
   return (
-    <Fade in={true}>
-      <Grid container flexDirection='column' spacing={8}>
-        {header && (
-          <Grid item>
-            <PageTitle {...header} isMainTitle={true} />
-          </Grid>
-        )}
-        {computerSkills && (
-          <Grid item>
-            <PageTitle Title={t('about.title.computer')}>
-              <SkillWrapper skills={computerSkills} />
-            </PageTitle>
-          </Grid>
-        )}
-        {languageSkills && (
-          <Grid item>
-            <PageTitle Title={t('about.title.languages')}>
-              <SkillWrapper skills={languageSkills} />
-            </PageTitle>
-          </Grid>
-        )}
-      </Grid>
-    </Fade>
+    <>
+      {seo && <Seo {...seo} />}
+      <Fade in={true}>
+        <Grid container flexDirection='column' spacing={8}>
+          {header && (
+            <Grid item>
+              <PageTitle {...header} isMainTitle={true} />
+            </Grid>
+          )}
+          {computerSkills && (
+            <Grid item>
+              <PageTitle Title={t('about.title.computer')}>
+                <SkillWrapper skills={computerSkills} />
+              </PageTitle>
+            </Grid>
+          )}
+          {languageSkills && (
+            <Grid item>
+              <PageTitle Title={t('about.title.languages')}>
+                <SkillWrapper skills={languageSkills} />
+              </PageTitle>
+            </Grid>
+          )}
+        </Grid>
+      </Fade>
+    </>
   );
 };
 

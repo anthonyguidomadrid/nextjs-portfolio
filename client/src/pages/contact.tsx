@@ -11,6 +11,7 @@ import {
 import { initializeApollo } from '~/lib/client';
 import { ContactInformation, PrivacyPolicyModal } from '~/components/molecules';
 import { ContactForm } from '~/components/molecules/ContactForm/ContactForm';
+import { Seo } from '~/components/atoms';
 
 interface ContactProps {
   pageContact: PageContactEntityResponse;
@@ -25,9 +26,11 @@ const Contact: React.FC<ContactProps> = ({
 }) => {
   const header = pageContactData?.attributes?.Header;
   const contact = contactInformationData?.attributes?.Contact;
+  const seo = pageContactData?.attributes?.SEO;
 
   return (
     <>
+      {seo && <Seo {...seo} />}
       <PrivacyPolicyModal
         content={pageContactData?.attributes?.PrivacyPolicy}
       />

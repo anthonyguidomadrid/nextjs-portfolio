@@ -6,4 +6,4 @@ Allow: /
 Host: https://www.anthonyguido.dev
 
 # Sitemaps
-Sitemap: https://www.anthonyguido.dev/sitemap.xml
+Sitemap: https://www.anthonyguido.dev/sitemap/sitemap.xml
