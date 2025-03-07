@@ -8,6 +8,9 @@ import theme from '~/utils/theme';
 export const PageWrapper: React.FC<PageWrapperProps> = ({ children }) => {
   const router = useRouter();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+  const prefersReducedMotion = useMediaQuery(
+    '(prefers-reduced-motion: reduce)'
+  );
   const isHomePage = router.pathname === '/';
   if (isHomePage) {
     return children;
@@ -16,7 +19,7 @@ export const PageWrapper: React.FC<PageWrapperProps> = ({ children }) => {
     <ConditionalWrapper
       wrapperProps={{ in: true, timeout: 2000 }}
       wrapper={Fade}
-      condition={!isMobile}
+      condition={!isMobile && !prefersReducedMotion}
     >
       <StyledPageWrapper data-testid='page-wrapper'>
         {children}
