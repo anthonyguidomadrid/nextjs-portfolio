@@ -19,6 +19,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import '../globals.css';
 import { Poppins } from 'next/font/google';
+import { GoogleAnalytics } from 'nextjs-google-analytics';
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -45,21 +46,23 @@ const MyApp = ({
   },
 }: MyAppProps) => {
   return (
-    <Provider store={store}>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <Layout
-          menuItems={menuItemsData}
-          title={homeAttributes?.Header.Title}
-          subtitle={homeAttributes?.Header.subTitle}
-          socialMedia={socialMediaAttributes}
-          className={poppins.className}
-
-        >
-          <Component {...pageProps} />
-        </Layout>
-      </ThemeProvider>
-    </Provider>
+    <>
+      <GoogleAnalytics trackPageViews />
+      <Provider store={store}>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <Layout
+            menuItems={menuItemsData}
+            title={homeAttributes?.Header.Title}
+            subtitle={homeAttributes?.Header.subTitle}
+            socialMedia={socialMediaAttributes}
+            className={poppins.className}
+          >
+            <Component {...pageProps} />
+          </Layout>
+        </ThemeProvider>
+      </Provider>
+    </>
   );
 };
 
