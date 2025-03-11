@@ -26,8 +26,8 @@
     "modal": {
       "categories": "Categorías: {{categories}}",
       "button": {
-        "code-url": "URL del código",
-        "demo-url": "URL de la demo"
+        "code": "Código",
+        "demo": "Demo"
       }
     }
   },

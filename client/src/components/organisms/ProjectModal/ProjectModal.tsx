@@ -83,11 +83,11 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
       </DialogContent>
       <DialogActions>
         <Link href={codeUrl} target='_blank'>
-          <Button>{t('project.modal.button.code-url')}</Button>
+          <Button>{t('project.modal.button.code')}</Button>
         </Link>
         {projectUrl && (
           <Link href={projectUrl} target='_blank'>
-            <Button autoFocus>{t('project.modal.button.demo-url')}</Button>
+            <Button autoFocus>{t('project.modal.button.demo')}</Button>
           </Link>
         )}
       </DialogActions>
