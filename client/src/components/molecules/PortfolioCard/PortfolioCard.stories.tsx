@@ -1,5 +1,4 @@
 import { Meta, StoryObj } from '@storybook/react';
-import { SOCIAL_MEDIAS_MOCK } from '~/components/organisms/Header/Header.mocks';
 import { PortfolioCard } from './PortfolioCard';
 import { PorfolioCardProps } from './PortfolioCard.types';
 

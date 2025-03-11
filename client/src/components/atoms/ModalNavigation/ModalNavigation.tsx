@@ -1,7 +1,8 @@
-import { Box, Button } from '@mui/material';
+import { Box } from '@mui/material';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import { ModalNavigationProps } from './ModalNavigation.types';
+import { NavButton } from './ModalNavigation.styles';
 
 export const ModalNavigation: React.FC<ModalNavigationProps> = ({
   isFirst,
@@ -11,12 +12,12 @@ export const ModalNavigation: React.FC<ModalNavigationProps> = ({
 }) => {
   return (
     <Box>
-      <Button disabled={isFirst} onClick={onPrev} style={{ minWidth: 0 }}>
+      <NavButton disabled={isFirst} onClick={onPrev}>
         <ChevronLeftIcon />
-      </Button>
-      <Button disabled={isLast} onClick={onNext} style={{ minWidth: 0 }}>
+      </NavButton>
+      <NavButton disabled={isLast} onClick={onNext}>
         <ChevronRightIcon />
-      </Button>
+      </NavButton>
     </Box>
   );
 };

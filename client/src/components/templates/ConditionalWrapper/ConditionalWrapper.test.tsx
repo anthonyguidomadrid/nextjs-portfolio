@@ -1,9 +1,7 @@
 import { screen } from '@testing-library/react';
 import { ConditionalWrapper } from './ConditionalWrapper';
-import { Box, Theme } from '@mui/material';
+import { Box } from '@mui/material';
 import { render } from '~/utils/test-utils';
-import { BoxOwnProps } from '@mui/system';
-import { JSX, ElementType } from 'react';
 import { ConditionalWrapperProps } from './ConditionalWrapper.types';
 
 describe('ConditionalWrapper', () => {

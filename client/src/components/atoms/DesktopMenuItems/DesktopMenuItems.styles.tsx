@@ -4,7 +4,6 @@ export const MenuButton = styled(Button)<{ isCurrentPath: boolean }>(
   ({ isCurrentPath, theme }) => ({
     color: '#fff',
     position: 'relative',
-    // Highlight the current path
     '&::after': {
       content: '""',
       position: 'absolute',
@@ -17,7 +16,6 @@ export const MenuButton = styled(Button)<{ isCurrentPath: boolean }>(
       transformOrigin: 'bottom right',
       transition: 'transform 0.3s ease-out',
     },
-    // Hover underline effect
     '&:hover::after': {
       transform: 'scaleX(1)',
       transformOrigin: 'bottom left',

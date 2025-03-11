@@ -27,7 +27,6 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
   project: {
     title,
     subTitle,
-    date,
     description,
     categories,
     codeUrl,

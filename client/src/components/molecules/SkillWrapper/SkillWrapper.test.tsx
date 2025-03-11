@@ -25,8 +25,6 @@ describe('SkillWrapper', () => {
 
   it('renders no skills when skills array is empty', () => {
     render(<SkillWrapper skills={[]} />);
-
-    // Assert that no SkillItem components are rendered
     expect(screen.queryByTestId('SkillItem')).toBeNull();
   });
 

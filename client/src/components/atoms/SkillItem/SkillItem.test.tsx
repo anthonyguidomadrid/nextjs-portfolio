@@ -20,11 +20,7 @@ describe('SkillItem', () => {
     (useInView as jest.Mock).mockImplementation(mockInView);
 
     render(<SkillItem Name='React' percentage={75} id='1' />);
-
-    // Assert that the skill name is rendered
     expect(screen.getByText('React')).toBeInTheDocument();
-
-    // Assert that the percentage is rendered with translation
     expect(screen.getByText('75 %')).toBeInTheDocument();
   });
 
@@ -38,19 +34,14 @@ describe('SkillItem', () => {
     jest.useFakeTimers();
 
     render(<SkillItem Name='JavaScript' percentage={90} id='1' />);
-
-    // Assert that progress is initially 0
     expect(screen.getByRole('progressbar')).toHaveAttribute(
       'aria-valuenow',
       '1'
     );
 
-    // Fast-forward timers to simulate effect
     act(() => {
       jest.advanceTimersByTime(500);
     });
-
-    // Assert that progress updates after the delay
     expect(screen.getByRole('progressbar')).toHaveAttribute(
       'aria-valuenow',
       '90'
@@ -67,8 +58,6 @@ describe('SkillItem', () => {
     (useInView as jest.Mock).mockImplementation(mockInView);
 
     render(<SkillItem Name='TypeScript' percentage={60} id='1' />);
-
-    // Assert that progress remains 0 when not in view
     expect(screen.getByRole('progressbar')).toHaveAttribute(
       'aria-valuenow',
       '1'
@@ -83,14 +72,10 @@ describe('SkillItem', () => {
     (useInView as jest.Mock).mockImplementation(mockInView);
 
     render(<SkillItem Name='GraphQL' percentage={undefined} id='1' />);
-
-    // Assert that the progress defaults to 0
     expect(screen.getByRole('progressbar')).toHaveAttribute(
       'aria-valuenow',
       '1'
     );
-
-    // Assert that the percentage text displays correctly
     expect(screen.getByText('0 %')).toBeInTheDocument();
   });
 });

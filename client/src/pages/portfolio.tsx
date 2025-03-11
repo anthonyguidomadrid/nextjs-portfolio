@@ -146,8 +146,8 @@ const Portfolio: React.FC<PortfolioProps> = ({
               {[...categoriesArray]
                 .sort(
                   (a, b) =>
-                    (b.attributes?.isMain === true ? 1 : 0) -
-                    (a.attributes?.isMain === true ? 1 : 0)
+                    (b.attributes?.isMain ? 1 : 0) -
+                    (a.attributes?.isMain ? 1 : 0)
                 )
                 .map((category) => {
                   const tag = category.attributes?.Tag;

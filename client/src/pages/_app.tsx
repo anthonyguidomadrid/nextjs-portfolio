@@ -1,25 +1,26 @@
-import App, { AppContext, AppProps } from 'next/app';
+import { AppContext, AppProps } from 'next/app';
 import { appWithTranslation } from 'next-i18next';
-import { Provider } from 'react-redux';
-import { store } from '~/store';
-import { Layout } from '~/components/templates';
 import { initializeApollo } from '~/lib/client';
 import {
-  GetHomePageDocument,
-  GetHomePageQuery,
   GetMenuItemsDocument,
   GetMenuItemsQuery,
-  HomeEntity,
+  GetHomePageDocument,
+  GetHomePageQuery,
   MenuItemEntity,
+  HomeEntity,
   SocialMediaEntity,
 } from '~/generated/graphql';
-import { CssBaseline, ThemeProvider } from '@mui/material';
+import { Layout } from '~/components/templates';
+import { ThemeProvider } from '@emotion/react';
 import theme from '~/utils/theme';
+import { CssBaseline } from '@mui/material';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import '../globals.css';
-import { Poppins } from 'next/font/google';
 import { GoogleAnalytics } from 'nextjs-google-analytics';
+import { Poppins } from 'next/font/google';
+import { Provider } from 'react-redux';
+import { store } from '~/store';
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -46,28 +47,25 @@ const MyApp = ({
   },
 }: MyAppProps) => {
   return (
-    <>
+    <Provider store={store}>
       <GoogleAnalytics trackPageViews />
-      <Provider store={store}>
-        <ThemeProvider theme={theme}>
-          <CssBaseline />
-          <Layout
-            menuItems={menuItemsData}
-            title={homeAttributes?.Header.Title}
-            subtitle={homeAttributes?.Header.subTitle}
-            socialMedia={socialMediaAttributes}
-            className={poppins.className}
-          >
-            <Component {...pageProps} />
-          </Layout>
-        </ThemeProvider>
-      </Provider>
-    </>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <Layout
+          menuItems={menuItemsData}
+          title={homeAttributes?.Header.Title}
+          subtitle={homeAttributes?.Header.subTitle}
+          socialMedia={socialMediaAttributes}
+          className={poppins.className}
+        >
+          <Component {...pageProps} />
+        </Layout>
+      </ThemeProvider>
+    </Provider>
   );
 };
 
 MyApp.getInitialProps = async (appContext: AppContext) => {
-  const appProps = await App.getInitialProps(appContext);
   const apolloClient = initializeApollo();
   const { locale } = appContext.router;
 
@@ -75,13 +73,13 @@ MyApp.getInitialProps = async (appContext: AppContext) => {
     query: GetMenuItemsDocument,
     variables: { locale },
   });
+
   const { data: homeData } = await apolloClient.query<GetHomePageQuery>({
     query: GetHomePageDocument,
     variables: { locale },
   });
 
   return {
-    ...appProps,
     ...menuItems,
     ...homeData,
   };
