@@ -3,5 +3,5 @@ import { MenuItemEntity } from '~/generated/graphql';
 export type DrawerProps = {
   handleDrawerToggle: () => void;
   menuItems: MenuItemEntity[];
-  handleNavigation: () => void;
+  handleNavigation: (_path: string) => void;
 };

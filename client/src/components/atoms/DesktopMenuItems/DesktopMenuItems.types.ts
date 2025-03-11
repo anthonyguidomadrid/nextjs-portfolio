@@ -2,5 +2,5 @@ import { MenuItemEntity } from '~/generated/graphql';
 
 export type DesktopMenuItemsProps = {
   menuItems: MenuItemEntity[];
-  handleNavigation: () => void;
+  handleNavigation: (_path: string) => void;
 };
