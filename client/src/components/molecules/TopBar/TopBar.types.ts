@@ -1,7 +1,7 @@
 import { MenuItemEntity } from '~/generated/graphql';
 
 export type TopBarProps = {
-  handleNavigation: (path: string) => void;
+  handleNavigation: () => void;
   menuItems: MenuItemEntity[];
   mobileOpen: boolean;
   handleDrawerToggle: () => void;

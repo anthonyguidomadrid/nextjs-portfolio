@@ -1,4 +1,4 @@
-import { Card, CardContent, CardMedia, styled } from '@mui/material';
+import { Card, CardContent, styled } from '@mui/material';
 
 export const StyledPortfolioCard = styled(Card)(() => ({
   position: 'relative',
