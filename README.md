@@ -209,8 +209,6 @@ yarn test:watch
 
 The application is live and deployed at [https://www.anthonyguido.dev/](https://www.anthonyguido.dev/). Feel free to visit and explore the portfolio.
 
-Full Example in the README:
-
 ---
 
 ## License
