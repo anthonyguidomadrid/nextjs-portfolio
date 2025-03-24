@@ -3,7 +3,14 @@ module.exports = () => [
   "strapi::errors",
   "strapi::security",
   "strapi::poweredBy",
-  "strapi::cors",
+  {
+    name: 'strapi::cors',
+    config: {
+      origin: ['http://localhost:3000', 'https://www.anthonyguido.dev'],
+      methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+      headers: ['Content-Type', 'Authorization'],
+    },
+  },
   "strapi::query",
   "strapi::body",
   "strapi::session",
