@@ -127,8 +127,8 @@ This project is licensed under the **MIT License**.
 
 ### Footnotes
 
-[^1]: [Next.js Documentation](https://nextjs.org/docs/getting-started)
+1. [Next.js Documentation](https://nextjs.org/docs/getting-started)
 
-[^2]: [React Query](https://tanstack.com/query/v4/docs/overview)
+2. [React Query](https://tanstack.com/query/v4/docs/overview)
 
-[^3]: [TypeScript](https://www.typescriptlang.org/)
+3. [TypeScript](https://www.typescriptlang.org/)
