@@ -2,6 +2,7 @@ import { Box, Button, Fade, Grid, Grow } from '@mui/material';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { useInView } from 'react-intersection-observer';
 import { CertificationItem, Seo } from '~/components/atoms';
 import { Timeline } from '~/components/molecules';
@@ -27,6 +28,7 @@ const Resume: React.FC<ResumeProps> = ({ pageResume: { data } }) => {
   const { ref, inView } = useInView({
     triggerOnce: true,
   });
+  const { locale } = useRouter();
 
   return (
     <>
@@ -40,7 +42,7 @@ const Resume: React.FC<ResumeProps> = ({ pageResume: { data } }) => {
               </Grid>
               <Grid item>
                 <Link
-                  href='/cv/AG_CV_English_2024.pdf'
+                  href={`/cv/${locale}/AG_CV_2025.pdf`}
                   target='_blank'
                   locale={false}
                 >
