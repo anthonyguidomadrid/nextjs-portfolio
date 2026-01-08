@@ -6,8 +6,9 @@ export const CONTACT_INFORMATION_MOCK: ContactInformationProps = {
     __typename: undefined,
     address: 'Madrid, Spain',
     email: 'info@company.com',
-    id: '1',
     phone: '+33 612 345 678',
+    documentId: '',
+    localizations: []
   },
   socialMedia: {
     __typename: undefined,

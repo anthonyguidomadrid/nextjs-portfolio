@@ -1,147 +1,105 @@
-import type { Schema, Attribute } from '@strapi/strapi';
+import type { Schema, Struct } from '@strapi/strapi';
 
-export interface FooterContact extends Schema.Component {
-  collectionName: 'components_footer_contacts';
-  info: {
-    displayName: 'contact';
-    icon: 'phone';
-    description: '';
-  };
-  attributes: {
-    phone: Attribute.String & Attribute.Required;
-    email: Attribute.String & Attribute.Required;
-    address: Attribute.String & Attribute.Required;
-  };
-}
-
-export interface FooterSocialMedia extends Schema.Component {
-  collectionName: 'components_footer_social_medias';
-  info: {
-    displayName: 'Social Media';
-    icon: 'twitter';
-    description: '';
-  };
-  attributes: {
-    LinkedinUrl: Attribute.String & Attribute.Required;
-    GithubUrl: Attribute.String & Attribute.Required;
-  };
-}
-
-export interface HeadHeader extends Schema.Component {
+export interface HeadHeader extends Struct.ComponentSchema {
   collectionName: 'components_head_headers';
   info: {
     displayName: 'Header';
-    icon: 'bold';
   };
   attributes: {
-    Title: Attribute.String & Attribute.Required;
-    subTitle: Attribute.String & Attribute.Required;
-    description: Attribute.RichText;
-    picture: Attribute.Media<'images'>;
+    description: Schema.Attribute.Blocks;
+    picture: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    subTitle: Schema.Attribute.String & Schema.Attribute.Required;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
   };
 }
 
-export interface HeadSeo extends Schema.Component {
-  collectionName: 'components_seo_seos';
+export interface HeadSeo extends Struct.ComponentSchema {
+  collectionName: 'components_head_seos';
   info: {
     displayName: 'SEO';
-    icon: 'earth';
-    description: '';
   };
   attributes: {
-    pageTitle: Attribute.String &
-      Attribute.Required &
-      Attribute.SetMinMaxLength<{
-        maxLength: 60;
-      }>;
-    pageDescription: Attribute.String &
-      Attribute.Required &
-      Attribute.SetMinMaxLength<{
+    canonicalUrl: Schema.Attribute.String;
+    noFollow: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    noIndex: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    pageDescription: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMaxLength<{
         maxLength: 160;
       }>;
-    canonicalUrl: Attribute.String;
-    noFollow: Attribute.Boolean &
-      Attribute.Required &
-      Attribute.DefaultTo<false>;
-    noIndex: Attribute.Boolean &
-      Attribute.Required &
-      Attribute.DefaultTo<false>;
-    shareImages: Attribute.Media<'images', true>;
+    pageTitle: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 60;
+      }>;
+    shareImages: Schema.Attribute.Media<'images', true>;
   };
 }
 
-export interface MainProject extends Schema.Component {
+export interface MainProject extends Struct.ComponentSchema {
   collectionName: 'components_main_projects';
   info: {
     displayName: 'Project';
-    icon: 'calendar';
-    description: '';
   };
   attributes: {
-    title: Attribute.String & Attribute.Required;
-    date: Attribute.Date & Attribute.Required;
-    codeUrl: Attribute.String & Attribute.Required;
-    projectUrl: Attribute.String;
-    description: Attribute.RichText & Attribute.Required;
-    pictures: Attribute.Media<'images', true> & Attribute.Required;
-    subTitle: Attribute.String & Attribute.Required;
-    thumbnail: Attribute.Media<'images'> & Attribute.Required;
-    categories: Attribute.Relation<
-      'main.project',
+    categories: Schema.Attribute.Relation<
       'oneToMany',
       'api::category.category'
     >;
-    slug: Attribute.String & Attribute.Required;
+    codeUrl: Schema.Attribute.String & Schema.Attribute.Required;
+    date: Schema.Attribute.Date & Schema.Attribute.Required;
+    description: Schema.Attribute.Blocks & Schema.Attribute.Required;
+    pictures: Schema.Attribute.Media<'images', true> &
+      Schema.Attribute.Required;
+    projectUrl: Schema.Attribute.String;
+    slug: Schema.Attribute.String & Schema.Attribute.Required;
+    subTitle: Schema.Attribute.String & Schema.Attribute.Required;
+    thumbnail: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
   };
 }
 
-export interface MainResumeItem extends Schema.Component {
+export interface MainResumeItem extends Struct.ComponentSchema {
   collectionName: 'components_main_resume_items';
   info: {
-    displayName: 'resumeItem';
-    icon: 'stack';
-    description: '';
+    displayName: 'Resume Item';
   };
   attributes: {
-    title: Attribute.String & Attribute.Required;
-    description: Attribute.RichText & Attribute.Required;
-    logo: Attribute.Media<'images'>;
-    startingDate: Attribute.Date & Attribute.Required;
-    endingDate: Attribute.Date;
-    location: Attribute.String & Attribute.Required;
-    company: Attribute.String & Attribute.Required;
-    link: Attribute.String;
+    company: Schema.Attribute.String & Schema.Attribute.Required;
+    description: Schema.Attribute.Blocks & Schema.Attribute.Required;
+    endingDate: Schema.Attribute.Date;
+    link: Schema.Attribute.String;
+    location: Schema.Attribute.String & Schema.Attribute.Required;
+    logo: Schema.Attribute.Media<'images'>;
+    startingDate: Schema.Attribute.Date & Schema.Attribute.Required;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
   };
 }
 
-export interface MainSkill extends Schema.Component {
+export interface MainSkill extends Struct.ComponentSchema {
   collectionName: 'components_main_skills';
   info: {
     displayName: 'Skill';
-    icon: 'grid';
-    description: '';
   };
   attributes: {
-    Name: Attribute.String & Attribute.Required;
-    percentage: Attribute.Integer &
-      Attribute.SetMinMax<
+    date: Schema.Attribute.Date;
+    link: Schema.Attribute.String;
+    logo: Schema.Attribute.Media<'images'>;
+    name: Schema.Attribute.String & Schema.Attribute.Required;
+    percentage: Schema.Attribute.Integer &
+      Schema.Attribute.SetMinMax<
         {
-          min: 0;
           max: 100;
+          min: 0;
         },
         number
       >;
-    logo: Attribute.Media<'images'>;
-    link: Attribute.String;
-    date: Attribute.Date;
   };
 }
 
-declare module '@strapi/types' {
-  export module Shared {
-    export interface Components {
-      'footer.contact': FooterContact;
-      'footer.social-media': FooterSocialMedia;
+declare module '@strapi/strapi' {
+  export module Public {
+    export interface ComponentSchemas {
       'head.header': HeadHeader;
       'head.seo': HeadSeo;
       'main.project': MainProject;

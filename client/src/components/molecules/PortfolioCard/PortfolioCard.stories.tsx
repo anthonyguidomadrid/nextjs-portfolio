@@ -23,17 +23,14 @@ export const Primary: Story = {
     subTitle: 'This is a nice subtitle!',
     date: '2022-12-31',
     thumbnail: {
-      data: {
-        attributes: {
-          url: '/uploads/encrudo_home_bc0702b101.jpg',
-          alternativeText: 'Placeholder',
-          hash: '',
-          mime: '',
-          name: '',
-          provider: '',
-          size: 0,
-        },
-      },
+      url: '/uploads/encrudo_home_bc0702b101.jpg',
+      alternativeText: 'Placeholder',
+      hash: '',
+      mime: '',
+      name: '',
+      provider: '',
+      size: 0,
+      documentId: ''
     },
   },
 };

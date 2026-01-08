@@ -5,12 +5,13 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { PortfolioCard } from '~/components/molecules';
 import { PageTitle, ProjectModal } from '~/components/organisms';
 import {
-  CategoryEntityResponseCollection,
+  Category,
   ComponentMainProject,
   GetProjectDocument,
   GetProjectPageDocument,
   GetProjectPageQuery,
-  PageProjectEntityResponse,
+  GetProjectQuery,
+  PagePortfolio,
 } from '~/generated/graphql';
 import { initializeApollo } from '~/lib/client';
 import { getAllCategoryName } from '~/utils';
@@ -18,22 +19,19 @@ import { SpinnerWrapper } from '~/components/templates/PageWrapper/PageWrapper.s
 import { Seo } from '~/components/atoms';
 
 interface PortfolioProps {
-  pageProject: PageProjectEntityResponse;
-  categories: CategoryEntityResponseCollection;
+  pagePortfolio: PagePortfolio;
+  categories: Category[];
 }
 
-const Portfolio: React.FC<PortfolioProps> = ({
-  categories: { data: categoriesArray },
-  pageProject: { data: pageProjectData },
-}) => {
+const Portfolio: React.FC<PortfolioProps> = ({ categories, pagePortfolio }) => {
   const apolloClient = initializeApollo();
   const { locale } = useRouter();
   const isFirstRender = useRef(true);
   const [projects, setProjects] = useState<(ComponentMainProject | null)[]>(
-    pageProjectData?.attributes?.projects ?? []
+    pagePortfolio?.Projects ?? []
   );
-  const header = pageProjectData?.attributes?.Header[0];
-  const seo = pageProjectData?.attributes?.SEO;
+  const header = pagePortfolio?.Header;
+  const seo = pagePortfolio?.SEO;
 
   const [currentCategory, setCurrentCategory] = useState(
     getAllCategoryName(locale)
@@ -60,10 +58,9 @@ const Portfolio: React.FC<PortfolioProps> = ({
         query: GetProjectPageDocument,
         variables: { locale, categoryTag },
       });
-      if (data.pageProject?.data?.attributes?.projects) {
-        setProjects(
-          data.pageProject.data.attributes.projects as ComponentMainProject[]
-        );
+      const projects = data.pagePortfolio?.Projects as ComponentMainProject[];
+      if (projects) {
+        setProjects(projects);
       }
       setIsLoading(false);
     },
@@ -92,7 +89,7 @@ const Portfolio: React.FC<PortfolioProps> = ({
         query: GetProjectDocument,
         variables: { locale, slug },
       });
-      const projects = data.pageProject?.data?.attributes?.projects;
+      const projects = data.pagePortfolio?.Projects as ComponentMainProject[];
       if (projects) {
         setSelectedProject(projects[0] as ComponentMainProject);
         handleClickOpen();
@@ -143,14 +140,10 @@ const Portfolio: React.FC<PortfolioProps> = ({
           )}
           <Grid item>
             <Grid container spacing={2} justifyContent='center'>
-              {[...categoriesArray]
-                .sort(
-                  (a, b) =>
-                    (b.attributes?.isMain ? 1 : 0) -
-                    (a.attributes?.isMain ? 1 : 0)
-                )
+              {[...categories]
+                .sort((a, b) => (b.isMain ? 1 : 0) - (a.isMain ? 1 : 0))
                 .map((category) => {
-                  const tag = category.attributes?.Tag;
+                  const tag = category.tag;
                   const isCurrent = tag === currentCategory;
 
                   return (
@@ -195,7 +188,7 @@ const Portfolio: React.FC<PortfolioProps> = ({
 
 export async function getStaticProps({ locale }: { locale: string }) {
   const apolloClient = initializeApollo();
-  const { data } = await apolloClient.query<GetProjectPageQuery>({
+  const { data } = await apolloClient.query<GetProjectQuery>({
     query: GetProjectPageDocument,
     variables: { locale, categoryTag: getAllCategoryName(locale) },
   });

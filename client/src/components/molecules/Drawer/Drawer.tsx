@@ -16,16 +16,16 @@ export const Drawer: React.FC<DrawerProps> = ({
       <Logo height={75} width={75} data-testid='main-logo-svg-drawer' />
       <Divider />
       <List>
-        {menuItems.map(({ attributes }) => (
-          <ListItem key={attributes?.path} disablePadding>
+        {menuItems.map(({ path, label }) => (
+          <ListItem key={path} disablePadding>
             <StyledListItemButton
-              isCurrentPath={router.pathname === attributes?.path}
+              isCurrentPath={router.pathname === path}
               onClick={(e) => {
                 e.stopPropagation();
-                handleNavigation(attributes?.path!);
+                handleNavigation(path!);
               }}
             >
-              <ListItemText primary={attributes?.label} />
+              <ListItemText primary={label} />
             </StyledListItemButton>
           </ListItem>
         ))}

@@ -2,11 +2,11 @@ import { Fade, Grid } from '@mui/material';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { PageTitle } from '~/components/organisms';
 import {
-  ContactInformationEntityResponse,
+  ContactInformation as ContactInformationType,
   GetContactPageDocument,
   GetContactPageQuery,
-  PageContactEntityResponse,
-  SocialMediaEntityResponse,
+  PageContact,
+  SocialMedia,
 } from '~/generated/graphql';
 import { initializeApollo } from '~/lib/client';
 import { ContactInformation, PrivacyPolicyModal } from '~/components/molecules';
@@ -14,26 +14,23 @@ import { ContactForm } from '~/components/molecules/ContactForm/ContactForm';
 import { Seo } from '~/components/atoms';
 
 interface ContactProps {
-  pageContact: PageContactEntityResponse;
-  contactInformation: ContactInformationEntityResponse;
-  socialMedia: SocialMediaEntityResponse;
+  pageContact: PageContact;
+  contactInformation: ContactInformationType;
+  socialMedia: SocialMedia;
 }
 
 const Contact: React.FC<ContactProps> = ({
-  pageContact: { data: pageContactData },
-  contactInformation: { data: contactInformationData },
-  socialMedia: { data: socialMediaData },
+  pageContact,
+  contactInformation,
+  socialMedia,
 }) => {
-  const header = pageContactData?.attributes?.Header;
-  const contact = contactInformationData?.attributes?.Contact;
-  const seo = pageContactData?.attributes?.SEO;
+  const header = pageContact?.Header;
+  const seo = pageContact?.SEO;
 
   return (
     <>
       {seo && <Seo {...seo} />}
-      <PrivacyPolicyModal
-        content={pageContactData?.attributes?.PrivacyPolicy}
-      />
+      <PrivacyPolicyModal content={pageContact?.PrivacyPolicy} />
       <Fade in={true}>
         <Grid container flexDirection='column' spacing={8}>
           <Grid item>
@@ -42,10 +39,10 @@ const Contact: React.FC<ContactProps> = ({
           <Grid item>
             <Grid container spacing={4}>
               <Grid item xs={12} md={6}>
-                {contact && socialMediaData?.attributes && (
+                {contactInformation && socialMedia && (
                   <ContactInformation
-                    contact={contact}
-                    socialMedia={socialMediaData?.attributes}
+                    contact={contactInformation}
+                    socialMedia={socialMedia}
                   />
                 )}
               </Grid>

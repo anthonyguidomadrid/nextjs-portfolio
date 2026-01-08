@@ -10,13 +10,13 @@ export const DesktopMenuItems: React.FC<DesktopMenuItemsProps> = ({
   const router = useRouter();
   return (
     <Box>
-      {menuItems.map(({ attributes }) => (
+      {menuItems.map(({ path, label }) => (
         <MenuButton
-          isCurrentPath={router.pathname === attributes?.path}
-          key={attributes?.path}
-          onClick={() => handleNavigation(attributes?.path!)}
+          isCurrentPath={router.pathname === path}
+          key={path}
+          onClick={() => handleNavigation(path)}
         >
-          {attributes?.label}
+          {label}
         </MenuButton>
       ))}
     </Box>

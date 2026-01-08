@@ -1,7 +1,7 @@
-import { MenuItemEntity } from '~/generated/graphql';
+import { MenuItem } from '~/generated/graphql';
 
 export type DrawerProps = {
   handleDrawerToggle: () => void;
-  menuItems: MenuItemEntity[];
+  menuItems: MenuItem[];
   handleNavigation: (_path: string) => void;
 };

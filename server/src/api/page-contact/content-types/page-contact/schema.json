@@ -4,8 +4,7 @@
   "info": {
     "singularName": "page-contact",
     "pluralName": "page-contacts",
-    "displayName": "Page - Contact",
-    "description": ""
+    "displayName": "Page - Contact"
   },
   "options": {
     "draftAndPublish": true
@@ -18,33 +17,33 @@
   "attributes": {
     "SEO": {
       "type": "component",
-      "repeatable": false,
       "pluginOptions": {
         "i18n": {
           "localized": true
         }
       },
       "component": "head.seo",
+      "repeatable": false,
       "required": true
     },
     "Header": {
       "type": "component",
-      "repeatable": false,
       "pluginOptions": {
         "i18n": {
           "localized": true
         }
       },
       "component": "head.header",
+      "repeatable": false,
       "required": true
     },
     "PrivacyPolicy": {
+      "type": "blocks",
       "pluginOptions": {
         "i18n": {
           "localized": true
         }
       },
-      "type": "blocks",
       "required": true
     }
   }

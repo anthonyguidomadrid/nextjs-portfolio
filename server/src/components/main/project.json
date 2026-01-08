@@ -1,9 +1,7 @@
 {
   "collectionName": "components_main_projects",
   "info": {
-    "displayName": "Project",
-    "icon": "calendar",
-    "description": ""
+    "displayName": "Project"
   },
   "options": {},
   "attributes": {
@@ -11,21 +9,21 @@
       "type": "string",
       "required": true
     },
+    "subTitle": {
+      "type": "string",
+      "required": true
+    },
+    "slug": {
+      "type": "string",
+      "required": true,
+      "regex": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
     "date": {
       "type": "date",
       "required": true
     },
-    "codeUrl": {
-      "type": "string",
-      "regex": "^(https?|ftp):\\/\\/[^\\s/$.?#].[^\\s]*$",
-      "required": true
-    },
-    "projectUrl": {
-      "type": "string",
-      "regex": "^(https?|ftp):\\/\\/[^\\s/$.?#].[^\\s]*$"
-    },
     "description": {
-      "type": "richtext",
+      "type": "blocks",
       "required": true
     },
     "pictures": {
@@ -36,9 +34,14 @@
         "images"
       ]
     },
-    "subTitle": {
+    "codeUrl": {
       "type": "string",
-      "required": true
+      "required": true,
+      "regex": "^(https?|ftp):\\/\\/[^\\s/$.?#].[^\\s]*$"
+    },
+    "projectUrl": {
+      "type": "string",
+      "regex": "^(https?|ftp):\\/\\/[^\\s/$.?#].[^\\s]*$"
     },
     "thumbnail": {
       "type": "media",
@@ -52,12 +55,7 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::category.category"
-    },
-    "slug": {
-      "type": "string",
-      "regex": "^[a-z0-9]+(?:-[a-z0-9]+)*$",
-      "unique": false,
-      "required": true
     }
-  }
+  },
+  "config": {}
 }

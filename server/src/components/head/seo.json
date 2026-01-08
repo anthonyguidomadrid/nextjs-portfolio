@@ -1,21 +1,19 @@
 {
-  "collectionName": "components_seo_seos",
+  "collectionName": "components_head_seos",
   "info": {
-    "displayName": "SEO",
-    "icon": "earth",
-    "description": ""
+    "displayName": "SEO"
   },
   "options": {},
   "attributes": {
     "pageTitle": {
       "type": "string",
-      "required": true,
-      "maxLength": 60
+      "maxLength": 60,
+      "required": true
     },
     "pageDescription": {
       "type": "string",
-      "required": true,
-      "maxLength": 160
+      "maxLength": 160,
+      "required": true
     },
     "canonicalUrl": {
       "type": "string",
@@ -23,20 +21,19 @@
     },
     "noFollow": {
       "type": "boolean",
-      "default": false,
-      "required": true
+      "default": false
     },
     "noIndex": {
       "type": "boolean",
-      "default": false,
-      "required": true
+      "default": false
     },
     "shareImages": {
+      "type": "media",
+      "multiple": true,
       "allowedTypes": [
         "images"
-      ],
-      "type": "media",
-      "multiple": true
+      ]
     }
-  }
+  },
+  "config": {}
 }

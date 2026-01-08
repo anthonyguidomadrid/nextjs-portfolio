@@ -1,38 +1,33 @@
 {
   "collectionName": "components_main_skills",
   "info": {
-    "displayName": "Skill",
-    "icon": "grid",
-    "description": ""
+    "displayName": "Skill"
   },
   "options": {},
   "attributes": {
-    "Name": {
+    "name": {
       "type": "string",
       "required": true
     },
     "percentage": {
       "type": "integer",
-      "required": false,
-      "max": 100,
-      "min": 0
+      "min": 0,
+      "max": 100
     },
     "logo": {
       "type": "media",
       "multiple": false,
-      "required": false,
       "allowedTypes": [
         "images"
       ]
     },
     "link": {
       "type": "string",
-      "required": false,
-      "regex": "^(https?|ftp):\\/\\/[^\\s/$.?#].[^\\s]*$",
-      "unique": false
+      "regex": "^(https?|ftp):\\/\\/[^\\s/$.?#].[^\\s]*$"
     },
     "date": {
       "type": "date"
     }
-  }
+  },
+  "config": {}
 }

@@ -6,9 +6,9 @@ import {
   GetMenuItemsQuery,
   GetHomePageDocument,
   GetHomePageQuery,
-  MenuItemEntity,
-  HomeEntity,
-  SocialMediaEntity,
+  MenuItem,
+  PageHome,
+  SocialMedia,
 } from '~/generated/graphql';
 import { Layout } from '~/components/templates';
 import { ThemeProvider } from '@emotion/react';
@@ -30,40 +30,34 @@ const poppins = Poppins({
 });
 
 interface MyAppProps extends AppProps {
-  menuItems: { data: MenuItemEntity[] };
-  home: { data: HomeEntity };
-  socialMedia: { data: SocialMediaEntity };
+  menuItems: MenuItem[];
+  homeData: PageHome;
+  socialMedia: SocialMedia;
 }
 
 const MyApp = ({
   Component,
   pageProps,
-  menuItems: { data: menuItemsData },
-  home: {
-    data: { attributes: homeAttributes },
-  },
-  socialMedia: {
-    data: { attributes: socialMediaAttributes },
-  },
-}: MyAppProps) => {
-  return (
-    <Provider store={store}>
-      <GoogleAnalytics trackPageViews />
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <Layout
-          menuItems={menuItemsData}
-          title={homeAttributes?.Header.Title}
-          subtitle={homeAttributes?.Header.subTitle}
-          socialMedia={socialMediaAttributes}
-          className={poppins.className}
-        >
-          <Component {...pageProps} />
-        </Layout>
-      </ThemeProvider>
-    </Provider>
-  );
-};
+  menuItems,
+  homeData,
+  socialMedia,
+}: MyAppProps) => (
+  <Provider store={store}>
+    <GoogleAnalytics trackPageViews />
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <Layout
+        menuItems={menuItems}
+        title={homeData.Header[0]?.title || ''}
+        subtitle={homeData.Header[0]?.subTitle || ''}
+        socialMedia={socialMedia}
+        className={poppins.className}
+      >
+        <Component {...pageProps} />
+      </Layout>
+    </ThemeProvider>
+  </Provider>
+);
 
 MyApp.getInitialProps = async (appContext: AppContext) => {
   const apolloClient = initializeApollo();
@@ -80,8 +74,9 @@ MyApp.getInitialProps = async (appContext: AppContext) => {
   });
 
   return {
-    ...menuItems,
-    ...homeData,
+    menuItems: menuItems.menuItems,
+    homeData: homeData.pageHome,
+    socialMedia: homeData.socialMedia,
   };
 };
 

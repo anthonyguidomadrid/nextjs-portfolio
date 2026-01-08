@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 
 export const SkillItem: React.FC<ComponentMainSkill> = ({
-  Name,
+  name,
   percentage = 0,
 }) => {
   const { t } = useTranslation();
@@ -29,7 +29,7 @@ export const SkillItem: React.FC<ComponentMainSkill> = ({
     <Grid container flexDirection='column' ref={ref}>
       <Grid container justifyContent='space-between'>
         <Grid item>
-          <SkillName>{Name}</SkillName>
+          <SkillName>{name}</SkillName>
         </Grid>
         <Grid item>
           <Typography>

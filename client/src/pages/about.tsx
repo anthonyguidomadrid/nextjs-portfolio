@@ -7,20 +7,20 @@ import { PageTitle } from '~/components/organisms';
 import {
   GetAboutPageDocument,
   GetAboutPageQuery,
-  PageAboutEntityResponse,
+  PageAbout,
 } from '~/generated/graphql';
 import { initializeApollo } from '~/lib/client';
 
 interface AboutProps {
-  pageAbout: PageAboutEntityResponse;
+  pageAbout: PageAbout;
 }
 
-const About: React.FC<AboutProps> = ({ pageAbout: { data } }) => {
+const About: React.FC<AboutProps> = ({ pageAbout }) => {
   const { t } = useTranslation();
-  const header = data?.attributes?.Header;
-  const computerSkills = data?.attributes?.computerSkills;
-  const languageSkills = data?.attributes?.languages;
-  const seo = data?.attributes?.SEO;
+  const header = pageAbout?.Header;
+  const computerSkills = pageAbout?.ComputerSkills;
+  const languageSkills = pageAbout?.Languages;
+  const seo = pageAbout?.SEO;
 
   return (
     <>
@@ -34,14 +34,14 @@ const About: React.FC<AboutProps> = ({ pageAbout: { data } }) => {
           )}
           {computerSkills && (
             <Grid item>
-              <PageTitle Title={t('about.title.computer')}>
+              <PageTitle title={t('about.title.computer')}>
                 <SkillWrapper skills={computerSkills} />
               </PageTitle>
             </Grid>
           )}
           {languageSkills && (
             <Grid item>
-              <PageTitle Title={t('about.title.languages')}>
+              <PageTitle title={t('about.title.languages')}>
                 <SkillWrapper skills={languageSkills} />
               </PageTitle>
             </Grid>

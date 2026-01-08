@@ -1,189 +1,125 @@
 query GetContactInformation($locale: I18NLocaleCode) {
   contactInformation(locale: $locale) {
-    data {
-      attributes {
-        Contact {
-          address
-          email
-          phone
-        }
-      }
-    }
+    address
+    email
+    phone
   }
 }
 
 query GetMenuItems($locale: I18NLocaleCode) {
   menuItems(locale: $locale, sort: ["id:asc"]) {
-    data {
-      attributes {
-        label
-        path
-      }
-    }
+    label
+    path
   }
 }
 
 query GetHomePage($locale: I18NLocaleCode) {
-  home(locale: $locale) {
-    data {
-      attributes {
-        Header {
-          Title
-          subTitle
-        }
-        SEO {
-          ...SeoFields
-        }
-      }
+  pageHome(locale: $locale) {
+    Header {
+      title
+      subTitle
+    }
+    SEO {
+      ...SeoFields
     }
   }
   socialMedia {
-    data {
-      attributes {
-        ...SocialMediaFields
-      }
-    }
+    linkedinUrl
+    githubUrl
   }
 }
 
 query getAboutPage($locale: I18NLocaleCode) {
   pageAbout(locale: $locale) {
-    data {
-      attributes {
-        Header {
-          Title
-          subTitle
-          description
-          picture {
-            data {
-              attributes {
-                ...ImageFields
-              }
-            }
-          }
-        }
-        SEO {
-          ...SeoFields
-        }
-        computerSkills(sort: "percentage:desc") {
-          Name
-          percentage
-        }
-        languages(sort: "percentage:desc") {
-          Name
-          percentage
-        }
+    Header {
+      title
+      subTitle
+      description
+      picture {
+      ...ImageFields
       }
+    }
+    SEO {
+      ...SeoFields
+    }
+    ComputerSkills(sort: "percentage:desc") {
+      name
+      percentage
+    }
+    Languages(sort: "percentage:desc") {
+      name
+      percentage
     }
   }
 }
 
 query getResumePage($locale: I18NLocaleCode) {
   pageResume(locale: $locale) {
-    data {
-      attributes {
-        Header {
-          Title
-          subTitle
-        }
-        workExperiences {
-          ...ResumeItem
-        }
-        Education {
-          ...ResumeItem
-        }
-        Certification {
-          Name
-          logo {
-            data {
-              attributes {
-                ...ImageFields
-              }
-            }
-          }
-          link
-          date
-        }
-        CV {
-          data {
-            attributes {
-              url
-            }
-          }
-        }
-        SEO {
-          ...SeoFields
-        }
+    Header {
+      title
+      subTitle
+    }
+    WorkExperience {
+      ...ResumeItem
+    }
+    Education {
+      ...ResumeItem
+    }
+    Certification {
+      name
+      logo {
+        ...ImageFields
       }
+      link
+      date
+    }
+    SEO {
+      ...SeoFields
     }
   }
 }
 
 query getProjectPage($locale: I18NLocaleCode, $categoryTag: String) {
-  categories(locale: $locale, sort: "Tag:asc") {
-    data {
-      attributes {
-        Tag
-        isMain
-      }
-    }
+  categories(locale: $locale, sort: "tag:asc") {
+    tag
+    isMain
   }
-  pageProject(locale: $locale) {
-    data {
-      attributes {
-        SEO {
-          ...SeoFields
-        }
-        Header {
-          Title
-          subTitle
-        }
-        projects(filters: { categories: { Tag: { eq: $categoryTag } } }) {
-          slug
-          title
-          subTitle
-          date
-          thumbnail {
-            data {
-              attributes {
-                ...ImageFields
-              }
-            }
-          }
-        }
+  pagePortfolio(locale: $locale) {
+    SEO {
+      ...SeoFields
+    }
+    Header {
+      title
+      subTitle
+    }
+    Projects(filters: { categories: { tag: { eq: $categoryTag } } }) {
+      slug
+      title
+      subTitle
+      date
+      thumbnail {
+        ...ImageFields
       }
     }
   }
 }
 
 query getProject($locale: I18NLocaleCode, $slug: String) {
-  pageProject(locale: $locale) {
-    data {
-      attributes {
-        projects(filters: { slug: { eq: $slug } }) {
-          id
-          slug
-          title
-          subTitle
-          description
-          date
-          categories {
-            data {
-              attributes {
-                Tag
-              }
-            }
-          }
-          projectUrl
-          codeUrl
-          pictures {
-            data {
-              attributes {
-                ...ImageFields
-              }
-            }
-          }
-        }
+  pagePortfolio(locale: $locale) {
+    Projects(filters: { slug: { eq: $slug } }) {
+      id
+      slug
+      title
+      subTitle
+      description
+      date
+      categories {
+        tag
+      }
+      projectUrl
+      codeUrl
+      pictures {
+        ...ImageFields
       }
     }
   }
@@ -191,35 +127,22 @@ query getProject($locale: I18NLocaleCode, $slug: String) {
 
 query getContactPage($locale: I18NLocaleCode) {
   pageContact(locale: $locale) {
-    data {
-      attributes {
-        SEO {
-          ...SeoFields
-        }
-        Header {
-          Title
-          subTitle
-        }
-        PrivacyPolicy
-      }
+    SEO {
+      ...SeoFields
     }
+    Header {
+      title
+      subTitle
+    }
+    PrivacyPolicy
   }
   contactInformation(locale: $locale) {
-    data {
-      attributes {
-        Contact {
-          address
-          email
-          phone
-        }
-      }
-    }
+      address
+      email
+      phone
   }
   socialMedia {
-    data {
-      attributes {
-        ...SocialMediaFields
-      }
-    }
+    githubUrl
+    linkedinUrl
   }
 }

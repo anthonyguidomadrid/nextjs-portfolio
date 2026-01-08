@@ -12,11 +12,7 @@ fragment SeoFields on ComponentHeadSeo {
   noFollow
   noIndex
   shareImages {
-    data {
-      attributes {
-        ...ImageFields
-      }
-    }
+    ...ImageFields
   }
 }
 
@@ -24,22 +20,11 @@ fragment ResumeItem on ComponentMainResumeItem {
   title
   description
   logo {
-    data {
-      attributes {
-        ...ImageFields
-      }
-    }
+    ...ImageFields
   }
   startingDate
   endingDate
   location
   company
   link
-}
-
-fragment SocialMediaFields on SocialMedia {
-  socialMedia {
-    LinkedinUrl
-    GithubUrl
-  }
 }

@@ -4,8 +4,7 @@
   "info": {
     "singularName": "contact-information",
     "pluralName": "contact-informations",
-    "displayName": "Contact Information",
-    "description": ""
+    "displayName": "Contact Information"
   },
   "options": {
     "draftAndPublish": true
@@ -16,16 +15,34 @@
     }
   },
   "attributes": {
-    "Contact": {
-      "type": "component",
-      "repeatable": false,
-      "component": "footer.contact",
-      "required": true,
+    "phone": {
+      "type": "string",
       "pluginOptions": {
         "i18n": {
           "localized": true
         }
-      }
+      },
+      "required": true,
+      "regex": "^\\+34\\s[67]\\d{2}\\s\\d{3}\\s\\d{3}$"
+    },
+    "email": {
+      "type": "string",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "required": true,
+      "regex": "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$"
+    },
+    "address": {
+      "type": "string",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "required": true
     }
   }
 }

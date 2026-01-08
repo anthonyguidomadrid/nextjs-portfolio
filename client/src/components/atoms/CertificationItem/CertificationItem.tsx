@@ -11,13 +11,12 @@ import {
 } from './CertificationItem.styles';
 
 export const CertificationItem: React.FC<CertificationItemProps> = ({
-  Name,
+  name,
   date,
   logo,
   link,
 }) => {
   const { locale } = useRouter();
-  const image = logo?.data?.attributes;
   const { t } = useTranslation();
   return (
     <CertificationCard>
@@ -29,16 +28,16 @@ export const CertificationItem: React.FC<CertificationItemProps> = ({
       >
         <Grid item xs={2} lg={3}>
           <CertificationImage
-            src={image?.url ?? ''}
-            alt={image?.alternativeText ?? ''}
-            height={image?.height ?? 100}
-            width={image?.width ?? 100}
+            src={logo?.url ?? ''}
+            alt={logo?.alternativeText ?? ''}
+            height={logo?.height ?? 100}
+            width={logo?.width ?? 100}
           />
         </Grid>
 
         <Grid item xs={10} lg={9}>
           <CardContent>
-            <Typography variant='bold'>{Name}</Typography>
+            <Typography variant='bold'>{name}</Typography>
             <Typography variant='body2'>{formatDate(date, locale)}</Typography>
             <Link href={link ?? ''} target='_blank'>
               {t('resume.button.show-credentials')}

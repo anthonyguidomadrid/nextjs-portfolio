@@ -5,7 +5,7 @@ import { render } from '~/utils/test-utils';
 import { formatDate } from '~/utils/formatDates';
 
 describe('ResumeItem', () => {
-  const companyLogo = RESUME_ITEM_MOCK.logo?.data?.attributes;
+  const companyLogo = RESUME_ITEM_MOCK.logo;
 
   const getCompanyLogo = () =>
     screen.queryByAltText(companyLogo?.alternativeText!);

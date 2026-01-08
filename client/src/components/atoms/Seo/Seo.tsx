@@ -9,8 +9,8 @@ export const Seo: React.FC<ComponentHeadSeo> = ({
   noIndex,
   shareImages,
 }) => {
-  const imageUrl = shareImages?.data?.[0]?.attributes?.url || '';
-  const imageAlt = shareImages?.data?.[0]?.attributes?.alternativeText || '';
+  const imageUrl = shareImages?.[0]?.url || '';
+  const imageAlt = shareImages?.[0]?.alternativeText || '';
 
   return (
     <Head>
@@ -33,13 +33,13 @@ export const Seo: React.FC<ComponentHeadSeo> = ({
       <meta
         property='og:image:width'
         content={
-          shareImages?.data?.[0]?.attributes?.width?.toString() || '1200'
+          shareImages?.[0]?.width?.toString() || '1200'
         }
       />
       <meta
         property='og:image:height'
         content={
-          shareImages?.data?.[0]?.attributes?.height?.toString() || '630'
+          shareImages?.[0]?.height?.toString() || '630'
         }
       />
       <meta property='og:type' content='website' />

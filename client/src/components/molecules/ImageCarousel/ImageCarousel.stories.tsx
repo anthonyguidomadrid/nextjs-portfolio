@@ -14,6 +14,6 @@ type Story = StoryObj<ImageCarouselProps>;
 
 export const Primary: Story = {
   args: {
-    images: PROJECT_MOCK.pictures.data,
+    images: PROJECT_MOCK.pictures,
   },
 };

@@ -1,11 +1,11 @@
 import { Grid, Typography } from '@mui/material';
 import { ResumeItemProps } from './ResumeItem.types';
-import { RichText } from '../RichText';
 import Link from 'next/link';
 import { formatDateRange } from '~/utils/formatDates';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 import { CompanyDetailsWrapper, CompanyLogo } from './ResumeItem.styles';
+import { BlocksRenderer } from '@strapi/blocks-react-renderer';
 
 export const ResumeItem: React.FC<ResumeItemProps> = ({
   company,
@@ -17,26 +17,25 @@ export const ResumeItem: React.FC<ResumeItemProps> = ({
   startingDate,
   title,
 }) => {
-  const companyLogo = logo?.data?.attributes;
   const { locale } = useRouter();
   const { t } = useTranslation();
 
   return (
     <>
       <CompanyDetailsWrapper container spacing={3} alignItems='center'>
-        {companyLogo && (
+        {logo && (
           <Grid item xs={3}>
             <Link href={link ?? ''} target='_blank'>
               <CompanyLogo
-                src={companyLogo.url ?? ''}
-                alt={companyLogo.alternativeText ?? ''}
-                height={companyLogo.height ?? 0}
-                width={companyLogo.width ?? 0}
+                src={logo.url ?? ''}
+                alt={logo.alternativeText ?? ''}
+                height={logo.height ?? 0}
+                width={logo.width ?? 0}
               />
             </Link>
           </Grid>
         )}
-        <Grid item xs={companyLogo ? 9 : 12}>
+        <Grid item xs={logo ? 9 : 12}>
           <Typography variant='h3'>{title}</Typography>
           <Typography variant='body2'>
             {formatDateRange(startingDate, t, locale, endingDate)}
@@ -46,7 +45,7 @@ export const ResumeItem: React.FC<ResumeItemProps> = ({
           </Typography>
         </Grid>
       </CompanyDetailsWrapper>
-      <RichText content={description} />
+      <BlocksRenderer content={description} />
     </>
   );
 };

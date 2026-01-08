@@ -1,6 +1,6 @@
-import { ComponentFooterContact, SocialMedia } from '~/generated/graphql';
+import { ContactInformation, SocialMedia } from '~/generated/graphql';
 
 export type ContactInformationProps = {
-  contact: ComponentFooterContact;
+  contact: ContactInformation;
   socialMedia: SocialMedia;
 };

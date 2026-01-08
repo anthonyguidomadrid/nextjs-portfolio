@@ -11,7 +11,7 @@ export const NotFound: React.FC = () => {
   };
   return (
     <PageTitle
-      Title={t('not-found.title')}
+      title={t('not-found.title')}
       subTitle={t('not-found.subtitle')}
       isMainTitle={true}
     >

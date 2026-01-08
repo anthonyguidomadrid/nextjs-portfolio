@@ -13,7 +13,7 @@ type Story = StoryObj<ComponentMainSkill>;
 
 export const Primary: Story = {
   args: {
-    Name: 'Skill name',
+    name: 'Skill name',
     percentage: 95,
   },
 };

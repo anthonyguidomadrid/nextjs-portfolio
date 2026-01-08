@@ -16,7 +16,6 @@ export const PortfolioCard: React.FC<PorfolioCardProps> = ({
   onClick,
 }) => {
   const { locale } = useRouter();
-  const thumbnailImg = thumbnail.data?.attributes;
   const [isHovered, setIsHovered] = useState(false);
 
   return (
@@ -28,8 +27,8 @@ export const PortfolioCard: React.FC<PorfolioCardProps> = ({
       <CardActionArea>
         <CardMedia
           component='img'
-          src={thumbnailImg?.url ?? ''}
-          alt={thumbnailImg?.alternativeText || title}
+          src={thumbnail?.url ?? ''}
+          alt={thumbnail?.alternativeText || title}
         />
         <PortfolioCardContent className='hover-content'>
           <Typography variant='caption'>{formatDate(date, locale)}</Typography>

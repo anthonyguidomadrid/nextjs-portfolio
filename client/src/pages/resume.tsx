@@ -10,20 +10,20 @@ import { PageTitle } from '~/components/organisms';
 import {
   GetResumePageDocument,
   GetResumePageQuery,
-  PageResumeEntityResponse,
+  PageResume,
 } from '~/generated/graphql';
 import { initializeApollo } from '~/lib/client';
 
 interface ResumeProps {
-  pageResume: PageResumeEntityResponse;
+  pageResume: PageResume;
 }
 
-const Resume: React.FC<ResumeProps> = ({ pageResume: { data } }) => {
-  const header = data?.attributes?.Header;
-  const workExperiences = data?.attributes?.workExperiences;
-  const education = data?.attributes?.Education;
-  const certifications = data?.attributes?.Certification;
-  const seo = data?.attributes?.SEO;
+const Resume: React.FC<ResumeProps> = ({ pageResume }) => {
+  const header = pageResume?.Header;
+  const workExperiences = pageResume?.WorkExperience;
+  const education = pageResume?.Education;
+  const certifications = pageResume?.Certification;
+  const seo = pageResume?.SEO;
   const { t } = useTranslation();
   const { ref, inView } = useInView({
     triggerOnce: true,
@@ -56,19 +56,19 @@ const Resume: React.FC<ResumeProps> = ({ pageResume: { data } }) => {
           <Grid item>
             <Grid container>
               <Grid item xs={12} md={6}>
-                <PageTitle Title={t('resume.title.work-experiences')}>
+                <PageTitle title={t('resume.title.work-experiences')}>
                   <Timeline resumeItems={workExperiences} />
                 </PageTitle>
               </Grid>
               <Grid item xs={12} md={6}>
-                <PageTitle Title={t('resume.title.education')}>
+                <PageTitle title={t('resume.title.education')}>
                   <Timeline resumeItems={education} />
                 </PageTitle>
               </Grid>
             </Grid>
           </Grid>
           <Grid item>
-            <PageTitle Title={t('resume.title.certifications')}>
+            <PageTitle title={t('resume.title.certifications')}>
               <Grid container spacing={2}>
                 {certifications?.map((certification, index) => {
                   return (

@@ -1,9 +1,7 @@
 {
   "collectionName": "components_main_resume_items",
   "info": {
-    "displayName": "resumeItem",
-    "icon": "stack",
-    "description": ""
+    "displayName": "Resume Item"
   },
   "options": {},
   "attributes": {
@@ -11,17 +9,16 @@
       "type": "string",
       "required": true
     },
-    "description": {
-      "type": "richtext",
-      "required": true
-    },
     "logo": {
       "type": "media",
       "multiple": false,
-      "required": false,
       "allowedTypes": [
         "images"
       ]
+    },
+    "description": {
+      "type": "blocks",
+      "required": true
     },
     "startingDate": {
       "type": "date",
@@ -42,5 +39,6 @@
       "type": "string",
       "regex": "^(https?|ftp):\\/\\/[^\\s/$.?#].[^\\s]*$"
     }
-  }
+  },
+  "config": {}
 }

@@ -3,17 +3,17 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import {
   GetHomePageDocument,
   GetHomePageQuery,
-  HomeEntityResponse,
+  PageHome,
 } from '~/generated/graphql';
 import { Seo } from '~/components/atoms';
 
 interface HomeProps {
-  home: HomeEntityResponse;
+  pageHome: PageHome;
 }
 
-const Home: React.FC<HomeProps> = ({ home }) => {
-  const seo = home?.data?.attributes?.SEO;
-  return <>{seo && <Seo {...seo} />}</>;
+const Home: React.FC<HomeProps> = ({ pageHome }) => {
+  const { SEO } = pageHome;
+  return <>{SEO && <Seo {...SEO} />}</>;
 };
 
 export async function getStaticProps({ locale }: { locale: string }) {
@@ -22,6 +22,7 @@ export async function getStaticProps({ locale }: { locale: string }) {
     query: GetHomePageDocument,
     variables: { locale },
   });
+
   return {
     props: {
       ...(await serverSideTranslations(locale, ['common'])),

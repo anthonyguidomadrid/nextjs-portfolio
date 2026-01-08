@@ -4,8 +4,7 @@
   "info": {
     "singularName": "page-about",
     "pluralName": "page-abouts",
-    "displayName": "Page - About",
-    "description": ""
+    "displayName": "Page - About"
   },
   "options": {
     "draftAndPublish": true
@@ -16,47 +15,48 @@
     }
   },
   "attributes": {
-    "Header": {
-      "type": "component",
-      "repeatable": false,
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "component": "head.header"
-    },
     "SEO": {
       "type": "component",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "head.seo",
       "repeatable": false,
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "required": true,
-      "component": "head.seo"
-    },
-    "computerSkills": {
-      "type": "component",
-      "repeatable": true,
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "component": "main.skill",
       "required": true
     },
-    "languages": {
+    "Header": {
       "type": "component",
-      "repeatable": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "head.header",
+      "repeatable": false,
+      "required": true
+    },
+    "ComputerSkills": {
+      "type": "component",
       "pluginOptions": {
         "i18n": {
           "localized": true
         }
       },
       "component": "main.skill",
+      "repeatable": true,
+      "required": true
+    },
+    "Languages": {
+      "type": "component",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "main.skill",
+      "repeatable": true,
       "required": true
     }
   }

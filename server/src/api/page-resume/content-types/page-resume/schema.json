@@ -4,8 +4,7 @@
   "info": {
     "singularName": "page-resume",
     "pluralName": "page-resumes",
-    "displayName": "Page - Resume",
-    "description": ""
+    "displayName": "Page - Resume"
   },
   "options": {
     "draftAndPublish": true
@@ -16,72 +15,59 @@
     }
   },
   "attributes": {
-    "workExperiences": {
-      "type": "component",
-      "repeatable": true,
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "component": "main.resume-item",
-      "required": true
-    },
-    "Education": {
-      "type": "component",
-      "repeatable": true,
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "component": "main.resume-item",
-      "required": true
-    },
-    "Certification": {
-      "type": "component",
-      "repeatable": true,
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "component": "main.skill",
-      "required": true
-    },
-    "Header": {
-      "type": "component",
-      "repeatable": false,
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "component": "head.header",
-      "required": true
-    },
     "SEO": {
       "type": "component",
-      "repeatable": false,
       "pluginOptions": {
         "i18n": {
           "localized": true
         }
       },
       "component": "head.seo",
+      "repeatable": false,
       "required": true
     },
-    "CV": {
-      "allowedTypes": [
-        "files"
-      ],
-      "type": "media",
-      "multiple": false,
+    "Header": {
+      "type": "component",
       "pluginOptions": {
         "i18n": {
           "localized": true
         }
       },
+      "component": "head.header",
+      "repeatable": false,
+      "required": true
+    },
+    "WorkExperience": {
+      "type": "component",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "main.resume-item",
+      "repeatable": true,
+      "required": true
+    },
+    "Education": {
+      "type": "component",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "main.resume-item",
+      "repeatable": true,
+      "required": true
+    },
+    "Certification": {
+      "type": "component",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "main.skill",
+      "repeatable": true,
       "required": true
     }
   }

@@ -1,7 +1,7 @@
-import { Maybe, MenuItemEntity, SocialMedia } from '~/generated/graphql';
+import { Maybe, MenuItem, SocialMedia } from '~/generated/graphql';
 
 export type HeaderProps = {
-  menuItems: MenuItemEntity[];
+  menuItems: MenuItem[];
   title: string;
   subtitle: string;
   socialMedia?: Maybe<SocialMedia>;

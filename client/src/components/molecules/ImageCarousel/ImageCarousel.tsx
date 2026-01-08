@@ -19,11 +19,11 @@ export const ImageCarousel: React.FC<ImageCarouselProps> = ({ images }) => {
         {images.map((image, index) => (
           <Box key={index}>
             <StyledImage
-              src={image.attributes?.url ?? ''}
-              alt={image.attributes?.alternativeText ?? ''}
+              src={image?.url ?? ''}
+              alt={image?.alternativeText ?? ''}
               style={{ width: '100%' }}
-              height={image.attributes?.height ?? 0}
-              width={image.attributes?.width ?? 0}
+              height={image?.height ?? 0}
+              width={image?.width ?? 0}
             />
           </Box>
         ))}

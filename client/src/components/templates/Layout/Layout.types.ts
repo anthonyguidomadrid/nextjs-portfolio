@@ -1,8 +1,8 @@
-import { Maybe, MenuItemEntity, SocialMedia } from '~/generated/graphql';
+import { Maybe, MenuItem, SocialMedia } from '~/generated/graphql';
 
 export type LayoutProps = {
   children: React.ReactNode;
-  menuItems: MenuItemEntity[];
+  menuItems: MenuItem[];
   title?: string;
   subtitle?: string;
   socialMedia?: Maybe<SocialMedia>;

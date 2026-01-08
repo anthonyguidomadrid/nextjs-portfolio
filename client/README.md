@@ -16,7 +16,7 @@ Welcome to the **Anthony Guido Portfolio** project, built using **Next.js** and 
 
 ### Prerequisites
 
-- **Node.js** version 20.x
+- **Node.js** version 4.x
 - **Yarn** package manager (recommended)
 
 ### Installation

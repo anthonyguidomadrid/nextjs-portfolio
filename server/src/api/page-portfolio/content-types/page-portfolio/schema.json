@@ -1,0 +1,52 @@
+{
+  "kind": "singleType",
+  "collectionName": "page_portfolios",
+  "info": {
+    "singularName": "page-portfolio",
+    "pluralName": "page-portfolios",
+    "displayName": "Page - Portfolio"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "SEO": {
+      "type": "component",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "head.seo",
+      "repeatable": false,
+      "required": true
+    },
+    "Header": {
+      "type": "component",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "head.header",
+      "repeatable": false,
+      "required": true
+    },
+    "Projects": {
+      "type": "component",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "main.project",
+      "repeatable": true,
+      "required": true
+    }
+  }
+}
