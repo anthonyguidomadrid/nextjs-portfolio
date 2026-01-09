@@ -28,19 +28,19 @@ const About: React.FC<AboutProps> = ({ pageAbout }) => {
       <Fade in={true}>
         <Grid container flexDirection='column' spacing={8}>
           {header && (
-            <Grid item>
+            <Grid>
               <PageTitle {...header} isMainTitle={true} />
             </Grid>
           )}
           {computerSkills && (
-            <Grid item>
+            <Grid>
               <PageTitle title={t('about.title.computer')}>
                 <SkillWrapper skills={computerSkills} />
               </PageTitle>
             </Grid>
           )}
           {languageSkills && (
-            <Grid item>
+            <Grid>
               <PageTitle title={t('about.title.languages')}>
                 <SkillWrapper skills={languageSkills} />
               </PageTitle>

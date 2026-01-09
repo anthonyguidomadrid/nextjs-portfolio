@@ -23,14 +23,14 @@ export const Primary: Story = {
     subTitle: 'This is a nice subtitle!',
     date: '2022-12-31',
     thumbnail: {
-      url: '/uploads/encrudo_home_bc0702b101.jpg',
+      url: 'https://res.cloudinary.com/dm1dwtqb3/image/upload/v1767609821/thumbnail_multipurpose_template_thumbnail_1884ca469e.jpg',
       alternativeText: 'Placeholder',
       hash: '',
       mime: '',
       name: '',
       provider: '',
       size: 0,
-      documentId: ''
+      documentId: '',
     },
   },
 };

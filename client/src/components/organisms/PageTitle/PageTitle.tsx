@@ -20,12 +20,12 @@ export const PageTitle: React.FC<PageTitleProps> = ({
       <StyledWrapper>
         <Grid container columnSpacing={5} spacing={2}>
           {description && (
-            <Grid item xs={12} sm={6}>
+            <Grid size={{ xs: 12, sm: 6 }}>
               <BlocksRenderer content={description} />
             </Grid>
           )}
           {picture && (
-            <Grid item xs={12} sm={6}>
+            <Grid size={{ xs: 12, sm: 6 }}>
               <StyledImage
                 src={picture.url}
                 alt={picture?.alternativeText ?? ''}

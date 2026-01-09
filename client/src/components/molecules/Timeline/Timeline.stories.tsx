@@ -6,6 +6,9 @@ import { RESUME_ITEM_MOCK } from '~/components/atoms/ResumeItem/ResumeItem.mocks
 const meta: Meta<typeof Timeline> = {
   title: 'Molecules/Timeline',
   component: Timeline,
+  globals: {
+    backgrounds: { value: 'light' },
+  },
 };
 
 export default meta;

@@ -7,41 +7,41 @@ import { ContactInformationProps } from './ContactInformation.types';
 
 export const ContactInformation: React.FC<ContactInformationProps> = ({ contact, socialMedia }) => (
   <Grid container flexDirection='column' spacing={2}>
-    <Grid item>
+    <Grid>
       <Grid container gap={1}>
-        <Grid item>
+        <Grid>
           <EmailIcon />
         </Grid>
-        <Grid item>
+        <Grid>
           <Link href={`mailto:${contact?.email}`}>
             <Typography>{contact?.email}</Typography>
           </Link>
         </Grid>
       </Grid>
     </Grid>
-    <Grid item>
+    <Grid>
       <Grid container gap={1}>
-        <Grid item>
+        <Grid>
           <PhoneIphoneIcon />
         </Grid>
-        <Grid item>
+        <Grid>
           <Link href={`tel:${contact?.phone.replace(/ /g, '')}`}>
             <Typography>{contact?.phone}</Typography>
           </Link>
         </Grid>
       </Grid>
     </Grid>
-    <Grid item>
+    <Grid>
       <Grid container gap={1}>
-        <Grid item>
+        <Grid>
           <LocationOnIcon />
         </Grid>
-        <Grid item>
+        <Grid>
           <Typography>{contact?.address}</Typography>
         </Grid>
       </Grid>
     </Grid>
-    <Grid item>
+    <Grid>
       {socialMedia && <SocialMediaIcons socialMedia={socialMedia} />}
     </Grid>
   </Grid>

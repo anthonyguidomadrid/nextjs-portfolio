@@ -5,11 +5,8 @@ import { ParticlesProps } from './Particles.types';
 const meta: Meta<typeof Particles> = {
   title: 'Organisms/Particles',
   component: Particles,
-  parameters: {
-    backgrounds: {
-      values: [{ name: 'Black', value: '#000' }],
-      default: 'Black',
-    },
+  globals: {
+    backgrounds: { value: 'dark' },
   },
 };
 

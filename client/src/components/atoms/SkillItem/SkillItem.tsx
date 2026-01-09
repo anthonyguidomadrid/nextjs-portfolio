@@ -28,10 +28,10 @@ export const SkillItem: React.FC<ComponentMainSkill> = ({
   return (
     <Grid container flexDirection='column' ref={ref}>
       <Grid container justifyContent='space-between'>
-        <Grid item>
+        <Grid>
           <SkillName>{name}</SkillName>
         </Grid>
-        <Grid item>
+        <Grid>
           <Typography>
             {t('about.skills.percentage', { percentage })}
           </Typography>

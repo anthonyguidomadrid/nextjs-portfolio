@@ -5,10 +5,11 @@ import { store } from '../src/store';
 import { ThemeProvider } from '@mui/material';
 import { I18nextProvider } from 'react-i18next';
 import i18n from '../src/utils/i18nForTests';
+import type { Preview } from '@storybook/react';
 
-const preview = {
+const preview: Preview = {
   decorators: [
-    (Story) => (
+    (Story: React.FC) => (
       <Provider store={store}>
         <ThemeProvider theme={theme}>
           <I18nextProvider i18n={i18n}>
@@ -25,7 +26,17 @@ const preview = {
         date: /Date$/i,
       },
     },
+    backgrounds: {
+      options: {
+        dark: { name: 'Dark', value: '#000000' },
+        light: { name: 'Light', value: '#ffffff' },
+        grey: { name: 'Grey', value: 'grey' },
+      },
+    },
     layout: 'centered',
+  },
+  initialGlobals: {
+    backgrounds: { value: 'dark' },
   },
   tags: ['autodocs'],
 };

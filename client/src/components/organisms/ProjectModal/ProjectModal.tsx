@@ -22,7 +22,6 @@ import { ModalNavWrapper } from './ProjectModal.styles';
 import { useRouter } from 'next/router';
 import { BlocksRenderer } from '@strapi/blocks-react-renderer';
 
-
 export const ProjectModal: React.FC<ProjectModalProps> = ({
   open,
   handleClose,
@@ -53,7 +52,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
       keepMounted
     >
       <ModalNavWrapper container justifyContent='space-between'>
-        <Grid item>
+        <Grid>
           <ModalNavigation
             isFirst={isFirst}
             isLast={isLast}
@@ -61,7 +60,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
             onNext={onNext}
           />
         </Grid>
-        <Grid item>
+        <Grid>
           <Button onClick={handleClose}>
             <CloseIcon />
           </Button>

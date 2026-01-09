@@ -4,7 +4,7 @@ export const CERTIFICATION_ITEM_MOCK: CertificationItemProps = {
   name: 'Certification Name',
   date: '2021-09-01',
   logo: {
-    url: '/uploads/oracle_logo_52cb563a57.jpg',
+    url: 'https://res.cloudinary.com/dm1dwtqb3/image/upload/v1767608230/oracle_logo_5dd7b63883.webp',
     alternativeText: 'Certification Logo',
     height: 100,
     width: 100,

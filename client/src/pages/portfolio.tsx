@@ -58,7 +58,7 @@ const Portfolio: React.FC<PortfolioProps> = ({ categories, pagePortfolio }) => {
         query: GetProjectPageDocument,
         variables: { locale, categoryTag },
       });
-      const projects = data.pagePortfolio?.Projects as ComponentMainProject[];
+      const projects = data?.pagePortfolio?.Projects as ComponentMainProject[];
       if (projects) {
         setProjects(projects);
       }
@@ -89,7 +89,7 @@ const Portfolio: React.FC<PortfolioProps> = ({ categories, pagePortfolio }) => {
         query: GetProjectDocument,
         variables: { locale, slug },
       });
-      const projects = data.pagePortfolio?.Projects as ComponentMainProject[];
+      const projects = data?.pagePortfolio?.Projects || [] as ComponentMainProject[];
       if (projects) {
         setSelectedProject(projects[0] as ComponentMainProject);
         handleClickOpen();
@@ -134,11 +134,11 @@ const Portfolio: React.FC<PortfolioProps> = ({ categories, pagePortfolio }) => {
       <Fade in={true}>
         <Grid container flexDirection='column' spacing={8}>
           {header && (
-            <Grid item>
+            <Grid>
               <PageTitle {...header} isMainTitle={true} />
             </Grid>
           )}
-          <Grid item>
+          <Grid>
             <Grid container spacing={2} justifyContent='center'>
               {[...categories]
                 .sort((a, b) => (b.isMain ? 1 : 0) - (a.isMain ? 1 : 0))
@@ -147,7 +147,7 @@ const Portfolio: React.FC<PortfolioProps> = ({ categories, pagePortfolio }) => {
                   const isCurrent = tag === currentCategory;
 
                   return (
-                    <Grid item key={tag}>
+                    <Grid key={tag}>
                       <Button
                         key={tag}
                         onClick={() => handleCategoryChange(tag)}
@@ -161,12 +161,12 @@ const Portfolio: React.FC<PortfolioProps> = ({ categories, pagePortfolio }) => {
                 })}
             </Grid>
           </Grid>
-          <Grid item>
+          <Grid>
             <Grid container spacing={4} id='projects'>
               {projects?.map((project, index) => {
                 if (!project) return null;
                 return (
-                  <Grid item key={index} xs={12} md={6} lg={4}>
+                  <Grid size={{ xs: 12, md: 6, lg: 4 }} key={index}>
                     <Grow in={true} timeout={1000 * index}>
                       <Box>
                         <PortfolioCard

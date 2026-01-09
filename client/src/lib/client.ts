@@ -1,15 +1,19 @@
-import {
-  ApolloClient,
-  InMemoryCache,
-  HttpLink,
-  NormalizedCacheObject,
-} from '@apollo/client';
+import { ApolloClient, InMemoryCache, HttpLink } from '@apollo/client';
 import { useMemo } from 'react';
+
 import merge from 'deepmerge';
 
-require('dotenv').config();
+// Only load dotenv in Node.js environments (not in browser)
+if (
+  typeof process !== 'undefined' &&
+  process.versions &&
+  process.versions.node
+) {
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+  require('dotenv').config();
+}
 
-let apolloClient: ApolloClient<NormalizedCacheObject> | undefined;
+let apolloClient: ApolloClient | undefined;
 
 function createApolloClient() {
   return new ApolloClient({
@@ -28,7 +32,10 @@ export function initializeApollo(initialState: any = null) {
   // Hydrate the initial state
   if (initialState) {
     const existingCache = client.extract();
-    const data = merge(existingCache, initialState);
+    const data = merge(
+      existingCache as Record<string, any>,
+      initialState as Record<string, any>
+    );
     client.cache.restore(data);
   }
 

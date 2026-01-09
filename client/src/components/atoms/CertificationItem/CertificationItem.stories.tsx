@@ -7,10 +7,7 @@ const meta: Meta<typeof CertificationItem> = {
   title: 'Atoms/CertificationItem',
   component: CertificationItem,
   parameters: {
-    backgrounds: {
-      values: [{ name: 'Black', value: '#000' }],
-      default: 'Black',
-    },
+    layout: 'centered',
   },
 };
 
@@ -19,6 +16,9 @@ export default meta;
 type Story = StoryObj<CertificationItemProps>;
 
 export const Primary: Story = {
+  globals: {
+    backgrounds: { value: 'dark' },
+  },
   args: {
     ...CERTIFICATION_ITEM_MOCK,
   },

@@ -24,7 +24,7 @@ export const ResumeItem: React.FC<ResumeItemProps> = ({
     <>
       <CompanyDetailsWrapper container spacing={3} alignItems='center'>
         {logo && (
-          <Grid item xs={3}>
+          <Grid size={3}>
             <Link href={link ?? ''} target='_blank'>
               <CompanyLogo
                 src={logo.url ?? ''}
@@ -35,7 +35,7 @@ export const ResumeItem: React.FC<ResumeItemProps> = ({
             </Link>
           </Grid>
         )}
-        <Grid item xs={logo ? 9 : 12}>
+        <Grid size={logo ? 9 : 12}>
           <Typography variant='h3'>{title}</Typography>
           <Typography variant='body2'>
             {formatDateRange(startingDate, t, locale, endingDate)}

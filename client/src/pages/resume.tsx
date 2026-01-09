@@ -35,12 +35,12 @@ const Resume: React.FC<ResumeProps> = ({ pageResume }) => {
       {seo && <Seo {...seo} />}
       <Fade in={true}>
         <Grid container flexDirection='column' spacing={8}>
-          <Grid item>
+          <Grid>
             <Grid container flexDirection='column' spacing={3}>
-              <Grid item>
+              <Grid>
                 {header && <PageTitle {...header} isMainTitle={true} />}
               </Grid>
-              <Grid item>
+              <Grid>
                 <Link
                   href={`/cv/${locale}/AG_CV_2025.pdf`}
                   target='_blank'
@@ -53,32 +53,29 @@ const Resume: React.FC<ResumeProps> = ({ pageResume }) => {
               </Grid>
             </Grid>
           </Grid>
-          <Grid item>
+          <Grid>
             <Grid container>
-              <Grid item xs={12} md={6}>
+              <Grid size={{ xs: 12, md: 6 }}>
                 <PageTitle title={t('resume.title.work-experiences')}>
                   <Timeline resumeItems={workExperiences} />
                 </PageTitle>
               </Grid>
-              <Grid item xs={12} md={6}>
+              <Grid size={{ xs: 12, md: 6 }}>
                 <PageTitle title={t('resume.title.education')}>
                   <Timeline resumeItems={education} />
                 </PageTitle>
               </Grid>
             </Grid>
           </Grid>
-          <Grid item>
+          <Grid>
             <PageTitle title={t('resume.title.certifications')}>
               <Grid container spacing={2}>
                 {certifications?.map((certification, index) => {
                   return (
                     certification && (
                       <Grid
-                        item
+                        size={{ xs: 12, md: 6, lg: 4 }}
                         key={certification?.id}
-                        xs={12}
-                        md={6}
-                        lg={4}
                         ref={ref}
                       >
                         <Grow in={inView} timeout={500 * index}>

@@ -33,12 +33,10 @@ const Contact: React.FC<ContactProps> = ({
       <PrivacyPolicyModal content={pageContact?.PrivacyPolicy} />
       <Fade in={true}>
         <Grid container flexDirection='column' spacing={8}>
-          <Grid item>
-            {header && <PageTitle {...header} isMainTitle={true} />}
-          </Grid>
-          <Grid item>
+          <Grid>{header && <PageTitle {...header} isMainTitle={true} />}</Grid>
+          <Grid>
             <Grid container spacing={4}>
-              <Grid item xs={12} md={6}>
+              <Grid size={{ xs: 12, md: 6 }}>
                 {contactInformation && socialMedia && (
                   <ContactInformation
                     contact={contactInformation}
@@ -46,7 +44,7 @@ const Contact: React.FC<ContactProps> = ({
                   />
                 )}
               </Grid>
-              <Grid item xs={12} md={6}>
+              <Grid size={{ xs: 12, md: 6 }}>
                 <ContactForm />
               </Grid>
             </Grid>

@@ -14,6 +14,9 @@ const meta: Meta<typeof ResumeItem> = {
       },
     },
   },
+  globals: {
+    backgrounds: { value: 'light' },
+  },
 };
 
 export default meta;

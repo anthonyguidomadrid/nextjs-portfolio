@@ -74,9 +74,9 @@ MyApp.getInitialProps = async (appContext: AppContext) => {
   });
 
   return {
-    menuItems: menuItems.menuItems,
-    homeData: homeData.pageHome,
-    socialMedia: homeData.socialMedia,
+    menuItems: menuItems?.menuItems,
+    homeData: homeData?.pageHome,
+    socialMedia: homeData?.socialMedia,
   };
 };
 

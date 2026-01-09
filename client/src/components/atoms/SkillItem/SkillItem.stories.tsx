@@ -5,6 +5,9 @@ import { ComponentMainSkill } from '~/generated/graphql';
 const meta: Meta<typeof SkillItem> = {
   title: 'Atoms/SkillItem',
   component: SkillItem,
+  globals: {
+    backgrounds: { value: 'light' },
+  },
 };
 
 export default meta;

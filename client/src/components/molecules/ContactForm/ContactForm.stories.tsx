@@ -4,11 +4,8 @@ import { ContactForm } from './ContactForm';
 const meta: Meta<typeof ContactForm> = {
   title: 'Molecules/ContactForm',
   component: ContactForm,
-  parameters: {
-    backgrounds: {
-      values: [{ name: 'Black', value: '#000' }],
-      default: 'Black',
-    },
+  globals: {
+    backgrounds: { value: 'grey' },
   },
 };
 

@@ -6,11 +6,8 @@ import { CONTACT_INFORMATION_MOCK } from './ContactInformation.mocks';
 const meta: Meta<typeof ContactInformation> = {
   title: 'Molecules/ContactInformation',
   component: ContactInformation,
-  parameters: {
-    backgrounds: {
-      values: [{ name: 'Grey', value: 'grey' }],
-      default: 'Grey',
-    },
+  globals: {
+    backgrounds: { value: 'grey' },
   },
 };
 

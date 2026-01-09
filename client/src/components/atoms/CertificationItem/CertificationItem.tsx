@@ -10,23 +10,13 @@ import {
   CertificationImage,
 } from './CertificationItem.styles';
 
-export const CertificationItem: React.FC<CertificationItemProps> = ({
-  name,
-  date,
-  logo,
-  link,
-}) => {
+export const CertificationItem: React.FC<CertificationItemProps> = ({ name, date, logo, link }) => {
   const { locale } = useRouter();
   const { t } = useTranslation();
   return (
     <CertificationCard>
-      <Grid
-        container
-        alignItems='center'
-        spacing={2}
-        onClick={() => console.log('clicked')}
-      >
-        <Grid item xs={2} lg={3}>
+      <Grid container alignItems='center' spacing={2}>
+        <Grid size={{ xs: 2, lg: 3 }}>
           <CertificationImage
             src={logo?.url ?? ''}
             alt={logo?.alternativeText ?? ''}
@@ -35,7 +25,7 @@ export const CertificationItem: React.FC<CertificationItemProps> = ({
           />
         </Grid>
 
-        <Grid item xs={10} lg={9}>
+        <Grid size={{ xs: 10, lg: 9 }}>
           <CardContent>
             <Typography variant='bold'>{name}</Typography>
             <Typography variant='body2'>{formatDate(date, locale)}</Typography>

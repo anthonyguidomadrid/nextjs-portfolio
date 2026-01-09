@@ -7,7 +7,7 @@ export const SkillWrapper: React.FC<SkillWrapperProps> = ({ skills }) => (
     {skills?.map((skill, index) => {
       if (!skill) return null;
       return (
-        <Grid key={index} item xs={12} lg={6}>
+        <Grid key={index} size={{ xs: 12, lg: 6 }}>
           <SkillItem {...skill} />
         </Grid>
       );
