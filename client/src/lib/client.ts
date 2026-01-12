@@ -9,8 +9,8 @@ if (
   process.versions &&
   process.versions.node
 ) {
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
-  require('dotenv').config();
+  // Keep this dynamic so it never ends up in the browser bundle.
+  import('dotenv').then((dotenv) => dotenv.config());
 }
 
 let apolloClient: ApolloClient | undefined;
