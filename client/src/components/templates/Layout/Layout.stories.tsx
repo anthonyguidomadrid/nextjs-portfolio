@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/nextjs';
 import { Layout } from './Layout';
 import { LayoutProps } from './Layout.types';
 import {

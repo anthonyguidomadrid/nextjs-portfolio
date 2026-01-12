@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/nextjs';
 import { ConditionalWrapper } from './ConditionalWrapper';
 import { ConditionalWrapperProps } from './ConditionalWrapper.types';
 import { Box } from '@mui/material';

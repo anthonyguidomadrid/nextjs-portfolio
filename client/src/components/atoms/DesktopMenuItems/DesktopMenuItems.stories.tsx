@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/nextjs';
 import { DesktopMenuItems } from './DesktopMenuItems';
 import { DesktopMenuItemsProps } from './DesktopMenuItems.types';
 import { MENU_ITEMS_MOCK } from '~/components/organisms/Header/Header.mocks';

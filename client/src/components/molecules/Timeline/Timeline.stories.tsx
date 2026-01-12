@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/nextjs';
 import { Timeline } from './Timeline';
 import { TimelineProps } from './Timeline.types';
 import { RESUME_ITEM_MOCK } from '~/components/atoms/ResumeItem/ResumeItem.mocks';

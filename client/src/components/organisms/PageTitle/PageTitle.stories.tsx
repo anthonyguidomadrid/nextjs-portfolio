@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/nextjs';
 import { PageTitle } from './PageTitle';
 import { PageTitleProps } from './PageTitle.types';
 import { DESCRIPTION_MOCK } from '~/mocks';

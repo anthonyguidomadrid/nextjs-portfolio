@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/nextjs';
 import { SkillItem } from './SkillItem';
 import { ComponentMainSkill } from '~/generated/graphql';
 

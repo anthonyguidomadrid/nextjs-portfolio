@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/nextjs';
 import { MENU_ITEMS_MOCK } from '~/components/organisms/Header/Header.mocks';
 import { Topbar } from './TopBar';
 import { TopBarProps } from './TopBar.types';

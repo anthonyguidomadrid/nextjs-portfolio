@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/nextjs';
 import { CertificationItem } from './CertificationItem';
 import { CertificationItemProps } from './CertificationItem.types';
 import { CERTIFICATION_ITEM_MOCK } from './CertificationItem.mocks';

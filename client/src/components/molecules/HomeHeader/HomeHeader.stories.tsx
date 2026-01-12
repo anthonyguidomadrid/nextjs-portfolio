@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/nextjs';
 import { SOCIAL_MEDIAS_MOCK } from '~/components/organisms/Header/Header.mocks';
 import { HomeHeader } from './HomeHeader';
 import { HomeHeaderProps } from './HomeHeader.types';

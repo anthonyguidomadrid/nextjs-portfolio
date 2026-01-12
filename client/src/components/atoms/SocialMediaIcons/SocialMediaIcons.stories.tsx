@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/nextjs';
 import { SocialMediaIcons } from './SocialMediaIcons';
 import { SocialMediaIconsProps } from './SocialMediaIcons.types';
 import { SOCIAL_MEDIA_MOCK } from './SocialMediaIcons.mocks';

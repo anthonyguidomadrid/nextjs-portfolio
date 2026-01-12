@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/nextjs';
 import { DrawerProps } from './Drawer.types';
 import { Drawer } from './Drawer';
 import { MENU_ITEMS_MOCK } from '~/components/organisms/Header/Header.mocks';

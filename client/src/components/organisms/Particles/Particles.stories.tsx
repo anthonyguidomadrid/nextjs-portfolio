@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/nextjs';
 import { Particles } from './Particles';
 import { ParticlesProps } from './Particles.types';
 

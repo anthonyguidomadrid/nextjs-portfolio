@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/nextjs';
 import { ContactInformation } from './ContactInformation';
 import { ContactInformationProps } from './ContactInformation.types';
 import { CONTACT_INFORMATION_MOCK } from './ContactInformation.mocks';

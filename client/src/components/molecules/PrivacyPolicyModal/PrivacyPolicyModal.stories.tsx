@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/nextjs';
 import { PrivacyPolicyModal } from './PrivacyPolicyModal';
 import { PrivacyPolicyModalProps } from './PrivacyPolicyModal.types';
 import { PRIVACY_MODAL_CONTENT_MOCK } from './PrivacyPolicyModal.mock';

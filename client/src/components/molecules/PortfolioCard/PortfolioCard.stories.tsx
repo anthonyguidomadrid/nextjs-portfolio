@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/nextjs';
 import { PortfolioCard } from './PortfolioCard';
 import { PorfolioCardProps } from './PortfolioCard.types';
 

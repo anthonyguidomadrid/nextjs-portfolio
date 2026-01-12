@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/nextjs';
 import { ProjectModal } from './ProjectModal';
 import { ProjectModalProps } from './ProjectModal.types';
 import { PROJECT_MOCK } from './ProjectModal.mocks';

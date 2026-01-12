@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/nextjs';
 import { SkillWrapper } from './SkillWrapper';
 import { SKILLS_MOCK } from './SkillWrapper.mocks';
 import { SkillWrapperProps } from './SkillWrapper.types';
