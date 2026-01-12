@@ -28,7 +28,6 @@ jest.mock('./PageTitle.styles', () => ({
 }));
 
 describe('PageTitle Component', () => {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || '';
 
   beforeEach(() => {
     jest.clearAllMocks();
