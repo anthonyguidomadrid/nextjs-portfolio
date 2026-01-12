@@ -1,8 +1,7 @@
 import { PageWrapperProps } from './PageWrapper.types';
 import { useRouter } from 'next/router';
 import { StyledPageWrapper } from './PageWrapper.styles';
-import { Fade, useMediaQuery } from '@mui/material';
-import { ConditionalWrapper } from '../ConditionalWrapper/ConditionalWrapper';
+import { useMediaQuery } from '@mui/material';
 
 export const PageWrapper: React.FC<PageWrapperProps> = ({ children }) => {
   const router = useRouter();
@@ -13,15 +12,11 @@ export const PageWrapper: React.FC<PageWrapperProps> = ({ children }) => {
   if (isHomePage) {
     return children;
   }
+
+  const shouldAnimate = !prefersReducedMotion;
   return (
-    <ConditionalWrapper
-      wrapperProps={{ in: true, timeout: 2000 }}
-      wrapper={Fade}
-      condition={!prefersReducedMotion}
-    >
-      <StyledPageWrapper data-testid='page-wrapper'>
-        {children}
-      </StyledPageWrapper>
-    </ConditionalWrapper>
+    <StyledPageWrapper data-testid='page-wrapper' shouldAnimate={shouldAnimate}>
+      {children}
+    </StyledPageWrapper>
   );
 };

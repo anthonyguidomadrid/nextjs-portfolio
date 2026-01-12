@@ -1,6 +1,8 @@
 import { Box, styled } from '@mui/material';
 
-export const StyledPageWrapper = styled(Box)(({ theme }) => ({
+export const StyledPageWrapper = styled(Box, {
+  shouldForwardProp: (prop) => prop !== 'shouldAnimate',
+})<{ shouldAnimate?: boolean }>(({ theme, shouldAnimate }) => ({
   marginTop: theme.spacing(15),
   marginBottom: theme.spacing(10),
   maxWidth: '90%',
@@ -18,6 +20,16 @@ export const StyledPageWrapper = styled(Box)(({ theme }) => ({
   marginLeft: 'auto',
   marginRight: 'auto',
   backgroundColor: theme.palette.background.black,
+
+  ...(shouldAnimate
+    ? {
+        animation: 'pageWrapperFadeIn 400ms ease-out both',
+        '@keyframes pageWrapperFadeIn': {
+          from: { opacity: 0, transform: 'translateY(4px)' },
+          to: { opacity: 1, transform: 'translateY(0)' },
+        },
+      }
+    : null),
 }));
 
 export const SpinnerWrapper = styled(Box)(({ theme }) => ({
