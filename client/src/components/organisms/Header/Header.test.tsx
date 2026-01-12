@@ -66,7 +66,7 @@ describe('Header', () => {
     it('displays all menu item labels', () => {
       MENU_ITEMS_MOCK.forEach((item) => {
         expect(
-          within(getDesktopMenu()).getByText(item.attributes?.label!)
+          within(getDesktopMenu()).getByText(item?.label!)
         ).toBeInTheDocument();
       });
     });
@@ -80,9 +80,9 @@ describe('Header', () => {
     it('calls the push method of the router with the right path', async () => {
       const menuItem = MENU_ITEMS_MOCK[3];
       await userEvent.click(
-        within(getDesktopMenu()).getByText(menuItem.attributes?.label!)
+        within(getDesktopMenu()).getByText(menuItem?.label!)
       );
-      expect(mockPush).toHaveBeenCalledWith(menuItem.attributes?.path);
+      expect(mockPush).toHaveBeenCalledWith(menuItem?.path);
     });
   });
 
@@ -125,7 +125,7 @@ describe('Header', () => {
       await toogleMenu();
       MENU_ITEMS_MOCK.forEach((item) => {
         expect(
-          within(getMobileMenu()).getByText(item.attributes?.label!)
+          within(getMobileMenu()).getByText(item?.label!)
         ).toBeVisible();
       });
     });
@@ -141,9 +141,9 @@ describe('Header', () => {
       const menuItem = MENU_ITEMS_MOCK[3];
       await toogleMenu();
       await userEvent.click(
-        within(getMobileMenu()).getByText(menuItem.attributes?.label!)
+        within(getMobileMenu()).getByText(menuItem?.label!)
       );
-      expect(mockPush).toHaveBeenCalledWith(menuItem.attributes?.path);
+      expect(mockPush).toHaveBeenCalledWith(menuItem?.path);
     });
   });
 });

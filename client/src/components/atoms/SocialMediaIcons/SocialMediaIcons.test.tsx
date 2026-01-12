@@ -23,13 +23,13 @@ describe('SocialMediaIcons', () => {
 
     expect(githubLink).toHaveAttribute(
       'href',
-      DEFAULT_PROPS.socialMedia?.socialMedia[0]?.GithubUrl
+      DEFAULT_PROPS.socialMedia?.githubUrl
     );
     expect(githubLink).toHaveAttribute('target', '_blank');
 
     expect(linkedinLink).toHaveAttribute(
       'href',
-      DEFAULT_PROPS.socialMedia?.socialMedia[0]?.LinkedinUrl
+      DEFAULT_PROPS.socialMedia?.linkedinUrl
     );
     expect(linkedinLink).toHaveAttribute('target', '_blank');
   });

@@ -11,28 +11,26 @@ describe('PortfolioCard ', () => {
     slug: 'sample-slug',
     date: '2023-12-25',
     thumbnail: {
-      data: {
-        attributes: {
-          url: '/images/sample.jpg',
-          alternativeText: 'Sample Alt Text',
-          hash: '',
-          mime: '',
-          name: '',
-          provider: '',
-          size: 0,
-        },
-      },
+      url: '/images/sample.jpg',
+      alternativeText: 'Sample Alt Text',
+      hash: '',
+      mime: '',
+      name: '',
+      provider: '',
+      size: 0,
+      documentId: '',
     },
     codeUrl: '',
     description: '',
     id: '',
-    pictures: {
-      __typename: undefined,
-      data: [],
+    pictures: [],
+    categories: [],
+    pictures_connection: {
+      nodes: [],
     },
   };
 
-  const MOCKED_IMAGE = DEFAULT_PROPS.thumbnail.data?.attributes;
+  const MOCKED_IMAGE = DEFAULT_PROPS.thumbnail;
 
   it('renders the title, date, and thumbnail image correctly', () => {
     render(<PortfolioCard {...DEFAULT_PROPS} />);
@@ -62,17 +60,14 @@ describe('PortfolioCard ', () => {
       <PortfolioCard
         {...DEFAULT_PROPS}
         thumbnail={{
-          data: {
-            attributes: {
-              url: '/images/sample.jpg',
-              alternativeText: '',
-              hash: '',
-              mime: '',
-              name: '',
-              provider: '',
-              size: 0,
-            },
-          },
+          url: '/images/sample.jpg',
+          alternativeText: '',
+          hash: '',
+          mime: '',
+          name: '',
+          provider: '',
+          size: 0,
+          documentId: '',
         }}
       />
     );

@@ -22,12 +22,14 @@ describe('ResumeItem', () => {
       )
     ).toBeVisible();
 
-    expect(screen.getByText(RESUME_ITEM_MOCK.description)).toBeVisible();
+    expect(
+      screen.getByText(RESUME_ITEM_MOCK.description[0].children[0].text)
+    ).toBeVisible();
 
     expect(getCompanyLogo()).toBeVisible();
     expect(getCompanyLogo()).toHaveAttribute(
       'src',
-      '/_next/image?url=%2Fuploads%2Foracle_logo_52cb563a57.jpg&w=256&q=75'
+      expect.stringContaining(encodeURIComponent(RESUME_ITEM_MOCK.logo!.url!))
     );
 
     const link = screen.getByRole('link');

@@ -52,13 +52,13 @@ describe('ContactInformation', () => {
 
     expect(githubLink).toHaveAttribute(
       'href',
-      CONTACT_INFORMATION_MOCK.socialMedia?.socialMedia[0]?.GithubUrl
+      CONTACT_INFORMATION_MOCK.socialMedia?.githubUrl
     );
     expect(githubLink).toHaveAttribute('target', '_blank');
 
     expect(linkedinLink).toHaveAttribute(
       'href',
-      CONTACT_INFORMATION_MOCK.socialMedia?.socialMedia[0]?.LinkedinUrl
+      CONTACT_INFORMATION_MOCK.socialMedia?.linkedinUrl
     );
     expect(linkedinLink).toHaveAttribute('target', '_blank');
   });

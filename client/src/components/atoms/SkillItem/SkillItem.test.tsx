@@ -19,7 +19,7 @@ describe('SkillItem', () => {
     }));
     (useInView as jest.Mock).mockImplementation(mockInView);
 
-    render(<SkillItem Name='React' percentage={75} id='1' />);
+    render(<SkillItem name='React' percentage={75} id='1' />);
     expect(screen.getByText('React')).toBeInTheDocument();
     expect(screen.getByText('75 %')).toBeInTheDocument();
   });
@@ -33,7 +33,7 @@ describe('SkillItem', () => {
 
     jest.useFakeTimers();
 
-    render(<SkillItem Name='JavaScript' percentage={90} id='1' />);
+    render(<SkillItem name='JavaScript' percentage={90} id='1' />);
     expect(screen.getByRole('progressbar')).toHaveAttribute(
       'aria-valuenow',
       '1'
@@ -57,7 +57,7 @@ describe('SkillItem', () => {
     }));
     (useInView as jest.Mock).mockImplementation(mockInView);
 
-    render(<SkillItem Name='TypeScript' percentage={60} id='1' />);
+    render(<SkillItem name='TypeScript' percentage={60} id='1' />);
     expect(screen.getByRole('progressbar')).toHaveAttribute(
       'aria-valuenow',
       '1'
@@ -71,7 +71,7 @@ describe('SkillItem', () => {
     }));
     (useInView as jest.Mock).mockImplementation(mockInView);
 
-    render(<SkillItem Name='GraphQL' percentage={undefined} id='1' />);
+    render(<SkillItem name='GraphQL' percentage={undefined} id='1' />);
     expect(screen.getByRole('progressbar')).toHaveAttribute(
       'aria-valuenow',
       '1'

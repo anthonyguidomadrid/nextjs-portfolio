@@ -4,12 +4,6 @@ import { PROJECT_MOCK } from './ProjectModal.mocks';
 import { render } from '~/utils/test-utils';
 import theme from '~/utils/theme';
 
-jest.mock('../../atoms/RichText/RichText.tsx', () => ({
-  RichText: jest.fn(({ content }) => (
-    <div data-testid='rich-text'>{content}</div>
-  )),
-}));
-
 jest.mock('../../molecules/ImageCarousel/ImageCarousel.tsx', () => ({
   ImageCarousel: jest.fn(() => (
     <div data-testid='image-carousel'>Image Carousel</div>
@@ -40,9 +34,9 @@ describe('ProjectModal', () => {
     expect(screen.getByText(PROJECT_MOCK.title)).toBeVisible();
     expect(screen.getByText(PROJECT_MOCK.subTitle)).toBeVisible();
 
-    expect(screen.getByTestId('rich-text')).toContainHTML(
-      PROJECT_MOCK.description
-    );
+    expect(
+      screen.getByText(PROJECT_MOCK.description[0].children[0].text)
+    ).toBeVisible();
 
     expect(
       screen.getByText('Categories: NextJS, React, Contentful, NodeJS')

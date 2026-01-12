@@ -35,13 +35,7 @@ describe('HomeHeader', () => {
 
   it('renders the social media links', () => {
     const links = screen.getAllByRole('link');
-    expect(links[0]).toHaveAttribute(
-      'href',
-      SOCIAL_MEDIAS_MOCK.socialMedia[0]?.GithubUrl
-    );
-    expect(links[0]).toHaveAttribute(
-      'href',
-      SOCIAL_MEDIAS_MOCK.socialMedia[1]?.LinkedinUrl
-    );
+    expect(links[0]).toHaveAttribute('href', SOCIAL_MEDIAS_MOCK.githubUrl);
+    expect(links[1]).toHaveAttribute('href', SOCIAL_MEDIAS_MOCK.linkedinUrl);
   });
 });

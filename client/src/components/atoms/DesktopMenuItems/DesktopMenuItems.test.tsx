@@ -17,16 +17,16 @@ describe('DesktopMenuItems', () => {
   });
 
   it('renders a list of menu items', () => {
-    MENU_ITEMS_MOCK.forEach(({ attributes }) => {
-      expect(screen.getByText(attributes?.label!)).toBeVisible();
+    MENU_ITEMS_MOCK.forEach((item) => {
+      expect(screen.getByText(item.label!)).toBeVisible();
     });
   });
 
   it('fires the handleNavigation function with the corresponding path when clicking on any specific menu item', async () => {
-    const { attributes } = MENU_ITEMS_MOCK[2];
+    const item = MENU_ITEMS_MOCK[2];
     await userEvent.click(
-      screen.getByRole('button', { name: attributes?.label })
+      screen.getByRole('button', { name: item.label })
     );
-    expect(handleNavigation).toHaveBeenCalledWith(attributes?.path);
+    expect(handleNavigation).toHaveBeenCalledWith(item.path);
   });
 });

@@ -12,7 +12,7 @@ jest.mock('react-slick', () => {
 
 describe('ImageCarousel', () => {
   const DEFAULT_PROPS: ImageCarouselProps = {
-    images: PROJECT_MOCK.pictures.data,
+    images: PROJECT_MOCK.pictures,
   };
 
   it('should render the slider component', () => {
@@ -29,7 +29,7 @@ describe('ImageCarousel', () => {
     DEFAULT_PROPS.images.forEach((image, index) => {
       expect(renderedImages[index]).toHaveAttribute(
         'alt',
-        image.attributes?.alternativeText
+        image?.alternativeText
       );
     });
   });

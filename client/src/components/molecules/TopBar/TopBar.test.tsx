@@ -24,8 +24,8 @@ describe('TopBar', () => {
     });
 
     it('renders a list menu items', () => {
-      MENU_ITEMS_MOCK.forEach(({ attributes }) => {
-        expect(screen.getByText(attributes?.label!)).toBeInTheDocument();
+      MENU_ITEMS_MOCK.forEach(({ label }) => {
+        expect(screen.getByText(label)).toBeInTheDocument();
       });
     });
 

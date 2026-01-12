@@ -39,9 +39,9 @@ describe('ConditionalWrapper', () => {
     render(
       <ConditionalWrapper
         {...DEFAULT_PROPS}
-        wrapperProps={{ style: { backgroundColor: 'blue' } }}
+        wrapperProps={{ style: { backgroundColor: 'rgb(0, 0, 255)' } }}
       />
     );
-    expect(getWrapper()).toHaveStyle('background-color: blue');
+    expect(getWrapper()).toHaveStyle('background-color: rgb(0, 0, 255)');
   });
 });

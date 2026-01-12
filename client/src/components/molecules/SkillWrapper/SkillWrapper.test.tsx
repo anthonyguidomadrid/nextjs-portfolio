@@ -30,8 +30,8 @@ describe('SkillWrapper', () => {
 
   it('renders multiple skills', () => {
     const skills = [
-      { Name: 'React', percentage: 75, id: '1' },
-      { Name: 'JavaScript', percentage: 90, id: '2' },
+      { name: 'React', percentage: 75, id: '1' },
+      { name: 'JavaScript', percentage: 90, id: '2' },
     ];
 
     render(<SkillWrapper skills={skills} />);
@@ -40,10 +40,10 @@ describe('SkillWrapper', () => {
 
   it('skips rendering for null or undefined skills', () => {
     const skills = [
-      { Name: 'React', percentage: 75, id: '1' },
+      { name: 'React', percentage: 75, id: '1' },
       null,
       null,
-      { Name: 'JavaScript', percentage: 90, id: '2' },
+      { name: 'JavaScript', percentage: 90, id: '2' },
     ];
 
     render(<SkillWrapper skills={skills} />);

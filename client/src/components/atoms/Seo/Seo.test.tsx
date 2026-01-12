@@ -15,23 +15,21 @@ describe('Seo', () => {
     canonicalUrl: 'https://example.com',
     noFollow: false,
     noIndex: false,
-    shareImages: {
-      data: [
-        {
-          attributes: {
-            alternativeText: 'Anthony Guido Senior Software Engineer',
-            url: 'https://res.cloudinary.com/dehtxdkyc/image/upload/v1741084057/anthony_guido_senior_software_engineer_c599ca0a60.jpg',
-            height: 630,
-            width: 1200,
-            hash: '',
-            mime: '',
-            name: '',
-            provider: '',
-            size: 0,
-          },
-        },
-      ],
-    },
+    shareImages: [
+      {
+        alternativeText: 'Anthony Guido Senior Software Engineer',
+        url: 'https://res.cloudinary.com/dehtxdkyc/image/upload/v1741084057/anthony_guido_senior_software_engineer_c599ca0a60.jpg',
+        height: 630,
+        width: 1200,
+        hash: '',
+        mime: '',
+        name: '',
+        provider: '',
+        size: 0,
+        documentId: '',
+      },
+    ],
+
     id: '',
   };
 
@@ -42,7 +40,10 @@ describe('Seo', () => {
     expect(titleTag).toHaveTextContent(SEO_MOCK.pageTitle);
 
     const metaDescription = container.querySelector('meta[name="description"]');
-    expect(metaDescription).toHaveAttribute('content', SEO_MOCK.pageDescription);
+    expect(metaDescription).toHaveAttribute(
+      'content',
+      SEO_MOCK.pageDescription
+    );
 
     const metaRobots = container.querySelector('meta[name="robots"]');
     expect(metaRobots).toHaveAttribute('content', 'index, follow');
@@ -75,10 +76,7 @@ describe('Seo', () => {
     expect(ogDescription).toHaveAttribute('content', SEO_MOCK.pageDescription);
 
     const ogImage = container.querySelector('meta[property="og:image"]');
-    expect(ogImage).toHaveAttribute(
-      'content',
-      SEO_MOCK.shareImages?.data[0].attributes?.url
-    );
+    expect(ogImage).toHaveAttribute('content', SEO_MOCK.shareImages?.[0]?.url);
   });
 
   it('renders Twitter Card meta tags correctly', () => {
@@ -101,7 +99,7 @@ describe('Seo', () => {
     const twitterImage = container.querySelector('meta[name="twitter:image"]');
     expect(twitterImage).toHaveAttribute(
       'content',
-      SEO_MOCK.shareImages?.data[0].attributes?.url
+      SEO_MOCK.shareImages?.[0]?.url
     );
   });
 
@@ -122,9 +120,7 @@ describe('Seo', () => {
   it('renders fallback dimensions if image data is missing', () => {
     const SEO_MOCKWithMissingImage = {
       ...SEO_MOCK,
-      shareImages: {
-        data: [],
-      },
+      shareImages: [],
     };
 
     const { container } = render(<Seo {...SEO_MOCKWithMissingImage} />);
