@@ -25,17 +25,17 @@ interface PortfolioProps {
 
 const Portfolio: React.FC<PortfolioProps> = ({ categories, pagePortfolio }) => {
   const apolloClient = initializeApollo();
-  const { locale } = useRouter();
+  const router = useRouter();
+  const { locale } = router;
   const isFirstRender = useRef(true);
   const [projects, setProjects] = useState<(ComponentMainProject | null)[]>(
     pagePortfolio?.Projects ?? []
   );
   const header = pagePortfolio?.Header;
   const seo = pagePortfolio?.SEO;
+  const allCategoryName = getAllCategoryName(locale);
 
-  const [currentCategory, setCurrentCategory] = useState(
-    getAllCategoryName(locale)
-  );
+  const [currentCategory, setCurrentCategory] = useState(allCategoryName);
   const [selectedProject, setSelectedProject] =
     useState<ComponentMainProject | null>(null);
   const [open, setOpen] = useState(false);
@@ -49,36 +49,37 @@ const Portfolio: React.FC<PortfolioProps> = ({ categories, pagePortfolio }) => {
     setOpen(false);
   };
 
-  const handleCategoryChange = useCallback(
-    async (categoryTag?: string | null) => {
-      if (!categoryTag) return;
-      setCurrentCategory(categoryTag);
+  const fetchProjects = useCallback(
+    async (categoryTag: string) => {
       setIsLoading(true);
-      const { data } = await apolloClient.query<GetProjectPageQuery>({
-        query: GetProjectPageDocument,
-        variables: { locale, categoryTag },
-      });
-      const projects = data?.pagePortfolio?.Projects as ComponentMainProject[];
-      if (projects) {
-        setProjects(projects);
+      try {
+        const { data } = await apolloClient.query<GetProjectPageQuery>({
+          query: GetProjectPageDocument,
+          variables: { locale, categoryTag },
+          fetchPolicy: 'network-only',
+        });
+        const projects = data?.pagePortfolio
+          ?.Projects as ComponentMainProject[];
+
+        if ((projects as ComponentMainProject[]).length === 0) {
+          setCurrentCategory(allCategoryName);
+          void router.push(
+            {
+              pathname: router.pathname,
+              query: { ...router.query, category: allCategoryName },
+            },
+            undefined,
+            { shallow: true, scroll: false }
+          );
+        } else if (projects) {
+          setProjects(projects);
+        }
+      } finally {
+        setIsLoading(false);
       }
-      setIsLoading(false);
     },
     [apolloClient, locale]
   );
-
-  useEffect(() => {
-    if (isFirstRender.current) {
-      isFirstRender.current = false;
-      return;
-    }
-
-    const fetchProjects = async () => {
-      await handleCategoryChange(getAllCategoryName(locale));
-    };
-
-    fetchProjects();
-  }, [handleCategoryChange, locale]);
 
   const handleProjectChange = useCallback(
     async (slug?: string) => {
@@ -89,7 +90,8 @@ const Portfolio: React.FC<PortfolioProps> = ({ categories, pagePortfolio }) => {
         query: GetProjectDocument,
         variables: { locale, slug },
       });
-      const projects = data?.pagePortfolio?.Projects || [] as ComponentMainProject[];
+      const projects =
+        data?.pagePortfolio?.Projects || ([] as ComponentMainProject[]);
       if (projects) {
         setSelectedProject(projects[0] as ComponentMainProject);
         handleClickOpen();
@@ -111,6 +113,26 @@ const Portfolio: React.FC<PortfolioProps> = ({ categories, pagePortfolio }) => {
     const prevSlug = getProjectIndex() + 1;
     handleProjectChange(projects[prevSlug]?.slug);
   };
+
+  const handleCategoryClick = (category: string) => {
+    setCurrentCategory(category);
+    void router.push(
+      {
+        pathname: router.pathname,
+        query: { ...router.query, category },
+      },
+      undefined,
+      { shallow: true, scroll: false }
+    );
+  };
+
+  useEffect(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return;
+    }
+    fetchProjects(currentCategory);
+  }, [currentCategory, locale, fetchProjects]);
 
   return (
     <>
@@ -150,7 +172,7 @@ const Portfolio: React.FC<PortfolioProps> = ({ categories, pagePortfolio }) => {
                     <Grid key={tag}>
                       <Button
                         key={tag}
-                        onClick={() => handleCategoryChange(tag)}
+                        onClick={() => handleCategoryClick(tag)}
                         variant='outlined'
                         color={isCurrent ? 'secondary' : 'primary'}
                       >
