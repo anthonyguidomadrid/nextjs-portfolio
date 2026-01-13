@@ -49,6 +49,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
       open={open}
       onClose={handleClose}
       TransitionComponent={Fade}
+      maxWidth='lg'
       keepMounted
     >
       <ModalNavWrapper container justifyContent='space-between'>
@@ -68,19 +69,27 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
       </ModalNavWrapper>
       <DialogTitle>{title}</DialogTitle>
       <DialogContent>
-        <ImageCarousel images={pictures} />
-        <Typography variant='h3'>{subTitle}</Typography>
-        <DialogContentText>
-          <BlocksRenderer content={description} />
-          <Typography variant='caption'>
-            {t('project.modal.categories', {
-              categories: categories
-                .map((category) => category?.tag)
-                .filter((category) => category !== getAllCategoryName(locale))
-                .join(', '),
-            })}
-          </Typography>
-        </DialogContentText>
+        <Grid container>
+          <Grid size={{ lg: 6, xs: 12 }}>
+            <ImageCarousel images={pictures} />
+          </Grid>
+          <Grid size={{ lg: 6, xs: 12 }}>
+            <Typography variant='h3'>{subTitle}</Typography>
+            <DialogContentText>
+              <BlocksRenderer content={description} />
+              <Typography variant='caption'>
+                {t('project.modal.categories', {
+                  categories: categories
+                    .map((category) => category?.tag)
+                    .filter(
+                      (category) => category !== getAllCategoryName(locale)
+                    )
+                    .join(', '),
+                })}
+              </Typography>
+            </DialogContentText>
+          </Grid>
+        </Grid>
       </DialogContent>
       <DialogActions>
         <Link href={codeUrl} target='_blank'>
