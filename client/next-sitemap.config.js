@@ -8,7 +8,7 @@ const locales = Array.isArray(i18nConfig?.i18n?.locales)
   : [];
 
 module.exports = {
-  siteUrl: process.env.SITE_URL,
+  siteUrl: process.env.NEXT_PUBLIC_SITE_URL,
   generateRobotsTxt: false,
   outDir: 'public/sitemaps',
   sitemapSize: 5000,

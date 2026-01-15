@@ -36,10 +36,10 @@ Welcome to the **Anthony Guido Portfolio** project, built using **Next.js** and 
 
 ```
 NEXT_PUBLIC_BASE_URL=<your_base_url>
+NEXT_PUBLIC_SITE_URL=<your_site_url>
 NEXT_PUBLIC_EMAILJS_SERVICE_ID=<your_emailjs_service_id>
 NEXT_PUBLIC_EMAILJS_TEMPLATE_ID=<your_emailjs_template_id>
 NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=<your_emailjs_public_key>
-SITE_URL=<your_site_url>
 NEXT_PUBLIC_GA_MEASUREMENT_ID=<your_google_analytics_id>
 ```
 
