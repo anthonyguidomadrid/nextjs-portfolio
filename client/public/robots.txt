@@ -2,8 +2,5 @@
 User-agent: *
 Allow: /
 
-# Host
-Host: https://www.anthonyguido.dev
-
 # Sitemaps
 Sitemap: https://www.anthonyguido.dev/sitemaps/sitemap.xml
