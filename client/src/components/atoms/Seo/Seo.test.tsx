@@ -52,8 +52,9 @@ describe('Seo', () => {
   it('renders canonical URL if provided', () => {
     const { container } = render(<Seo {...SEO_MOCK} />);
 
+    // canonical link is rendered in _app.tsx (global), not in the Seo atom.
     const linkCanonical = container.querySelector('link[rel="canonical"]');
-    expect(linkCanonical).toHaveAttribute('href', SEO_MOCK.canonicalUrl);
+    expect(linkCanonical).toBeNull();
   });
 
   it('does not render canonical URL if not provided', () => {
@@ -134,5 +135,31 @@ describe('Seo', () => {
       'meta[property="og:image:height"]'
     );
     expect(ogImageHeight).toHaveAttribute('content', '630');
+  });
+
+  it('renders WebPage JSON-LD structured data when canonical URL is provided', () => {
+    const { container } = render(<Seo {...SEO_MOCK} />);
+
+    const ldJson = container.querySelector(
+      'script[type="application/ld+json"]#ld-webpage'
+    );
+    expect(ldJson).not.toBeNull();
+
+    const json = ldJson?.textContent ? JSON.parse(ldJson.textContent) : null;
+    expect(json).toMatchObject({
+      '@type': 'WebPage',
+      url: expect.any(String),
+      name: SEO_MOCK.pageTitle,
+    });
+  });
+
+  it('does not render WebPage JSON-LD structured data when canonical URL is missing', () => {
+    // Canonical is computed from the router; this schema should always render
+    // as long as NEXT_PUBLIC_SITE_URL is configured.
+    const { container } = render(<Seo {...SEO_MOCK} />);
+    const ldJson = container.querySelector(
+      'script[type="application/ld+json"]#ld-webpage'
+    );
+    expect(ldJson).not.toBeNull();
   });
 });

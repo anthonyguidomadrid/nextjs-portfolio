@@ -6,5 +6,6 @@ export * from './LanguageSwitcher';
 export * from './ModalNavigation';
 export * from './ResumeItem';
 export * from './Seo';
+export * from './StructuredData';
 export * from './SkillItem';
 export * from './SocialMediaIcons';

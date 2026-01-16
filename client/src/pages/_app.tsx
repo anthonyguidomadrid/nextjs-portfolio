@@ -23,6 +23,12 @@ import { Provider } from 'react-redux';
 import { store } from '~/store';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
+import { StructuredData } from '~/components/atoms';
+import {
+  buildHref,
+  getCanonicalHref,
+  stripLocalePrefix,
+} from '~/utils/seoUrls';
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -38,31 +44,16 @@ interface MyAppProps extends AppProps {
 }
 
 const SITE_ORIGIN = (process.env.NEXT_PUBLIC_SITE_URL || '').replace(/\/$/, '');
+const SITE_NAME = process.env.NEXT_PUBLIC_SITE_NAME || 'Portfolio';
 
-function stripLocalePrefix(pathname: string, locales: readonly string[]) {
-  for (const locale of locales) {
-    if (pathname === `/${locale}`) return '/';
-    const prefix = `/${locale}/`;
-    if (pathname.startsWith(prefix)) return `/${pathname.slice(prefix.length)}`;
-  }
-  return pathname;
-}
-
-function buildHref(params: {
-  origin: string;
-  locale: string;
-  defaultLocale: string;
-  normalizedPath: string;
-}) {
-  const { origin, locale, defaultLocale, normalizedPath } = params;
+function toAbsoluteUrl(origin: string, url?: string | null) {
+  if (!url) return undefined;
+  if (/^https?:\/\//i.test(url)) return url;
   if (!origin) return undefined;
-
-  if (locale === defaultLocale) {
-    return `${origin}${normalizedPath}`;
-  }
-
-  return `${origin}/${locale}${normalizedPath === '/' ? '' : normalizedPath}`;
+  return `${origin}${url.startsWith('/') ? '' : '/'}${url}`;
 }
+
+// canonical/i18n URL helpers live in ~/utils/seoUrls
 
 const MyApp = ({
   Component,
@@ -79,11 +70,12 @@ const MyApp = ({
   const pathnameOnly = (router.asPath || '/').split(/[?#]/)[0] || '/';
   const normalizedPath = stripLocalePrefix(pathnameOnly, locales);
 
-  const canonicalHref = buildHref({
+  const canonicalHref = getCanonicalHref({
     origin: SITE_ORIGIN,
+    asPath: router.asPath,
+    locales,
     locale: currentLocale,
     defaultLocale,
-    normalizedPath,
   });
 
   const xDefaultHref = buildHref({
@@ -92,6 +84,37 @@ const MyApp = ({
     defaultLocale,
     normalizedPath,
   });
+
+  const personName = homeData?.Header?.[0]?.title || undefined;
+  const personJobTitle = homeData?.Header?.[0]?.subTitle || undefined;
+  const sameAs = [socialMedia?.githubUrl, socialMedia?.linkedinUrl].filter(
+    Boolean
+  ) as string[];
+
+  const siteStructuredData =
+    SITE_ORIGIN && personName
+      ? [
+          {
+            '@context': 'https://schema.org',
+            '@type': 'Person',
+            '@id': `${SITE_ORIGIN}/#person`,
+            name: personName,
+            url: SITE_ORIGIN,
+            jobTitle: personJobTitle,
+            sameAs: sameAs.length ? sameAs : undefined,
+            image: homeData?.SEO?.shareImages?.[0]?.url,
+          },
+          {
+            '@context': 'https://schema.org',
+            '@type': 'WebSite',
+            '@id': `${SITE_ORIGIN}/#website`,
+            url: SITE_ORIGIN,
+            name: SITE_NAME,
+            inLanguage: currentLocale,
+            publisher: { '@id': `${SITE_ORIGIN}/#person` },
+          },
+        ]
+      : null;
 
   return (
     <Provider store={store}>
@@ -122,6 +145,10 @@ const MyApp = ({
               );
             })
           : null}
+
+        {siteStructuredData ? (
+          <StructuredData id='ld-site' data={siteStructuredData} />
+        ) : null}
       </Head>
 
       <ThemeProvider theme={theme}>
