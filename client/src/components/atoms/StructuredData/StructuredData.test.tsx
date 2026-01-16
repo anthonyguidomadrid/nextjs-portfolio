@@ -37,9 +37,7 @@ describe('StructuredData', () => {
       name: 'x<y',
     };
 
-    const { container } = render(
-      <StructuredData id='ld-escape' data={data} />
-    );
+    const { container } = render(<StructuredData id='ld-escape' data={data} />);
 
     const script = container.querySelector(
       'script#ld-escape[type="application/ld+json"]'
@@ -57,9 +55,7 @@ describe('StructuredData', () => {
       { '@type': 'WebSite', name: 'B' },
     ];
 
-    const { container } = render(
-      <StructuredData id='ld-array' data={data} />
-    );
+    const { container } = render(<StructuredData id='ld-array' data={data} />);
 
     const script = container.querySelector(
       'script#ld-array[type="application/ld+json"]'
