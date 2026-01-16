@@ -16,18 +16,36 @@ export const Particles: React.FC<ParticlesProps> = ({
   const mousePosition = useMousePosition();
   const mouse = useRef<{ x: number; y: number }>({ x: 0, y: 0 });
   const canvasSize = useRef<{ w: number; h: number }>({ w: 0, h: 0 });
+  const animationFrameId = useRef<number | null>(null);
   const dpr = typeof window !== 'undefined' ? window.devicePixelRatio : 1;
 
   useEffect(() => {
-    if (canvasRef.current) {
-      context.current = canvasRef.current.getContext('2d');
+    if (!canvasRef.current) {
+      return;
     }
+
+    let ctx: CanvasRenderingContext2D | null = null;
+    try {
+      ctx = canvasRef.current.getContext('2d');
+    } catch {
+      ctx = null;
+    }
+
+    if (!ctx) {
+      return;
+    }
+
+    context.current = ctx;
     initCanvas();
-    animate();
     window.addEventListener('resize', initCanvas);
+    animationFrameId.current = window.requestAnimationFrame(animate);
 
     return () => {
       window.removeEventListener('resize', initCanvas);
+      if (animationFrameId.current !== null) {
+        window.cancelAnimationFrame(animationFrameId.current);
+        animationFrameId.current = null;
+      }
     };
   }, []);
 
@@ -166,6 +184,9 @@ export const Particles: React.FC<ParticlesProps> = ({
   };
 
   const animate = () => {
+    if (!context.current) {
+      return;
+    }
     clearContext();
     circles.current.forEach((circle: Circle, i: number) => {
       // Handle the alpha value
@@ -222,7 +243,7 @@ export const Particles: React.FC<ParticlesProps> = ({
         );
       }
     });
-    window.requestAnimationFrame(animate);
+    animationFrameId.current = window.requestAnimationFrame(animate);
   };
 
   return (

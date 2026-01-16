@@ -1,9 +1,10 @@
 import { Box, Button, CircularProgress, Fade, Grid, Grow } from '@mui/material';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useRouter } from 'next/router';
+import dynamic from 'next/dynamic';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { PortfolioCard } from '~/components/molecules';
-import { PageTitle, ProjectModal } from '~/components/organisms';
+import { PageTitle } from '~/components/organisms';
 import {
   Category,
   ComponentMainProject,
@@ -17,6 +18,12 @@ import { initializeApollo } from '~/lib/client';
 import { getAllCategoryName } from '~/utils';
 import { SpinnerWrapper } from '~/components/templates/PageWrapper/PageWrapper.styles';
 import { Seo } from '~/components/atoms';
+
+const ProjectModal = dynamic(
+  () =>
+    import('~/components/organisms/ProjectModal').then((m) => m.ProjectModal),
+  { ssr: false }
+);
 
 interface PortfolioProps {
   pagePortfolio: PagePortfolio;

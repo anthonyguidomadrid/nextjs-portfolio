@@ -1,4 +1,5 @@
 import { Fade, Grid } from '@mui/material';
+import dynamic from 'next/dynamic';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { PageTitle } from '~/components/organisms';
 import {
@@ -9,9 +10,24 @@ import {
   SocialMedia,
 } from '~/generated/graphql';
 import { initializeApollo } from '~/lib/client';
-import { ContactInformation, PrivacyPolicyModal } from '~/components/molecules';
-import { ContactForm } from '~/components/molecules/ContactForm/ContactForm';
+import { ContactInformation } from '~/components/molecules';
 import { Seo } from '~/components/atoms';
+
+const PrivacyPolicyModal = dynamic(
+  () =>
+    import('~/components/molecules/PrivacyPolicyModal/PrivacyPolicyModal').then(
+      (m) => m.PrivacyPolicyModal
+    ),
+  { ssr: false }
+);
+
+const ContactForm = dynamic(
+  () =>
+    import('~/components/molecules/ContactForm/ContactForm').then(
+      (m) => m.ContactForm
+    ),
+  { ssr: false }
+);
 
 interface ContactProps {
   pageContact: PageContact;
