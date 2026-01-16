@@ -3,6 +3,13 @@ import i18nConfig from './next-i18next.config.js';
 
 const nextConfig = {
   i18n: i18nConfig.i18n,
+  experimental: {
+    optimizePackageImports: [
+      '@mui/material',
+      '@mui/icons-material',
+      'date-fns',
+    ],
+  },
   webpack(config) {
     config.module.rules.push({
       test: /\.svg$/,
@@ -12,7 +19,11 @@ const nextConfig = {
     return config;
   },
   images: {
-    domains: ['localhost', 'res.cloudinary.com', 'anthonyguido.dev'],
+    remotePatterns: [
+      { protocol: 'http', hostname: 'localhost' },
+      { protocol: 'https', hostname: 'res.cloudinary.com' },
+      { protocol: 'https', hostname: 'anthonyguido.dev' },
+    ],
   },
 };
 
