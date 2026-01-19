@@ -1,15 +1,15 @@
 {
-    "scripts": {
-        "client": "yarn dev --prefix ../client/",
-        "server": "yarn dev --prefix ../server/",
-        "clear": "cd client && rm -rf .next && rm -rf cache",
-        "setup:client": "cd client && yarn",
-        "setup:server": "cd server && yarn",
-        "setup": "yarn install && yarn setup:client && yarn setup:server",
-        "dev": "yarn clear && concurrently \"cd client && yarn dev\" \"cd server && yarn develop\"",
-        "repo:upstream": "git fetch upstream && git merge upstream/main"
-    },
-    "dependencies": {
-        "concurrently": "^9.2.1"
-    }
+  "scripts": {
+    "client": "yarn --cwd client dev",
+    "server": "yarn --cwd server develop",
+    "clear": "cd client && rm -rf .next && rm -rf cache",
+    "setup:client": "cd client && yarn",
+    "setup:server": "cd server && yarn",
+    "setup": "yarn install && yarn setup:client && yarn setup:server",
+    "dev": "yarn clear && concurrently \"cd client && yarn dev\" \"cd server && yarn develop\"",
+    "repo:upstream": "git fetch upstream && git merge upstream/main"
+  },
+  "dependencies": {
+    "concurrently": "^9.2.1"
+  }
 }

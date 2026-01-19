@@ -1,9 +1,8 @@
-
 # Anthony Guido Portfolio
 
 ![Portfolio Screenshot](client/public/images/anthony-guido-senior-software-developer-portfolio.jpg)
 
-Welcome to the **Anthony Guido Portfolio** project! This repository contains both the client (frontend) and server (backend) applications. The project is designed to showcase Anthony's work and achievements, using **Next.js** for the frontend and **Strapi** for the backend API.
+Welcome to the **Anthony Guido Portfolio** project! This repo contains a Next.js frontend and a Strapi backend (GraphQL + CMS).
 
 ---
 
@@ -12,20 +11,25 @@ Welcome to the **Anthony Guido Portfolio** project! This repository contains bot
 - **Client:** A **Next.js** application showcasing the portfolio.
 - **Server:** A **Strapi** backend providing the API and content management for the portfolio.
 
+For detailed setup, see:
+
+- [client/README.md](client/README.md)
+- [server/README.md](server/README.md)
+
 ---
 
 ## Prerequisites
 
 ### Global Requirements
 
-- **Node.js** version 18.x or higher (for both client and server)
-- **Yarn** package manager (recommended)
+- **Node.js**: 24.x recommended (client targets Node 24.x; server supports Node >=20)
+- **Yarn** package manager
 
 ---
 
 ## Installation
 
-To set up both the client and server applications, follow these steps:
+To set up both the client and server applications:
 
 1. Clone the repository:
 
@@ -34,56 +38,57 @@ To set up both the client and server applications, follow these steps:
    cd nextjs-portfolio
    ```
 
-2. Install dependencies for both client and server:
+2. Install dependencies (root + client + server):
 
-   ```bash
-   yarn install
-   ```
+```bash
+yarn setup
+```
 
-3. Setup the client and server environments:
+3. Configure environment variables for both the client and server by creating `.env` files in their respective directories.
 
-   ```bash
-   yarn setup:client
-   yarn setup:server
-   ```
+Note: do not commit real secrets. Keep `.env` files local and use hosting provider secret stores in production.
 
-4. Configure environment variables for both the client and server by creating `.env` files in their respective directories.
+### Client (create `client/.env.local` or `client/.env`):
 
-   ### Client `.env`:
-   ```env
-   NEXT_PUBLIC_BASE_URL=<your_base_url>
-   NEXT_PUBLIC_EMAILJS_SERVICE_ID=<your_emailjs_service_id>
-   NEXT_PUBLIC_EMAILJS_TEMPLATE_ID=<your_emailjs_template_id>
-   NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=<your_emailjs_public_key>
-   SITE_URL=<your_site_url>
-   NEXT_PUBLIC_GA_MEASUREMENT_ID=<your_google_analytics_id>
-   ```
+```env
+NEXT_PUBLIC_BASE_URL=<your_base_url>
+NEXT_PUBLIC_SITE_URL=<your_site_url>
+NEXT_PUBLIC_SITE_NAME=<your_site_name>
+NEXT_PUBLIC_EMAILJS_SERVICE_ID=<your_emailjs_service_id>
+NEXT_PUBLIC_EMAILJS_TEMPLATE_ID=<your_emailjs_template_id>
+NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=<your_emailjs_public_key>
+NEXT_PUBLIC_GA_MEASUREMENT_ID=<your_google_analytics_id>
+```
 
-   ### Server `.env`:
-   ```env
-   HOST=0.0.0.0
-   PORT=1337
-   APP_KEYS=<your_app_keys>
-   API_TOKEN_SALT=<your_api_token_salt>
-   ADMIN_JWT_SECRET=<your_admin_jwt_secret>
-   TRANSFER_TOKEN_SALT=<your_transfer_token_salt>
-   JWT_SECRET=<your_jwt_secret>
+### Server (create `server/.env` from `server/.env.example`):
 
-   # Database Configuration
-   DATABASE_CLIENT=postgres
-   DATABASE_HOST=<your_database_host>
-   DATABASE_PORT=<your_database_port>
-   DATABASE_NAME=<your_database_name>
-   DATABASE_USERNAME=<your_database_username>
-   DATABASE_PASSWORD=<your_database_password>
-   DATABASE_SSL=true
-   DATABASE_SSL_REJECT_UNAUTHORIZED=false
+```env
+HOST=0.0.0.0
+PORT=1337
+APP_KEYS=<your_app_keys>
+API_TOKEN_SALT=<your_api_token_salt>
+ADMIN_JWT_SECRET=<your_admin_jwt_secret>
+TRANSFER_TOKEN_SALT=<your_transfer_token_salt>
+JWT_SECRET=<your_jwt_secret>
+ENCRYPTION_KEY=<your_encryption_key>
 
-   # Cloudinary Configuration
-   CLOUDINARY_NAME=<your_cloudinary_name>
-   CLOUDINARY_API_KEY=<your_cloudinary_api_key>
-   CLOUDINARY_API_SECRET=<your_cloudinary_api_secret>
-   ```
+# Database Configuration
+DATABASE_CLIENT=postgres
+# (optional alternative)
+# DATABASE_URL=postgres://USER:PASSWORD@HOST:5432/DBNAME
+DATABASE_HOST=<your_database_host>
+DATABASE_PORT=<your_database_port>
+DATABASE_NAME=<your_database_name>
+DATABASE_USERNAME=<your_database_username>
+DATABASE_PASSWORD=<your_database_password>
+DATABASE_SSL=true
+DATABASE_SSL_REJECT_UNAUTHORIZED=false
+
+# Cloudinary Configuration
+CLOUDINARY_NAME=<your_cloudinary_name>
+CLOUDINARY_KEY=<your_cloudinary_api_key>
+CLOUDINARY_SECRET=<your_cloudinary_api_secret>
+```
 
 ---
 
@@ -107,6 +112,14 @@ Once running, the **client** will be available at [http://localhost:3000](http:/
 ## Available Scripts
 
 The following npm scripts are available for various tasks:
+
+From the repository root:
+
+- **`dev`**: Start both the client and server concurrently.
+
+  ```bash
+  yarn dev
+  ```
 
 - **`client`**: Run the client application in development mode.
 
@@ -138,16 +151,10 @@ The following npm scripts are available for various tasks:
   yarn setup:server
   ```
 
-- **`setup`**: Install all dependencies for the project (both client and server).
+- **`setup`**: Install all dependencies for the project (root + client + server).
 
   ```bash
   yarn setup
-  ```
-
-- **`dev`**: Start both the client and server applications in development mode concurrently.
-
-  ```bash
-  yarn dev
   ```
 
 - **`repo:upstream`**: Fetch and merge changes from the upstream repository.
@@ -174,12 +181,12 @@ The server is deployed on **Railway** with a **PostgreSQL** database. To deploy:
 
 1. Connect the repository to **Railway**.
 2. Add the required environment variables in **Railway’s dashboard**.
-3. Run the following commands to set up and start the server:
+3. Build and start the server:
 
-   ```bash
-   yarn build
-   yarn start
-   ```
+```bash
+yarn --cwd server build
+yarn --cwd server start
+```
 
 ---
 
@@ -225,4 +232,3 @@ This project is licensed under the **MIT License**.
 - LinkedIn: [@anthony-guido](https://www.linkedin.com/in/anthony-guido/)
 
 ---
-

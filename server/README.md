@@ -1,61 +1,107 @@
-# 🚀 Getting started with Strapi
+# Server (Strapi)
 
-Strapi comes with a full featured [Command Line Interface](https://docs.strapi.io/dev-docs/cli) (CLI) which lets you scaffold and manage your project in seconds.
+This folder contains the Strapi backend for the portfolio project.
 
-### `develop`
+- Admin UI: `http://localhost:1337/admin`
+- REST API base: `http://localhost:1337/api`
+- GraphQL endpoint: `http://localhost:1337/api/graphql`
 
-Start your Strapi application with autoReload enabled. [Learn more](https://docs.strapi.io/dev-docs/cli#strapi-develop)
+## Prerequisites
 
-```
+- Node.js: `>=20 <=24` (see `engines` in `package.json`)
+- npm (recommended; the repo scripts use npm)
+
+## Quickstart
+
+```bash
+cd server
+npm install
+cp .env.example .env
 npm run develop
-# or
-yarn develop
 ```
 
-### `start`
+## Environment variables
 
-Start your Strapi application with autoReload disabled. [Learn more](https://docs.strapi.io/dev-docs/cli#strapi-start)
+Create a `.env` file (you can start from `.env.example`). At minimum, you should set the secrets and Cloudinary values.
 
+### Required secrets
+
+Strapi will fail to boot (or features like admin/API tokens will break) if these are missing:
+
+- `APP_KEYS` (comma-separated list; typically 4 random strings)
+- `API_TOKEN_SALT`
+- `ADMIN_JWT_SECRET`
+- `TRANSFER_TOKEN_SALT`
+- `JWT_SECRET`
+- `ENCRYPTION_KEY`
+
+Generate values with one of these:
+
+```bash
+openssl rand -base64 32
 ```
-npm run start
-# or
-yarn start
+
+or:
+
+```bash
+node -e "console.log(require('crypto').randomBytes(32).toString('base64'))"
 ```
 
-### `build`
+### Database
 
-Build your admin panel. [Learn more](https://docs.strapi.io/dev-docs/cli#strapi-build)
+Database config lives in `config/database.ts`.
 
-```
+- Default: if `DATABASE_CLIENT` is not set, it falls back to `sqlite` and stores data in `.tmp/data.db`.
+- Postgres: set `DATABASE_CLIENT=postgres` and configure either `DATABASE_URL` or the individual `DATABASE_*` fields.
+
+Common Postgres env vars:
+
+- `DATABASE_CLIENT=postgres`
+- `DATABASE_URL=postgres://USER:PASSWORD@HOST:5432/DBNAME` (optional but supported)
+- `DATABASE_HOST`, `DATABASE_PORT`, `DATABASE_NAME`, `DATABASE_USERNAME`, `DATABASE_PASSWORD`
+- `DATABASE_SSL` / `DATABASE_SSL_REJECT_UNAUTHORIZED` (for managed DBs)
+
+### Uploads (Cloudinary)
+
+Uploads are configured to use Cloudinary in `config/plugins.ts`. These must be set:
+
+- `CLOUDINARY_NAME`
+- `CLOUDINARY_KEY`
+- `CLOUDINARY_SECRET`
+
+If you want local disk uploads in development, switch the upload provider config in `config/plugins.ts`.
+
+## Scripts
+
+- `npm run develop` / `npm run dev`: start Strapi in dev mode (auto reload)
+- `npm run build`: build the admin panel
+- `npm run start`: start Strapi (no auto reload)
+- `npm run console`: open Strapi console
+- `npm run upgrade`: run Strapi upgrade helper
+
+## GraphQL
+
+GraphQL is enabled and mounted at `/api/graphql` (see `config/plugins.ts`). In development, the GraphQL Playground is enabled.
+
+## Deployment notes
+
+- Ensure all required secrets and Cloudinary vars are set in the hosting environment.
+- Use a persistent database (Postgres recommended) for production.
+- Typical production flow:
+
+```bash
+npm ci
 npm run build
-# or
-yarn build
+npm run start
 ```
 
-## ⚙️ Deployment
+## Troubleshooting
 
-Strapi gives you many possible deployment options for your project including [Strapi Cloud](https://cloud.strapi.io). Browse the [deployment section of the documentation](https://docs.strapi.io/dev-docs/deployment) to find the best solution for your use case.
+- Boot errors about missing keys/secrets: verify the required secrets in `.env`.
+- Upload failures: verify `CLOUDINARY_*` values and that the Cloudinary account allows uploads.
+- Frontend can’t reach the API: review CORS/security middleware (`config/middlewares.ts`) and hosting URLs.
 
-```
-yarn strapi deploy
-```
+## References
 
-## 📚 Learn more
-
-- [Resource center](https://strapi.io/resource-center) - Strapi resource center.
-- [Strapi documentation](https://docs.strapi.io) - Official Strapi documentation.
-- [Strapi tutorials](https://strapi.io/tutorials) - List of tutorials made by the core team and the community.
-- [Strapi blog](https://strapi.io/blog) - Official Strapi blog containing articles made by the Strapi team and the community.
-- [Changelog](https://strapi.io/changelog) - Find out about the Strapi product updates, new features and general improvements.
-
-Feel free to check out the [Strapi GitHub repository](https://github.com/strapi/strapi). Your feedback and contributions are welcome!
-
-## ✨ Community
-
-- [Discord](https://discord.strapi.io) - Come chat with the Strapi community including the core team.
-- [Forum](https://forum.strapi.io/) - Place to discuss, ask questions and find answers, show your Strapi project and get feedback or just talk with other Community members.
-- [Awesome Strapi](https://github.com/strapi/awesome-strapi) - A curated list of awesome things related to Strapi.
-
----
-
-<sub>🤫 Psst! [Strapi is hiring](https://strapi.io/careers).</sub>
+- Strapi docs: https://docs.strapi.io
+- CLI commands: https://docs.strapi.io/dev-docs/cli
