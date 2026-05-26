@@ -42,7 +42,7 @@ const Resume: React.FC<ResumeProps> = ({ pageResume }) => {
               </Grid>
               <Grid>
                 <Link
-                  href={`/cv/${locale}/AG_CV_2025.pdf`}
+                  href={`/cv/${locale}/AG_CV_2026.pdf`}
                   target='_blank'
                   locale={false}
                 >
